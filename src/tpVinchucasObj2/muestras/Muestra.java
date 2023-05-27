@@ -1,5 +1,5 @@
 package tpVinchucasObj2.muestras;
 
-public class Muestras {
+public class Muestra {
 
 }

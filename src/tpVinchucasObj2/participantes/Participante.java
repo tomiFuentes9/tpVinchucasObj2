@@ -1,5 +1,5 @@
 package tpVinchucasObj2.participantes;
 
-public class Participantes {
+public class Participante {
 	private String nombre ;
 }
