@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
-class UbicacionTest {
+class TestUbicacion {
 
 
 	Ubicacion ubicacion1 ;
