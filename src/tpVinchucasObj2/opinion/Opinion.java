@@ -1,4 +1,4 @@
-package tpVinchucasObj2.muestras.opinion;
+package tpVinchucasObj2.opinion;
 
 import java.util.*;
 

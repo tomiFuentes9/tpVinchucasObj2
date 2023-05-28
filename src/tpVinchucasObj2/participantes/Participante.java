@@ -1,6 +1,6 @@
 package tpVinchucasObj2.participantes;
 import tpVinchucasObj2.muestras.Muestra;
-import tpVinchucasObj2.muestras.opinion.Opinion;
+import tpVinchucasObj2.opinion.Opinion;
 
 public class Participante {
 	private String nombre;

@@ -5,6 +5,7 @@ import java.util.List;
 import tpVinchucasObj2.muestras.Muestra;
 
 public class Ubicacion {
+	
 	private Coordenada latitud ;
 	private Coordenada longitud;
 	

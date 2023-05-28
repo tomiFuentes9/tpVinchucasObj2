@@ -24,11 +24,18 @@ class UbicacionTest {
 	
 	List<Ubicacion> listaDeUbicaciones ;
 	
-	
+	Muestra muestraParaComparar ;
 	@BeforeEach
 	void setUp() throws Exception {
 		listaDeUbicaciones = new ArrayList<Ubicacion>();
 		// agregar todas las ubicacioens a la lista de ubicaciones creadalistaDeUbicaciones.stream().toArray()
+		listaDeUbicaciones.add(ubicacion1);
+		listaDeUbicaciones.add(ubicacion2);
+		listaDeUbicaciones.add(ubicacion3);
+		listaDeUbicaciones.add(ubicacion4);
+		listaDeUbicaciones.add(ubicacion5);
+		listaDeUbicaciones.add(ubicacion6);
+		
 		
 	}
 	
@@ -39,7 +46,8 @@ class UbicacionTest {
 
 	@Test
 	void aXDistanciaTest() {
-		assertEquals(/*Lista resultante*/,ubicacionAComparar.aXDistancia(listaDeUbicaciones, 0 /*Distancia*/));
+		
+		assertEquals(0/*Lista resultante*/,ubicacionAComparar.aXDistancia(listaDeUbicaciones, 0 /*Distancia*/));
 	}
 	
 	@Test
