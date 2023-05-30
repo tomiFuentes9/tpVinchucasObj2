@@ -1,7 +1,8 @@
 package tpVinchucasObj2.muestra;
 import java.util.*;
 import tpVinchucasObj2.participantes.*;
-import tpVinchucasObj2.muestras.opinion.*;
+import tpVinchucasObj2.opinion.*;
+import tpVinchucasObj2.ubicacion.*;
 
 public class Muestra {
 	private String foto;
@@ -11,6 +12,7 @@ public class Muestra {
 	private Participante creador;
 	private List <Opinion> opiniones;
 	private Ubicacion ubicacion;
+	private TipoOpinion resultadoActual;
 	
 	public Muestra(String foto, EspecieVinchuca especieVinchuca,
 			Participante creador, Ubicacion ubicacion) {
@@ -21,7 +23,8 @@ public class Muestra {
 		this.especieVinchuca = especieVinchuca;
 		this.creador = creador;
 		this.opiniones = new ArrayList<Opinion>();
-		this.ubicacion = ubicacion; 
+		this.ubicacion = ubicacion;
+		this.resultadoActual = noDefinido;
 	}
 
 	// Creado para poder testear
@@ -51,6 +54,49 @@ public class Muestra {
 
 	public void verificarMuestra() {
 		isVerificada = true;
+	}
+	
+	public void actualizarResultado() {
+		if (!isVerificada) {
+			this.verificarOpiniones();
+		}else {
+			throw new RuntimeException("La muestra ya fue verificada no es posible actualizar el resultado");
+		}
+	}
+	
+	public boolean opinoUnExperto() {
+		return opiniones.stream().anyMatch(op -> op.getEstadoDelCreador() == "Experto");
+	}
+	
+	public List<TipoOpinion> filtrarOps(List<Opinion> ops){
+		List<Opinion> filteredOps = this.filtrarExpertos(ops);
+		return filteredOps.stream().map(op -> op.getTipoOpinion()).toList();
+	}
+	
+	public List<Opinion> filtrarExpertos(List<Opinion> ops){
+		List<Opinion> filteredOps = ops;
+		if(this.opinoUnExperto()) {
+			 filteredOps = filteredOps.stream().filter(op -> op.getEstadoDelCreador() == "Experto").toList();
+		}
+		return filteredOps;
+	}
+	
+	public void verificarOpiniones() {
+		List <TipoOpinion> ops = this.filtrarOps(opiniones);
+		HashMap<TipoOpinion, Integer> opinionesRepetidas = new HashMap<>();
+        // Recorrer la lista y contar los elementos
+        for (TipoOpinion op : ops) {
+            if (opinionesRepetidas.containsKey(op)) {
+                opinionesRepetidas.put(op, opinionesRepetidas.get(op) + 1);
+            } else {
+                opinionesRepetidas.put(op, 1);
+            }
+        }
+        this.setResultadoActual(opinionesRepetidas.algo);// Consultar esto y falta filtrar la op con mas apariciones
+	}
+	
+	public void setResultadoActual(TipoOpinion op) {
+		resultadoActual = op;
 	}
 	
 	/*
