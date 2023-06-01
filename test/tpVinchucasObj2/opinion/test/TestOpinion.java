@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.opinion.Opinion;
+import tpVinchucasObj2.opinion.TipoOpinion;
 
 class TestOpinion {
 
@@ -17,9 +18,9 @@ class TestOpinion {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		opinion1 = new Opinion("Basico");
-		opinion2 = new Opinion("Basico");
-		opinion3 = new Opinion("Experto");
+		opinion1 = new Opinion("Basico",TipoOpinion.ImagenPocoClara);
+		opinion2 = new Opinion("Basico",TipoOpinion.Vinchuca);
+		opinion3 = new Opinion("Experto",TipoOpinion.Vinchuca);
 	}
 
 	@Test

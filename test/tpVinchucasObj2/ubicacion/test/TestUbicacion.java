@@ -4,52 +4,75 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
-import org.junit.jupiter.api.BeforeAll;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
 class TestUbicacion {
 
 
-	Ubicacion ubicacion1 ;
-	Ubicacion ubicacion2 ;
-	Ubicacion ubicacion3 ;
-	Ubicacion ubicacion4 ;
-	Ubicacion ubicacion5 ;
-	Ubicacion ubicacion6 ;
+	Ubicacion buenosAires ;
+	Ubicacion laPlata ;
+	Ubicacion montevideo ;
+	Ubicacion quilmes ;
+	Ubicacion cordoba ;
+	Ubicacion posadas ;
 	
-	Ubicacion ubicacionAComparar;
 	
 	List<Ubicacion> listaDeUbicaciones ;
 	
 	Muestra muestraParaComparar ;
+	
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUpUbicaciones() {
+		// creamos diferentes ubicaciones
+		quilmes     = new Ubicacion(-34.72904, -58.26374);
+		
+		buenosAires = new Ubicacion(-34.61315, -58.37723);
+		laPlata     = new Ubicacion(-34.92145, -57.95453);
+		montevideo  = new Ubicacion(-34.90328, -56.18816);
+		cordoba     = new Ubicacion(-31.41350, -64.18105);
+		posadas     = new Ubicacion(-27.36708, -55.89608);
+		
+		
+	}
+	@BeforeEach
+	void setUpListaUbicaciones() {
 		listaDeUbicaciones = new ArrayList<Ubicacion>();
 		// agregar todas las ubicacioens a la lista de ubicaciones creadalistaDeUbicaciones.stream().toArray()
-		listaDeUbicaciones.add(ubicacion1);
-		listaDeUbicaciones.add(ubicacion2);
-		listaDeUbicaciones.add(ubicacion3);
-		listaDeUbicaciones.add(ubicacion4);
-		listaDeUbicaciones.add(ubicacion5);
-		listaDeUbicaciones.add(ubicacion6);
+		listaDeUbicaciones.add(buenosAires);
+		listaDeUbicaciones.add(laPlata);
+		listaDeUbicaciones.add(montevideo);
+		listaDeUbicaciones.add(cordoba);
+		listaDeUbicaciones.add(posadas);
 		
 		
 	}
 	
 	@Test
 	void distanciaConTest() {
-		assertEquals(0/*Distancia resultado*/,ubicacionAComparar.distanciaCon(ubicacion1));
+		// las distancias son en linea recta desde una ubicacion a otra
+		assertEquals(16,quilmes.distanciaCon(buenosAires),10);
+		assertEquals(35,quilmes.distanciaCon(laPlata),10);
+		assertEquals(190,quilmes.distanciaCon(montevideo),10);
+		assertEquals(660,quilmes.distanciaCon(cordoba),10);
+		assertEquals(850,quilmes.distanciaCon(posadas),10);
 	}
 
 	@Test
 	void aXDistanciaTest() {
-		
-		assertEquals(0/*Lista resultante*/,ubicacionAComparar.aXDistancia(listaDeUbicaciones, 0 /*Distancia*/));
+		List<Ubicacion> listaResultante = quilmes.aXDistancia(listaDeUbicaciones, 500);
+		assertFalse(quilmes.aXDistancia(listaDeUbicaciones, 500).isEmpty());
+		assertEquals(3,listaResultante.size());
+		assertEquals(buenosAires,listaResultante.get(0));
+		assertEquals(laPlata,listaResultante.get(1));
+		assertEquals(montevideo,listaResultante.get(2));
 	}
 	
+	/*
 	@Test
 	void muestraAXMetrosTest() {
 		fail("Not yet implemented");
@@ -59,5 +82,5 @@ class TestUbicacion {
 	void muestraAXKilometrosTest() {
 		fail("Not yet implemented");
 	}
-
+	 */
 }
