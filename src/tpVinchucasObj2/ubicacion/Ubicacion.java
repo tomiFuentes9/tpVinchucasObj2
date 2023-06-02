@@ -70,7 +70,7 @@ public class Ubicacion {
 	} 
 	
 	
-	/*
+	
 	public List<Muestra> muestraAXMetros(Muestra muestra, float distanciaEnMts){
 		// Dado una muestra, conoce todas las muestras obtenidas a menos de x metros.
 		return 0 ;
@@ -81,6 +81,6 @@ public class Ubicacion {
 		// Dado una muestra, conoce todas las muestras obtenidas a menos de x kilómetros.
 
 	}
-	*/
+	
 	
 }
