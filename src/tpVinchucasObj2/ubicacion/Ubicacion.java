@@ -61,7 +61,7 @@ public class Ubicacion {
 		// Dada una lista de ubicaciones devuelve las ubicaciones que se encuentran a la distancia indicada, de si misma.
 		List<Ubicacion> listaFinal = new ArrayList<Ubicacion>();
 		for(Ubicacion ubicacion : ubicaciones) {
-			if(ubicacion.distanciaCon(this) <= distancia) {
+			if(this.distanciaCon(ubicacion) <= distancia) {
 				listaFinal.add(ubicacion);
 			}
 		}
@@ -70,17 +70,23 @@ public class Ubicacion {
 	} 
 	
 	
-	/*
-	public List<Muestra> muestraAXMetros(Muestra muestra, float distanciaEnMts){
+	
+	public List<Muestra> muestraAXMetros(Muestra muestra,float distanciaEnMts,Sistema sistema){
 		// Dado una muestra, conoce todas las muestras obtenidas a menos de x metros.
-		return 0 ;
+		List<Muestra> listaFinal = new ArrayList<Muestra>();
+		//sistema.getMuestras() -- todas las muestras del sistema pasado por parametro
+		Ubicacion ubicacionMuestra = muestra.getUbicacion() ;
+		for(Muestra muestraAVerificar : muestras) {
+			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion() < distanciaEnMts )) {
+				listaFinal.add(muestraAVerificar);
+			}
+		}
+		return listaFinal;
 
 	}
 	
-	public List<Muestra> muestraAXKilometros(Muestra muestra, float distanciaEnKm){
-		// Dado una muestra, conoce todas las muestras obtenidas a menos de x kilómetros.
-
-	}
-	*/
+	
+	
+	
 	
 }
