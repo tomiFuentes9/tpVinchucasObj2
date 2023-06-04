@@ -55,17 +55,22 @@ class TestUbicacion {
 		listaDeUbicaciones.add(posadas);
 		
 		
-	}
-	/*
-	@BeforeEach
-	void setUpListaUbicaciones() {
+		/*
+		// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
+		// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
+		
+		muestraParaComparar = new Muestra();
+		
 		muestra1 = new Muestra();
 		muestra2 = new Muestra() ;
-		muestra3 = new Muestra() ;
+		muestra3 = new Muestra() ;	
 		muestra4 = new Muestra() ;
+		
+		
+		*/
+		
 	}
 	
-	*/
 	@Test
 	void distanciaConTest() {
 		// las distancias son en linea recta desde una ubicacion a otra

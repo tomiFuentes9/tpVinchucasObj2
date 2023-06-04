@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
+import tpVinchucasObj2.participantes.EstadoExperto;
 import tpVinchucasObj2.participantes.Participante;
 
 class TestOpinion {
@@ -25,7 +26,9 @@ class TestOpinion {
 		
 		participante1 = new Participante("Leandro");
 		participante2 = new Participante("Walter");
-		participante3 = new Participante("Tomas");
+		
+		participante3 = new Participante("Tomas"); 
+		//participante3.actualizarEstado(new EstadoExperto(participante3) );
 		
 		
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,participante1);
