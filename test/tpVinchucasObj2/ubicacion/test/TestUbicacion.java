@@ -33,7 +33,7 @@ class TestUbicacion {
 	
 	
 	@BeforeEach
-	void setUpUbicaciones() {
+	void setUp() {
 		// creamos diferentes ubicaciones
 		quilmes     = new Ubicacion(-34.72904, -58.26374);
 		
@@ -44,10 +44,9 @@ class TestUbicacion {
 		posadas     = new Ubicacion(-27.36708, -55.89608);
 		
 		
-	}
-	@BeforeEach
-	void setUpListaUbicaciones() {
+		// Creamos una lista de ubicaciones para poder compararlas.
 		listaDeUbicaciones = new ArrayList<Ubicacion>();
+		
 		// agregar todas las ubicacioens a la lista de ubicaciones creadalistaDeUbicaciones.stream().toArray()
 		listaDeUbicaciones.add(buenosAires);
 		listaDeUbicaciones.add(laPlata);
@@ -57,7 +56,7 @@ class TestUbicacion {
 		
 		
 	}
-	
+	/*
 	@BeforeEach
 	void setUpListaUbicaciones() {
 		muestra1 = new Muestra();
@@ -66,7 +65,7 @@ class TestUbicacion {
 		muestra4 = new Muestra() ;
 	}
 	
-	
+	*/
 	@Test
 	void distanciaConTest() {
 		// las distancias son en linea recta desde una ubicacion a otra
@@ -80,11 +79,12 @@ class TestUbicacion {
 	@Test
 	void aXDistanciaTest() {
 		List<Ubicacion> listaResultante = quilmes.aXDistancia(listaDeUbicaciones, 500);
-		assertFalse(quilmes.aXDistancia(listaDeUbicaciones, 500).isEmpty());
-		/*assertEquals(3,listaResultante.size());
+		
+		assertFalse(listaResultante.isEmpty());
+		assertEquals(3,listaResultante.size());
 		assertEquals(buenosAires,listaResultante.get(0));
 		assertEquals(laPlata,listaResultante.get(1));
-		assertEquals(montevideo,listaResultante.get(2));*/
+		assertEquals(montevideo,listaResultante.get(2));
 	}
 	
 	

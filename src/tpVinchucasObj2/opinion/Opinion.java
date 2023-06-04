@@ -9,15 +9,26 @@ public class Opinion {
 	private Date fechaCreacion;
 	private String estadoDelCreador;
 	private TipoOpinion tipo;
-	private Participante creador; /*Como colocar quien hizo creo la opinion?*/
+	private Participante creador;
 	//private Muestra muestraDondeSeEncuentra ; // Debe conocer la muestra donde fue realizada ella misma ?
 	
 	
-	public Opinion(String estadoDelCreador,TipoOpinion tipo) {
+	public Opinion(TipoOpinion tipo,Participante creador) {
 		super();
 		this.fechaCreacion= new Date();
-		this.estadoDelCreador = estadoDelCreador;
+		this.estadoDelCreador = creador.estadoActual();
 		this.tipo= tipo;
+		this.creador = creador;
+	}
+
+
+	public Participante getCreador() {
+		return creador;
+	}
+
+
+	public void setCreador(Participante creador) {
+		this.creador = creador;
 	}
 
 

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
+import tpVinchucasObj2.participantes.Participante;
 
 class TestOpinion {
 
@@ -15,19 +16,41 @@ class TestOpinion {
 	Opinion opinion2;
 	Opinion opinion3;
 	
+	Participante participante1;
+	Participante participante2;
+	Participante participante3;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		opinion1 = new Opinion("Basico",TipoOpinion.ImagenPocoClara);
-		opinion2 = new Opinion("Basico",TipoOpinion.Vinchuca);
-		opinion3 = new Opinion("Experto",TipoOpinion.Vinchuca);
+		
+		participante1 = new Participante("Leandro");
+		participante2 = new Participante("Walter");
+		participante3 = new Participante("Tomas");
+		
+		
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,participante1);
+		opinion2 = new Opinion(TipoOpinion.Vinchuca,participante2);
+		opinion3 = new Opinion(TipoOpinion.Vinchuca,participante3);
 	}
 
 	@Test
-	void test() {
-		System.out.print(opinion1.getFechaCreacion());
-		
-		//assertEquals(27,opinion1.getFechaCreacion().getDay());
+	void testTipo() {
+		assertEquals(TipoOpinion.ImagenPocoClara,opinion1.getTipo());
+		assertEquals(TipoOpinion.Vinchuca,opinion2.getTipo());
+		assertEquals(TipoOpinion.Vinchuca,opinion3.getTipo());
 	}
-
+	
+	@Test
+	void testCreador() {
+		assertEquals(participante1,opinion1.getCreador());
+		assertEquals(participante2,opinion2.getCreador());
+		assertEquals(participante3,opinion3.getCreador());
+	}
+	
+	@Test
+	void testNivelCreador() {
+		assertEquals("Basico",opinion1.getEstadoDelCreador());
+		assertEquals("Basico",opinion2.getEstadoDelCreador());
+		assertEquals("Experto",opinion3.getEstadoDelCreador());
+	}
 }

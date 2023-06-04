@@ -20,7 +20,7 @@ public class Ubicacion {
 
 
 	public double getLatitud() {
-		return latitud;
+		return this.latitud;
 	}
 
 
@@ -30,7 +30,7 @@ public class Ubicacion {
 
 
 	public double getLongitud() {
-		return longitud;
+		return this.longitud;
 	}
 
 
@@ -59,18 +59,24 @@ public class Ubicacion {
 	
 	public List<Ubicacion> aXDistancia(List<Ubicacion> ubicaciones , int distancia){
 		// Dada una lista de ubicaciones devuelve las ubicaciones que se encuentran a la distancia indicada, de si misma.
-		List<Ubicacion> listaFinal = new ArrayList<Ubicacion>();
+		List<Ubicacion> listaFiltrada = new ArrayList<Ubicacion>();
+		
 		for(Ubicacion ubicacion : ubicaciones) {
-			if(this.distanciaCon(ubicacion) <= distancia) {
-				listaFinal.add(ubicacion);
+			
+			double distanciaCalculada = this.distanciaCon(ubicacion);
+			
+			if(distanciaCalculada <= distancia) {
+				listaFiltrada.add(ubicacion);
 			}
 		}
-		return listaFinal ;
+		
+		
+		return listaFiltrada ;
 		//return ubicaciones.stream().filter(u->u.distanciaCon(this) < distancia).toList();
 	} 
 	
 	
-	
+	/*
 	public List<Muestra> muestraAXMetros(Muestra muestra,float distanciaEnMts,Sistema sistema){
 		// Dado una muestra, conoce todas las muestras obtenidas a menos de x metros.
 		List<Muestra> listaFinal = new ArrayList<Muestra>();
@@ -85,7 +91,7 @@ public class Ubicacion {
 
 	}
 	
-	
+*/	
 	
 	
 	
