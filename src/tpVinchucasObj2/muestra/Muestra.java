@@ -31,6 +31,10 @@ public class Muestra {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+	
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
 
 	public String getFoto() {
 		return foto;
