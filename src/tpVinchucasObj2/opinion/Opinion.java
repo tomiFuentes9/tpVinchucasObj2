@@ -53,8 +53,5 @@ public class Opinion {
 
 
 	
-	public String diaCreacion() {
-		return "" + this.getFechaCreacion().getDay() ;
-	}
 	
 }
