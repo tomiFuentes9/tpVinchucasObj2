@@ -13,7 +13,8 @@ public class Participante {
 	
 	private String nombre;
 	private EstadoUsuario estadoParticipante;
-	private List <Date> diasQueOpine;
+	private List <Date> diasDeOpinion;
+	private List <Date> diasDeMuestreo;
 	
 	
 	public Participante(String nombre) {
@@ -26,20 +27,26 @@ public class Participante {
 		return nombre;
 	}	
 	
-	public void agregarDia() {
-		this.diasQueOpine.add(new Date());
+	public void agregarDiaDeOpinion() {
+		this.diasDeOpinion.add(new Date());
+		
+	}
+	public void agregarDiaDeMuestreo() {
+		this.diasDeMuestreo.add(new Date());
 		
 	}
 	public void enviarMuestra(String foto,EspecieVinchuca especieVinchuca, Ubicacion ubicacion) {
 		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);
 		//nuevaMuestr.agregarAlSistema(nuevaMuestr);
+		this.agregarDiaDeMuestreo();
+		this.evaluarEstado();
 		
 	}
 	
 	public void opinarMuestra(Muestra nuestra, TipoOpinion tipo) {
 		Opinion nuevaOp = new Opinion(tipo,this);
 		nuestra.aniadirOpinion(nuevaOp);
-		this.agregarDia();
+		this.agregarDiaDeOpinion();
 		this.evaluarEstado();
 		
 	}
@@ -55,6 +62,12 @@ public class Participante {
 	public void actualizarEstado(EstadoUsuario estadoNuevo) {
 		this.estadoParticipante = estadoNuevo;
 		
+	}
+	public List<Date> getDiasDeOpinion() {
+		return diasDeOpinion;
+	}
+	public List<Date> getDiasDeMuestreo() {
+		return diasDeMuestreo;
 	}
 }
 

@@ -9,8 +9,8 @@ public class EstadoExperto extends EstadoUsuario{
 
 	@Override
 	public String estado() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "Experto";
 	}
 
 	@Override

@@ -19,6 +19,10 @@ public class EstadoBasico extends EstadoUsuario{
 		//if (muestrasEnviadas(participante) > 10 && revisionesMuestras(participante)>20){
 		//	participante.actualizarEstado();
 		}
+	private int muestrasEnviadas(Participante participante) {
+		participante.getDiasDeOpinion();
+	}
+	
 		
 }
 
