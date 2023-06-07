@@ -10,8 +10,8 @@ public class EstadoBasico extends EstadoUsuario{
 
 	@Override
 	public String estado() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "Basico";
 	}
 
 	@Override
