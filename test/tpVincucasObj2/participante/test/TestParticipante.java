@@ -25,7 +25,7 @@ class TestParticipante {
 	
 	@Test
 	void estadoInicalBasico() {
-		assertEquals("Basico",willyWonka.estadoActual());
+		assertEquals("Basico",willyWonka.estado());
 		
 	}
 }

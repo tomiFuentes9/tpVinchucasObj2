@@ -1,6 +1,7 @@
 package tpVinchucasObj2.participantes;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import tpVinchucasObj2.muestra.EspecieVinchuca;
@@ -13,14 +14,14 @@ public class Participante {
 	
 	private String nombre;
 	private EstadoUsuario estadoParticipante;
-	private List <Date> diasDeOpinion;
-	private List <Date> diasDeMuestreo;
+	private List <LocalDate> diasDeOpinion;
+	private List <LocalDate> diasDeMuestreo;
 	
 	
 	public Participante(String nombre) {
 		super();
 		this.nombre = nombre;
-		this.estadoParticipante = new EstadoBasico (this);
+		this.estadoParticipante = new EstadoBasico();
 	}
 	
 	public String getNombre() {
@@ -28,18 +29,18 @@ public class Participante {
 	}	
 	
 	public void agregarDiaDeOpinion() {
-		this.diasDeOpinion.add(new Date());
+		this.diasDeOpinion.add(LocalDate.now());
 		
 	}
 	public void agregarDiaDeMuestreo() {
-		this.diasDeMuestreo.add(new Date());
+		this.diasDeMuestreo.add(LocalDate.now());
 		
 	}
 	public void enviarMuestra(String foto,EspecieVinchuca especieVinchuca, Ubicacion ubicacion) {
 		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);
 		//nuevaMuestr.agregarAlSistema(nuevaMuestr);
 		this.agregarDiaDeMuestreo();
-		this.evaluarEstado();
+		this.evaluarEstadoYSiCorrespondeActualizar();
 		
 	}
 	
@@ -47,28 +48,37 @@ public class Participante {
 		Opinion nuevaOp = new Opinion(tipo,this);
 		nuestra.aniadirOpinion(nuevaOp);
 		this.agregarDiaDeOpinion();
-		this.evaluarEstado();
+		this.evaluarEstadoYSiCorrespondeActualizar();
 		
 	}
 
-	public void evaluarEstado() {
+	public void evaluarEstadoYSiCorrespondeActualizar() {
 		estadoParticipante.modificarMiEstadoSiCorresponde(this);
 	}
 	
-	public String estadoActual() {
+	public String estado() {
 		return estadoParticipante.estado();
-	}
-		
-	public void actualizarEstado(EstadoUsuario estadoNuevo) {
-		this.estadoParticipante = estadoNuevo;
-		
-	}
-	public List<Date> getDiasDeOpinion() {
+	}	
+
+	public List<LocalDate> getDiasDeOpinion() {
 		return diasDeOpinion;
 	}
-	public List<Date> getDiasDeMuestreo() {
+	public List<LocalDate> getDiasDeMuestreo() {
 		return diasDeMuestreo;
 	}
+	
+	/*public class FechaAnterior {
+	    public static void main(String[] args) {
+	        // Obtener la fecha actual
+	        LocalDate fechaActual = LocalDate.now();
+
+	        // Restar 30 días a la fecha actual
+	        LocalDate fechaAnterior = fechaActual.minusDays(30);
+
+	        // Imprimir la fecha anterior
+	        System.out.println("Fecha anterior: " + fechaAnterior);
+	    }
+	}*/
 }
 
 

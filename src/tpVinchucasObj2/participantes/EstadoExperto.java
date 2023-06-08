@@ -2,11 +2,6 @@ package tpVinchucasObj2.participantes;
 
 public class EstadoExperto extends EstadoUsuario{
 
-	public EstadoExperto(Participante participante) {
-		super(participante);
-		
-	}
-
 	@Override
 	public String estado() {
 		
