@@ -1,6 +1,7 @@
 package tpVinchucasObj2.ubicacion.test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 import java.util.*;
 
