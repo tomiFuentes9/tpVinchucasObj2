@@ -75,9 +75,6 @@ class TestSistema {
 	
 	
 	
-	
-	
-	
 	@Test
 	void testAgregarMuestras() {
 		assertEquals(0,sistemaVinchucas.getMuestras().size());
@@ -88,7 +85,27 @@ class TestSistema {
 		sistemaVinchucas.agregarMuestra(muestra4);
 		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
-
 	
+	@Test 
+	void testGetParticipantes() {
+		assertEquals(0,sistemaVinchucas.getParticipantes().size());
+		sistemaVinchucas.agregarMuestra(muestra1);
+		sistemaVinchucas.agregarMuestra(muestra2);
+		assertEquals(2,sistemaVinchucas.getParticipantes().size());
+		sistemaVinchucas.agregarMuestra(muestra3);
+		sistemaVinchucas.agregarMuestra(muestra4);
+		assertEquals(2,sistemaVinchucas.getParticipantes().size());
+	}
 	
+	@Test 
+	void testMuestraAXDistancia() {
+		sistemaVinchucas.agregarMuestra(muestra1);
+		sistemaVinchucas.agregarMuestra(muestra2);
+		sistemaVinchucas.agregarMuestra(muestra3);
+		sistemaVinchucas.agregarMuestra(muestra4);
+		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 200);
+		assertEquals(2,muestrasADistancia.size());
+		assertTrue(muestra2.compareTo(muestrasADistancia.get(0)));
+		assertTrue(muestra3.compareTo(muestrasADistancia.get(1)));
+	}
 }

@@ -16,7 +16,7 @@ public class Opinion {
 	public Opinion(TipoOpinion tipo,Participante creador) {
 		super();
 		this.fechaCreacion= new Date();
-		this.estadoDelCreador = creador.estadoActual();
+		this.estadoDelCreador = creador.estado();
 		this.tipo= tipo;
 		this.creador = creador;
 	}
