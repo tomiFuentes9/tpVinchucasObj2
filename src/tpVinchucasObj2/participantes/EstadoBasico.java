@@ -3,10 +3,6 @@ package tpVinchucasObj2.participantes;
 public class EstadoBasico extends EstadoUsuario{
 
 
-	public EstadoBasico(Participante participante) {
-		super(participante);
-		
-	}
 
 	@Override
 	public String estado() {
@@ -17,8 +13,12 @@ public class EstadoBasico extends EstadoUsuario{
 	@Override
 	protected void modificarMiEstadoSiCorresponde(Participante participante) {
 		//if (muestrasEnviadas(participante) > 10 && revisionesMuestras(participante)>20){
-		//	participante.actualizarEstado();
+		EstadoExperto estadoNuevo= new EstadoExperto (participante);
+		participante.actualizarEstado(estadoNuevo);
+		
+		
 		}
+	
 	private int muestrasEnviadas(Participante participante) {
 		participante.getDiasDeOpinion();
 	}

@@ -3,6 +3,7 @@ package tpVinchucasObj2.ubicacion;
 import java.util.*;
 
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.sistema.Sistema;
 
 
 
@@ -70,28 +71,14 @@ public class Ubicacion {
 			}
 		}
 		
-		
 		return listaFiltrada ;
-		//return ubicaciones.stream().filter(u->u.distanciaCon(this) < distancia).toList();
 	} 
 	
 	
 	
-	public List<Muestra> muestraAXMetros(Muestra muestra,float distanciaEnMts,Sistema sistema){
-		// Dado una muestra, conoce todas las muestras obtenidas a menos de x metros.
-		List<Muestra> listaFinal = new ArrayList<Muestra>();
-		List<Muestra> muestras = sistema.getMuestras(); //-- todas las muestras del sistema pasado por parametro
-		
-		Ubicacion ubicacionMuestra = muestra.getUbicacion() ;
-		
-		for(Muestra muestraAVerificar : muestras) {
-			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion()) <= distanciaEnMts ) {
-				listaFinal.add(muestraAVerificar);
-			}
-		}
-		return listaFinal;
+	
+	
 
-	}
 	
 	
 	
