@@ -105,17 +105,7 @@ class TestUbicacion {
 		assertEquals(montevideo,listaResultante.get(2));
 	}
 	
-	
-	@Test
-	void muestraAXMetrosTest() {
-		assertEquals(4,listaDeMuestras.size());
-		// Si este metodo se usa en ubicacion para que le paso una muestra ? Si le paso un muestra para que me sirve la ubicacion 
-		//de donde es llamado el metodo ?
-		
-		//muestra.muestraAXMetros( 500, todas las muestras del sistema);
-			
-						
-	}
+
 	
 	
 }
