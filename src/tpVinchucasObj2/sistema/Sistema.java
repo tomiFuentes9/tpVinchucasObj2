@@ -1,34 +1,58 @@
 package tpVinchucasObj2.sistema;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
 public class Sistema {
 
 	private List<Muestra> muestras ;
+
 	
-	
-	
-	public Sistema(List<Muestra> muestras) {
+	public Sistema() {
 		super();
-		this.muestras = muestras;
+		this.muestras = new ArrayList<Muestra>();
 	}
 
+	
+	public List<Muestra> getMuestras() {
+		return muestras;
+	}
 
-
-
-	public List<Muestra> muestraAXMetros(Muestra muestra,float distanciaEnMts,Sistema sistema){
-		// Dado una muestra, conoce todas las muestras obtenidas a menos de x metros.
+	
+	public void agregarMuestra(Muestra muestra) {
+		// Agrega la muestr apasada por parametro a la lsita de muestras que tiene como atributo
+		this.muestras.add(muestra);
+	}
+	
+	
+	public List<Participante> getParticipantes(){
+		// Creo una variable donde almaceno todos los participantes del sistema (estan duplicados si subieron mas de una muestra)
+		List<Participante> participantes = this.getMuestras().stream().map(m -> m.getCreador()).toList() ;
+		// Creo un set en donde no voy a tener duplicados
+		Set miConjunto = new HashSet<>(participantes);
+		// Limpio la lista 
+		participantes.clear();
+		// Devuelve todos los participantes del sistema
+		participantes.addAll(miConjunto);
+		return participantes ;
+	}
+	
+	
+	public List<Muestra> muestraAXDistancia(Muestra muestra,float distanciaEnKm){
+		// Dado una muestra, conoce todas las muestras obtenidas a menos de x kms.
 		List<Muestra> listaFinal = new ArrayList<Muestra>();
-		List<Muestra> muestras = sistema.getMuestras(); //-- todas las muestras del sistema pasado por parametro
+		List<Muestra> muestras = this.getMuestras(); //-- todas las muestras del sistema
 		
 		Ubicacion ubicacionMuestra = muestra.getUbicacion() ;
 		
 		for(Muestra muestraAVerificar : muestras) {
-			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion()) <= distanciaEnMts ) {
+			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion()) <= distanciaEnKm ) {
 				listaFinal.add(muestraAVerificar);
 			}
 		}

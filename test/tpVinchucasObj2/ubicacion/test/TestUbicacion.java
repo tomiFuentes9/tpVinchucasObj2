@@ -54,7 +54,7 @@ class TestUbicacion {
 		
 		// Creamos una lista de ubicaciones para poder compararlas.
 		listaDeUbicaciones = new ArrayList<Ubicacion>();
-		List<Ubicacion> listaDeUbicaciones = Arrays.asList(buenosAires,laPlata,montevideo,cordoba,posadas);
+		//List<Ubicacion> listaDeUbicaciones = Arrays.asList(buenosAires,laPlata,montevideo,cordoba,posadas);
 		// Agregamos todas las ubicacioens a la lista de ubicaciones creadalistaDeUbicaciones.stream().toArray()
 		listaDeUbicaciones.add(buenosAires);
 		listaDeUbicaciones.add(laPlata);
@@ -62,6 +62,8 @@ class TestUbicacion {
 		listaDeUbicaciones.add(cordoba);
 		listaDeUbicaciones.add(posadas);
 		
+		
+		/*
 		// Parcipante 
 		
 		participante1 = mock(Participante.class);
@@ -81,7 +83,7 @@ class TestUbicacion {
 		List<Muestra> listaDeMuestras = Arrays.asList(muestra1,muestra2,muestra3,muestra4);
 		
 		
-		
+		*/
 		
 	}
 	
@@ -95,8 +97,11 @@ class TestUbicacion {
 		assertEquals(850,quilmes.distanciaCon(posadas),10);
 	}
 
+	
+	
 	@Test
 	void aXDistanciaTest() {
+		
 		List<Ubicacion> listaResultante = quilmes.aXDistancia(listaDeUbicaciones, 500);
 		
 		assertFalse(listaResultante.isEmpty());
