@@ -9,9 +9,12 @@ public class EstadoExperto extends EstadoUsuario{
 	}
 
 	@Override
-	protected void modificarMiEstadoSiCorresponde(Participante participante) {
-		// TODO Auto-generated method stub
+	protected void cambiarEstado(Participante participante) {
+		//if (muestrasEnviadas(participante) > 10 && revisionesMuestras(participante)>20){
+		EstadoBasico estadoNuevo= new EstadoBasico ();
+		participante.setEstadoParticipante(estadoNuevo);
 		
-	}
+		
+		}
 
 }

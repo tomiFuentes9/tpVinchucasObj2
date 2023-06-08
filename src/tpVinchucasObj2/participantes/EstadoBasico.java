@@ -11,17 +11,15 @@ public class EstadoBasico extends EstadoUsuario{
 	}
 
 	@Override
-	protected void modificarMiEstadoSiCorresponde(Participante participante) {
+	protected void cambiarEstado(Participante participante) {
 		//if (muestrasEnviadas(participante) > 10 && revisionesMuestras(participante)>20){
 		EstadoExperto estadoNuevo= new EstadoExperto ();
-		participante.actualizarEstado(estadoNuevo);
+		participante.setEstadoParticipante(estadoNuevo);
 		
 		
 		}
 	
-	private int muestrasEnviadas(Participante participante) {
-		participante.getDiasDeOpinion();
-	}
+	
 	
 		
 }

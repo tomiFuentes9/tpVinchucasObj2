@@ -45,7 +45,7 @@ public class Participante {
 		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);		
 		sistema.agregarMuestra(nuevaMuestr);
 		this.agregarDiaDeMuestreo();
-		//this.evaluarEstadoYSiCorrespondeActualizar();
+		//this.actualizarEstado();
 		
 	}
 	
@@ -53,12 +53,12 @@ public class Participante {
 		Opinion nuevaOp = new Opinion(tipo,this);
 		nuestra.aniadirOpinion(nuevaOp);
 		this.agregarDiaDeOpinion();
-		this.evaluarEstadoYSiCorrespondeActualizar();
+		this.actualizarEstado();
 		
 	}
 
-	public void evaluarEstadoYSiCorrespondeActualizar() {
-		estadoParticipante.modificarMiEstadoSiCorresponde(this);
+	public void actualizarEstado() {
+		estadoParticipante.cambiarEstado(this);
 	}
 	
 	public String estado() {
@@ -70,6 +70,10 @@ public class Participante {
 	}
 	public List<LocalDate> getDiasDeMuestreo() {
 		return diasDeMuestreo;
+	}
+
+	public void setEstadoParticipante(EstadoUsuario estadoParticipante) {
+		this.estadoParticipante = estadoParticipante;
 	}
 	
 	/*public class FechaAnterior {

@@ -6,6 +6,6 @@ public abstract class EstadoUsuario {
 	
 	public abstract String estado();
 
-	protected abstract void modificarMiEstadoSiCorresponde(Participante participante);
+	protected abstract void cambiarEstado(Participante participante);
 
 }
