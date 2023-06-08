@@ -1,48 +1,111 @@
 package tpVinchucasObj2.sistema;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+
+import java.util.*;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TestSistema {
+import tpVinchucasObj2.muestra.EspecieVinchuca;
+import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.participantes.Participante;
+import tpVinchucasObj2.ubicacion.Ubicacion;
 
+class TestSistema {
+	
+	// Creacion de sistema
 	Sistema sistemaVinchucas ;
 	
+	// Creacion de Participantes
+	Participante participante1 ;
+	Participante participante2 ;
 	
-	// Parcipante 
+	//Creo una lista de muestras
+	List<Muestra> listaDeMuestras ;
 	
-	participante1 = mock(Participante.class);
+	// Creo una muestra para compararla con otros 4 
+	Muestra muestraParaComparar ;
 	
-	// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
-	// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
-	
-	muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, buenosAires);
-	
-	muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, posadas);
-	muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, laPlata);
-	muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, montevideo);
-	muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, cordoba);
+	Muestra muestra1 ;
+	Muestra muestra2 ;
+	Muestra muestra3 ;
+	Muestra muestra4 ;
 	
 	
-	listaDeMuestras = new ArrayList<Muestra>();
-	List<Muestra> listaDeMuestras = Arrays.asList(muestra1,muestra2,muestra3,muestra4);
+	// Creo las ubicaciones donde van a estar esas muestras 
+	Ubicacion buenosAires ;
+	Ubicacion laPlata ;
+	Ubicacion montevideo ;
+	Ubicacion quilmes ;
+	Ubicacion cordoba ;
+	Ubicacion posadas ;
 	
 	
 
 	@BeforeEach
 	void setUp(){
+		
+		
+		// Parcipante 
+		
+		participante1 = mock(Participante.class);
+		participante2 = mock(Participante.class);
+		
+		// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
+		// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
+		
+		muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, buenosAires);
+		
+		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, posadas);
+		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante2, laPlata);
+		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante2, montevideo);
+		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, cordoba);
+		
+		
+		listaDeMuestras = new ArrayList<Muestra>();
+		List<Muestra> listaDeMuestras = Arrays.asList(muestra1,muestra2,muestra3,muestra4);
+		
+		
+		
+		
 	}
-	
-	
-	
 	
 	
 	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testAgregarMuestras() {
+		assertEquals(0,sistemaVinchucas.getMuestras().size());
+		sistemaVinchucas.agregarMuestra(muestra1);
+		sistemaVinchucas.agregarMuestra(muestra2);
+		assertEquals(2,sistemaVinchucas.getMuestras().size());
+		sistemaVinchucas.agregarMuestra(muestra3);
+		sistemaVinchucas.agregarMuestra(muestra4);
+		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
-
+	
+	@Test 
+	void testGetParticipantes() {
+		assertEquals(0,sistemaVinchucas.getParticipantes().size());
+		sistemaVinchucas.agregarMuestra(muestra1);
+		sistemaVinchucas.agregarMuestra(muestra2);
+		assertEquals(2,sistemaVinchucas.getParticipantes().size());
+		sistemaVinchucas.agregarMuestra(muestra3);
+		sistemaVinchucas.agregarMuestra(muestra4);
+		assertEquals(2,sistemaVinchucas.getParticipantes().size());
+	}
+	
+	@Test 
+	void testMuestraAXDistancia() {
+		sistemaVinchucas.agregarMuestra(muestra1);
+		sistemaVinchucas.agregarMuestra(muestra2);
+		sistemaVinchucas.agregarMuestra(muestra3);
+		sistemaVinchucas.agregarMuestra(muestra4);
+		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 200);
+		assertEquals(2,muestrasADistancia.size());
+		assertTrue(muestra2.compareTo(muestrasADistancia.get(0)));
+		assertTrue(muestra3.compareTo(muestrasADistancia.get(1)));
+	}
 }
