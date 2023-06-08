@@ -26,7 +26,7 @@ public class Muestra {
 		this.creador = creador;
 		this.opiniones = new ArrayList<Opinion>();
 		this.ubicacion = ubicacion;
-		this.resultadoActual = NoDefinida;
+		this.resultadoActual = TipoOpinion.NoDefinida;
 	}
 
 	// Creado para poder testear

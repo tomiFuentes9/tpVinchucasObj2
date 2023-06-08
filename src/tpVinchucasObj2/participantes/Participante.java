@@ -2,7 +2,7 @@ package tpVinchucasObj2.participantes;
 
 import java.time.LocalDate;
 
-import java.util.List;
+import java.util.*;
 
 import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
@@ -17,13 +17,16 @@ public class Participante {
 	private EstadoUsuario estadoParticipante;
 	private List <LocalDate> diasDeOpinion;
 	private List <LocalDate> diasDeMuestreo;
-	private Sistema sistemVinchu;
+	private Sistema sistema;
 	
 	
-	public Participante(String nombre) {
+	public Participante(String nombre,Sistema sistema) {
 		super();
 		this.nombre = nombre;
 		this.estadoParticipante = new EstadoBasico();
+		this.sistema = sistema;
+		this.diasDeMuestreo = new ArrayList<LocalDate>();
+		this.diasDeOpinion = new ArrayList<LocalDate>();
 	}
 	
 	public String getNombre() {
@@ -40,9 +43,9 @@ public class Participante {
 	}
 	public void enviarMuestra(String foto,EspecieVinchuca especieVinchuca, Ubicacion ubicacion) {
 		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);		
-		sistemVinchu.agregarMuestra(nuevaMuestr);
+		sistema.agregarMuestra(nuevaMuestr);
 		this.agregarDiaDeMuestreo();
-		this.evaluarEstadoYSiCorrespondeActualizar();
+		//this.evaluarEstadoYSiCorrespondeActualizar();
 		
 	}
 	
