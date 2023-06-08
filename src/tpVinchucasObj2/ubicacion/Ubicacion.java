@@ -83,8 +83,9 @@ public class Ubicacion {
 		List<Muestra> muestras = sistema.getMuestras(); //-- todas las muestras del sistema pasado por parametro
 		
 		Ubicacion ubicacionMuestra = muestra.getUbicacion() ;
+		
 		for(Muestra muestraAVerificar : muestras) {
-			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion()) < distanciaEnMts ) {
+			if(ubicacionMuestra.distanciaCon(muestraAVerificar.getUbicacion()) <= distanciaEnMts ) {
 				listaFinal.add(muestraAVerificar);
 			}
 		}
