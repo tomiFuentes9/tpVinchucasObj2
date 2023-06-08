@@ -1,12 +1,14 @@
 package tpVinchucasObj2.muestra;
+import java.time.LocalDate;
 import java.util.*;
 import tpVinchucasObj2.participantes.*;
 import tpVinchucasObj2.opinion.*;
 import tpVinchucasObj2.ubicacion.*;
+import tpVinchucasObj2.opinion.*;
 
 public class Muestra {
 	private String foto;
-	private Date fechaCreacion;
+	private LocalDate fechaCreacion;
 	private Boolean isVerificada;
 	private EspecieVinchuca especieVinchuca;
 	private Participante creador;
@@ -18,17 +20,17 @@ public class Muestra {
 			Participante creador, Ubicacion ubicacion) {
 		super();
 		this.foto = foto;
-		this.fechaCreacion = new Date();
+		this.fechaCreacion = LocalDate.now();
 		this.isVerificada = false;
 		this.especieVinchuca = especieVinchuca;
 		this.creador = creador;
 		this.opiniones = new ArrayList<Opinion>();
 		this.ubicacion = ubicacion;
-		this.resultadoActual = noDefinido;
+		this.resultadoActual = NoDefinida;
 	}
 
 	// Creado para poder testear
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 	
@@ -40,7 +42,7 @@ public class Muestra {
 		return foto;
 	}
 
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
 
@@ -74,7 +76,7 @@ public class Muestra {
 	
 	public List<TipoOpinion> filtrarOps(List<Opinion> ops){
 		List<Opinion> filteredOps = this.filtrarExpertos(ops);
-		return filteredOps.stream().map(op -> op.getTipoOpinion()).toList();
+		return filteredOps.stream().map(op -> op.getTipo()).toList();
 	}
 	
 	public List<Opinion> filtrarExpertos(List<Opinion> ops){
@@ -96,7 +98,13 @@ public class Muestra {
                 opinionesRepetidas.put(op, 1);
             }
         }
-        this.setResultadoActual(opinionesRepetidas.algo);// Consultar esto y falta filtrar la op con mas apariciones
+        this.setResultadoActual(this.opinionMasFrecuente(opinionesRepetidas));// Consultar esto y falta filtrar la op con mas apariciones
+	}
+	
+	public TipoOpinion opinionMasFrecuente(HashMap mp) {
+		TipoOpinion opinion = mp.;
+		
+		return Ninguna;
 	}
 	
 	public void setResultadoActual(TipoOpinion op) {
