@@ -8,6 +8,7 @@ import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
+import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
 public class Participante {
@@ -16,6 +17,7 @@ public class Participante {
 	private EstadoUsuario estadoParticipante;
 	private List <LocalDate> diasDeOpinion;
 	private List <LocalDate> diasDeMuestreo;
+	private Sistema sistemVinchu;
 	
 	
 	public Participante(String nombre) {
@@ -37,8 +39,8 @@ public class Participante {
 		
 	}
 	public void enviarMuestra(String foto,EspecieVinchuca especieVinchuca, Ubicacion ubicacion) {
-		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);
-		//nuevaMuestr.agregarAlSistema(nuevaMuestr);
+		Muestra nuevaMuestr = new Muestra(foto,especieVinchuca,this,ubicacion);		
+		sistemVinchu.agregarMuestra(nuevaMuestr);
 		this.agregarDiaDeMuestreo();
 		this.evaluarEstadoYSiCorrespondeActualizar();
 		
