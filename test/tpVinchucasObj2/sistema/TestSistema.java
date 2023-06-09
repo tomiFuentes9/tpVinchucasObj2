@@ -105,7 +105,9 @@ class TestSistema {
 		sistemaVinchucas.agregarMuestra(muestra4);
 		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 200);
 		assertEquals(2,muestrasADistancia.size());
-		assertTrue(muestra2.compareTo(muestrasADistancia.get(0)));
-		assertTrue(muestra3.compareTo(muestrasADistancia.get(1)));
+		//assertTrue(muestra2.compareTo(muestrasADistancia.get(0)));
+		//assertTrue(muestra3.compareTo(muestrasADistancia.get(1)));
+		assertEquals(muestra2,muestrasADistancia.get(0));
+		assertEquals(muestra3,muestrasADistancia.get(1));
 	}
 }

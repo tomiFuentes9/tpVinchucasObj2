@@ -1,12 +1,13 @@
 package tpVinchucasObj2.opinion;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import tpVinchucasObj2.participantes.Participante;
 
 public class Opinion {
 	
-	private Date fechaCreacion;
+	private LocalDate fechaCreacion;
 	private String estadoDelCreador;
 	private TipoOpinion tipo;
 	private Participante creador;
@@ -15,7 +16,7 @@ public class Opinion {
 	
 	public Opinion(TipoOpinion tipo,Participante creador) {
 		super();
-		this.fechaCreacion= new Date();
+		this.fechaCreacion= LocalDate.now();
 		this.estadoDelCreador = creador.estado();
 		this.tipo= tipo;
 		this.creador = creador;
@@ -42,12 +43,12 @@ public class Opinion {
 	}
 
 
-	public Date getFechaCreacion() {
+	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
 
 
-	public void setFechaCreacion(Date fechaCreacion) {
+	public void setFechaCreacion(LocalDate fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
