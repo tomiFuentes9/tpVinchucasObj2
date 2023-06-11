@@ -74,73 +74,66 @@ public class Muestra {
 		return opiniones.stream().anyMatch(op -> op.getEstadoDelCreador() == "Experto");
 	}
 	
-	public List<TipoOpinion> filtrarOps(List<Opinion> ops){
-		List<Opinion> filteredOps = this.filtrarExpertos(ops);
+	public List<TipoOpinion> filtrarOps(List<Opinion> ops){ // Agarro el array que tiene elementos de tipo Opinion 
+		List<Opinion> filteredOps = this.filtrarExpertos(ops);//y lo mapeo para quedarme con los TiposDeOpinion nomas
 		return filteredOps.stream().map(op -> op.getTipo()).toList();
 	}
 	
-	public List<Opinion> filtrarExpertos(List<Opinion> ops){
-		List<Opinion> filteredOps = ops;
+	public List<Opinion> filtrarExpertos(List<Opinion> ops){//Filtro las opiniones para que queden unicamente la de los expertos
+		List<Opinion> filteredOps = ops;                    //Si no opino un experto envia toda las opiniones de nuevo
 		if(this.opinoUnExperto()) {
 			 filteredOps = filteredOps.stream().filter(op -> op.getEstadoDelCreador() == "Experto").toList();
 		}
 		return filteredOps;
 	}
 	
-	public void verificarOpiniones() {
+	public void verificarOpiniones() {// En este metodo determinamos el resultado actual
 		List <TipoOpinion> ops = this.filtrarOps(opiniones);
-		HashMap<TipoOpinion, Integer> opinionesRepetidas = new HashMap<>();
-        // Recorrer la lista y contar los elementos
-        for (TipoOpinion op : ops) {
-            if (opinionesRepetidas.containsKey(op)) {
-                opinionesRepetidas.put(op, opinionesRepetidas.get(op) + 1);
-            } else {
-                opinionesRepetidas.put(op, 1);
-            }
-        }
-        this.setResultadoActual(this.opinionMasFrecuente(opinionesRepetidas));// Consultar esto y falta filtrar la op con mas apariciones
+		HashMap<TipoOpinion, Integer> opsMapeadas = this.mapearOpiniones(ops);
+		
+        this.setResultadoActual(this.opinionMasFrecuente(opsMapeadas));
 	}
 	
-	public TipoOpinion opinionMasFrecuente(HashMap mp) {
-		TipoOpinion opinion = mp.;
-		
-		return Ninguna;
+	public HashMap<TipoOpinion, Integer> mapearOpiniones(List<TipoOpinion> opiniones) {// Aca reviso el array filtrado y guardo como key el tipo de opinion
+		HashMap<TipoOpinion, Integer> opinionesMapeadas = new HashMap<>();             // y como value las veces que aparece
+        // Recorrer la lista y contar los elementos
+        for (TipoOpinion op : opiniones) {
+            if (opinionesMapeadas.containsKey(op)) {
+            	opinionesMapeadas.put(op, opinionesMapeadas.get(op) + 1);
+            } else {
+            	opinionesMapeadas.put(op, 1);
+            }
+        }
+        return opinionesMapeadas;
+	}
+	
+	public TipoOpinion opinionMasFrecuente(HashMap<TipoOpinion, Integer> mp) {// Aca reviso el map y me quedo con el elemento mas frecuente
+		TipoOpinion elementoMasFrecuente = TipoOpinion.NoDefinida;            // Si no hay un elemento con muchas apariciones devuelve no definido
+        int maxContador = 0;                                                  // Falta definir esta ultima parte
+		for (Map.Entry<TipoOpinion, Integer> entry : mp.entrySet()) {
+            if (entry.getValue() > maxContador) {
+                maxContador = entry.getValue();
+                elementoMasFrecuente = entry.getKey();
+            }
+        }
+        
+        return elementoMasFrecuente;
 	}
 	
 	public void setResultadoActual(TipoOpinion op) {
 		resultadoActual = op;
 	}
 	
-	/*
-	 * Posible solucion:
-	 * 
-	 * 1) Agregar resultadoActual
-	 * 
-	 * 2) agregar un metodo que actualice el resultado evaluando las opiniones
-	 * 
-	 * if (!this.estaVerificada) Primero evalua que no este verificada asî no cambia el resultado
-	 *  subtarea que actualiza resultado actual, contiene esto:
-	 *  sino agregar excepción o system out
-	 * List <Opiniones> opis = opiniones 
-	 * if(this.opinoUnExperto){ Luego verificamos si opino un experto para filtar las opiniones y evaluar unicamente las validas
-	 * 	opis = opis.filter(op -> op.estadoDeCreador === "Experto")
-	 * }  Si pasa la condicion anterior, usando un stream o un for filtra las opiniones y asignamos el valor a la variable resultado actual
-	 * while() / indexOf? / HashMap?
-	 * 
-	 * 3) Hacer un metodo para devolver el resultado actual
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * */
-	
 	public void aniadirOpinion(Opinion op) {
 	if (!isVerificada) {	
-		// Subtarea que adentro verifique si opino un experto y en ese caso agregarlo o no si corresponda
-		//opiniones.add(op);
-		
+		this.aniadirOpinionSiCorresponde(op);
 	 }
+	}
+	
+	public void aniadirOpinionSiCorresponde(Opinion op) {
+		if (!this.opinoUnExperto()) {
+			opiniones.add(op);
+		}
 	}
 	
 	
