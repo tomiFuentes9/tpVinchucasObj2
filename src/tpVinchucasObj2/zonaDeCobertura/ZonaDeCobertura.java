@@ -12,12 +12,14 @@ public class ZonaDeCobertura {
 	private double radio ;
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
+	private List<Muestra> muestras ;
 	
 	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro) {
 		super();
 		this.nombre = nombre;
 		this.radio = radio;
 		this.epicentro = epicentro;
+		this.muestras = new ArrayList<Muestra>();
 	}
 	
 	public double getRadio() {
@@ -27,6 +29,7 @@ public class ZonaDeCobertura {
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
+	
 
 	public List<Muestra> muestrasDeLaZona() {
 		List<Muestra> muestras = sistema.getMuestras();
@@ -35,15 +38,15 @@ public class ZonaDeCobertura {
 		
 		return muestrasZona;
 	}
-	/*
+	
+	
 	public List<ZonaDeCobertura> zonasQueLaSolapan(){
 		List<ZonaDeCobertura> todasLasZonas = sistema.getZonasCoberturas();
 		
-		todasLasZonas.stream().forEach(z->z.seSolapaCon(this)).toList() ;
+		return todasLasZonas.stream().filter(z->z.seSolapaCon(this)).toList() ;
 		
-		return ;
 	}
-	*/
+	
 	
 	public boolean seSolapaCon(ZonaDeCobertura zonaAComparar) {
 		double distanciaEntreEpicentros = this.epicentro.distanciaCon(zonaAComparar.getEpicentro()) ;

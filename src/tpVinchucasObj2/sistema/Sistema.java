@@ -8,6 +8,7 @@ import java.util.Set;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
+import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 
 public class Sistema {
 
@@ -58,6 +59,12 @@ public class Sistema {
 		}
 		return listaFinal;
 
+	}
+
+
+	public List<ZonaDeCobertura> getZonasCoberturas() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
