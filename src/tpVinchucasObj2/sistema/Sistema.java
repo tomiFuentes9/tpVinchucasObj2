@@ -13,11 +13,13 @@ import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 public class Sistema {
 
 	private List<Muestra> muestras ;
+	private List<ZonaDeCobertura> zonasDeCobertura ;
 
 	
 	public Sistema() {
 		super();
 		this.muestras = new ArrayList<Muestra>();
+		this.zonasDeCobertura = new ArrayList<ZonaDeCobertura>();
 	}
 
 	
@@ -63,9 +65,11 @@ public class Sistema {
 
 
 	public List<ZonaDeCobertura> getZonasCoberturas() {
-		// TODO Auto-generated method stub
-		return null;
+		return zonasDeCobertura;
 	}
 	
+	public void agregarZonaDeCobertura(ZonaDeCobertura zona) {
+		this.zonasDeCobertura.add(zona);
+	}
 	
 }
