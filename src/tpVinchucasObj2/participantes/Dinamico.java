@@ -31,7 +31,7 @@ public class Dinamico extends Participante {
 	
 	@Override
 	public void opinarMuestra(Muestra muestra, TipoOpinion tipo) {
-		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.estadoParticipante));
+		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.getEstadoParticipante()));
 		muestra.aniadirOpinion(nuevaOp);
 		this.cambiarEstado();
 		
