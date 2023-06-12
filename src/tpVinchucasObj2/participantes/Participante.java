@@ -46,6 +46,10 @@ public abstract class Participante {
 		return misMuestras;
 	}
 
+	public EstadoUsuario getEstadoParticipante() {
+		return estadoParticipante;
+	}
+
 	
 	
 
