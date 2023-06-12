@@ -28,7 +28,7 @@ public class EstadoBasico implements EstadoUsuario{
 	public int revisionesOpiniones(Participante parti) {
 		LocalDate fechaActual = LocalDate.now();
 		LocalDate fechaAnterior = fechaActual.minusDays(30);
-		List<Opinion> opionesDeUnMes = parti.misOpiniones;
+		List<Opinion> opionesDeUnMes = parti.getMisOpiniones();
 		opionesDeUnMes.stream().filter(op->op.getFechaCreacion().isAfter(fechaAnterior)).toList();
 		return opionesDeUnMes.size();	
 		

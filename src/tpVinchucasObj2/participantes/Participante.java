@@ -38,6 +38,14 @@ public abstract class Participante {
 		return nombre;
 	}
 
+	public List<Opinion> getMisOpiniones() {
+		return misOpiniones;
+	}
+
+	public List<Muestra> getMisMuestras() {
+		return misMuestras;
+	}
+
 	
 	
 

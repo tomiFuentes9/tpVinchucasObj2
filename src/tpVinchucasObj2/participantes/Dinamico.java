@@ -2,6 +2,7 @@ package tpVinchucasObj2.participantes;
 
 
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
 import tpVinchucasObj2.sistema.Sistema;
@@ -29,9 +30,9 @@ public class Dinamico extends Participante {
 	}
 	
 	@Override
-	public void opinarMuestra(Muestra nuestra, TipoOpinion tipo) {
-		Opinion nuevaOp = new Opinion(tipo,this);
-		nuestra.aniadirOpinion(nuevaOp);
+	public void opinarMuestra(Muestra muestra, TipoOpinion tipo) {
+		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.estadoParticipante));
+		muestra.aniadirOpinion(nuevaOp);
 		this.cambiarEstado();
 		
 	}	
