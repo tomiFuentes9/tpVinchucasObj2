@@ -1,11 +1,10 @@
 package tpVinchucasObj2.participantes;
 
-public abstract class EstadoUsuario {
-	
-	
+public interface EstadoUsuario {
 	
 	public abstract String estado();
 
-	protected abstract void cambiarEstado(Participante participante);
+	public abstract void cambiarEstado(Participante participante);
 
+	
 }
