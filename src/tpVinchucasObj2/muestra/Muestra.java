@@ -11,7 +11,6 @@ public class Muestra {
 	private LocalDate fechaCreacion;
 	private Boolean isVerificada;
 	private EspecieVinchuca especieVinchuca;
-	private Participante creador;
 	private List <Opinion> opiniones;
 	private Ubicacion ubicacion;
 	private TipoOpinion resultadoActual;
@@ -23,7 +22,6 @@ public class Muestra {
 		this.fechaCreacion = LocalDate.now();
 		this.isVerificada = false;
 		this.especieVinchuca = especieVinchuca;
-		this.creador = creador;
 		this.opiniones = new ArrayList<Opinion>();
 		this.ubicacion = ubicacion;
 		this.resultadoActual = TipoOpinion.NoDefinida;
@@ -50,10 +48,6 @@ public class Muestra {
 		return especieVinchuca;
 	}
 
-	public Participante getCreador() {
-		return creador;
-	}
-
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}
@@ -70,8 +64,15 @@ public class Muestra {
 		}
 	}
 	
+	public void verificarOpiniones() {// En este metodo determinamos el resultado actual
+		List <TipoOpinion> ops = this.filtrarOps(opiniones);
+		HashMap<TipoOpinion, Integer> opsMapeadas = this.mapearOpiniones(ops);
+		
+        this.setResultadoActual(this.opinionMasFrecuente(opsMapeadas));
+	}
+	
 	public boolean opinoUnExperto() {
-		return opiniones.stream().anyMatch(op -> op.getEstadoDelCreador() == "Experto");
+		return opiniones.stream().anyMatch(op -> op.getDatosCreador().estadoDeParticipante().estado() == "Experto");
 	}
 	
 	public List<TipoOpinion> filtrarOps(List<Opinion> ops){ // Agarro el array que tiene elementos de tipo Opinion 
@@ -82,21 +83,13 @@ public class Muestra {
 	public List<Opinion> filtrarExpertos(List<Opinion> ops){//Filtro las opiniones para que queden unicamente la de los expertos
 		List<Opinion> filteredOps = ops;                    //Si no opino un experto envia toda las opiniones de nuevo
 		if(this.opinoUnExperto()) {
-			 filteredOps = filteredOps.stream().filter(op -> op.getEstadoDelCreador() == "Experto").toList();
+			 filteredOps = filteredOps.stream().filter(op -> op.getDatosCreador().estadoDeParticipante().estado() == "Experto").toList();
 		}
 		return filteredOps;
 	}
 	
-	public void verificarOpiniones() {// En este metodo determinamos el resultado actual
-		List <TipoOpinion> ops = this.filtrarOps(opiniones);
-		HashMap<TipoOpinion, Integer> opsMapeadas = this.mapearOpiniones(ops);
-		
-        this.setResultadoActual(this.opinionMasFrecuente(opsMapeadas));
-	}
-	
 	public HashMap<TipoOpinion, Integer> mapearOpiniones(List<TipoOpinion> opiniones) {// Aca reviso el array filtrado y guardo como key el tipo de opinion
 		HashMap<TipoOpinion, Integer> opinionesMapeadas = new HashMap<>();             // y como value las veces que aparece
-        // Recorrer la lista y contar los elementos
         for (TipoOpinion op : opiniones) {
             if (opinionesMapeadas.containsKey(op)) {
             	opinionesMapeadas.put(op, opinionesMapeadas.get(op) + 1);

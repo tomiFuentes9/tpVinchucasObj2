@@ -15,9 +15,6 @@ class TestMuestra {
 	@BeforeEach
 	void setUp() throws Exception {
 		//Hacer mocks de Participante y opiniones
-		
-		Muestra muestra1 = new Muestra("foto.jpg", "ver como poner fecha", Sordida,
-				miguel);
 	}
 
 	@Test
