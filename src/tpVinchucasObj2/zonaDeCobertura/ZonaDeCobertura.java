@@ -13,7 +13,7 @@ public class ZonaDeCobertura {
 	private double radio ;
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
-	private List<Muestra> muestras ;
+	private List<Muestra> muestras ; // Debe tener el atributo ??
 	
 	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro,Sistema sistema) {
 		super();

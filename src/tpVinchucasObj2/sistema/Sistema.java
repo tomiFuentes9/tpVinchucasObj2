@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
@@ -12,41 +13,44 @@ import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 
 public class Sistema {
 
-	private List<Muestra> muestras ;
+	private List<Participante> participantes ;
 	private List<ZonaDeCobertura> zonasDeCobertura ;
-
+	private Filtro filtro;
 	
-	public Sistema() {
+	public Sistema(Filtro filtro) {
 		super();
-		this.muestras = new ArrayList<Muestra>();
+		this.participantes = new ArrayList<Participante>();
 		this.zonasDeCobertura = new ArrayList<ZonaDeCobertura>();
+		this.filtro = filtro ;
 	}
 
 	
-	public List<Muestra> getMuestras() {
-		return muestras;
+	public List<Participante> getParticipantes() {
+		return participantes;
 	}
 
 	
-	public void agregarMuestra(Muestra muestra) {
+	public void agregarParticipante(Participante participante) {
 		// Agrega la muestr apasada por parametro a la lsita de muestras que tiene como atributo
-		this.muestras.add(muestra);
+		this.participantes.add(participante);
 	}
 	
 	
-	public List<Participante> getParticipantes(){
+	public List<Muestra> getMuestras(){
 		// Creo una variable donde almaceno todos los participantes del sistema (estan duplicados si subieron mas de una muestra)
-		List<Participante> participantes = this.getMuestras().stream().map(m -> m.getCreador()).toList() ;
-		// Creo un set en donde no voy a tener duplicados
-		Set miConjunto = new HashSet<>(participantes);
-		// Limpio la lista 
-		participantes.clear();
-		// Devuelve todos los participantes del sistema
-		participantes.addAll(miConjunto);
-		return participantes ;
+		List<Muestra> muestras = this.fusionarListas((this.getParticipantes().stream().map(p -> p.getMisMuestras()).toList()));
+		
+		return muestras ;
 	}
 	
 	
+	private List<Muestra> fusionarListas(List<List<Muestra>> listas) {
+		List<Muestra> listaFinal = new ArrayList<Muestra>() ;
+		listas.stream().forEach(l->listaFinal.addAll(l));
+		return listaFinal;
+	}
+
+
 	public List<Muestra> muestraAXDistancia(Muestra muestra,float distanciaEnKm){
 		// Dado una muestra, conoce todas las muestras obtenidas a menos de x kms.
 		List<Muestra> listaFinal = new ArrayList<Muestra>();
@@ -63,13 +67,16 @@ public class Sistema {
 
 	}
 
-
 	public List<ZonaDeCobertura> getZonasCoberturas() {
 		return zonasDeCobertura;
 	}
 	
 	public void agregarZonaDeCobertura(ZonaDeCobertura zona) {
 		this.zonasDeCobertura.add(zona);
+	}
+	
+	public void almacenarMuestra(Muestra muestra, Participante participante) {
+		
 	}
 	
 }

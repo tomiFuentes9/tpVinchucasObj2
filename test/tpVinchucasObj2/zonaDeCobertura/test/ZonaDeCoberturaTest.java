@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.muestra.Muestra;
-import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
@@ -111,7 +110,7 @@ class ZonaDeCoberturaTest {
 		assertFalse(zonaCoberturaCordoba.seSolapaCon(zonaCoberturaLaPlata));
 		assertFalse(zonaCoberturaCordoba.seSolapaCon(zonaCoberturaQuilmes));
 	}
-	
+
 	@Test
 	void testZonasQueLaSolapan() {
 		// Quilmes, la deberian solapar la plata y buenos aires
