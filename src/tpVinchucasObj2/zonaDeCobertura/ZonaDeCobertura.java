@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.organizacion.Organizacion;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
@@ -14,6 +15,7 @@ public class ZonaDeCobertura {
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
 	private List<Muestra> muestras ; // Debe tener el atributo ??
+	private List<Organizacion> organizaciones ;
 	
 	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro,Sistema sistema) {
 		super();
@@ -21,6 +23,7 @@ public class ZonaDeCobertura {
 		this.radio = radio;
 		this.epicentro = epicentro;
 		this.muestras = new ArrayList<Muestra>();
+		this.organizaciones = new ArrayList<Organizacion>();
 		this.sistema = sistema ;
 	}
 	
@@ -70,6 +73,21 @@ public class ZonaDeCobertura {
 		return muestras;
 	}
 	
+	public void suscribirOrganizacion(Organizacion organizacion) {
+		organizaciones.add(organizacion);
+	}
+	
+	public void desuscribirOrganizacion(Organizacion organizacion) {
+		organizaciones.remove(organizacion);
+	}
+	
+	public void avisoNuevaMuestra(Muestra muestra) {
+		organizaciones.stream().forEach(o->o.avisoNuevaMuestra(this,muestra));
+	}
+	
+	public void avisoValidacionMuestra(Muestra muestra) {
+		organizaciones.stream().forEach(o->o.avisoValidacionMuestra(this,muestra));
+	}
 	
 	
 }

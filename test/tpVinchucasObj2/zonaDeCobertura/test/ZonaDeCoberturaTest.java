@@ -6,6 +6,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
@@ -14,6 +15,7 @@ import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 class ZonaDeCoberturaTest {
 	
 	Sistema sistemaVinchuca ;
+	Filtro filtro;
 
 	ZonaDeCobertura zonaCoberturaQuilmes ;
 	ZonaDeCobertura zonaCoberturaBuenosAires ;
@@ -36,7 +38,7 @@ class ZonaDeCoberturaTest {
 		
 		// Creamos el sistema 
 		
-		sistemaVinchuca = new Sistema();
+		sistemaVinchuca = new Sistema(filtro);
 		
 		
 		// Creamos los epicentros de las zonas de coberturas 
