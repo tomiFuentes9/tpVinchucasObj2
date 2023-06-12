@@ -53,10 +53,9 @@ public class ZonaDeCobertura {
 	
 	public boolean seSolapaCon(ZonaDeCobertura zonaAComparar) {
 		double distanciaEntreEpicentros = this.epicentro.distanciaCon(zonaAComparar.getEpicentro()) ;
-		double mitadDistanciaEpicentros = distanciaEntreEpicentros / 2 ;
+		double sumaRadios = this.radio + zonaAComparar.getRadio();
 		
-		return (mitadDistanciaEpicentros < this.radio) & (mitadDistanciaEpicentros < zonaAComparar.getRadio()) ;
-		
+		return distanciaEntreEpicentros <= sumaRadios ;
 		
 	}
 	
