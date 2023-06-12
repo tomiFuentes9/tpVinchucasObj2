@@ -8,38 +8,21 @@ import tpVinchucasObj2.participantes.Participante;
 public class Opinion {
 	
 	private LocalDate fechaCreacion;
-	private String estadoDelCreador;
 	private TipoOpinion tipo;
-	private Participante creador;
-	//private Muestra muestraDondeSeEncuentra ; // Debe conocer la muestra donde fue realizada ella misma ?
+	private DatosDelCreador datosCreador;
 	
 	
-	public Opinion(TipoOpinion tipo,Participante creador) {
+	public Opinion(TipoOpinion tipo,DatosDelCreador datosCreador) {
 		super();
 		this.fechaCreacion= LocalDate.now();
-		this.estadoDelCreador = creador.estado();
 		this.tipo= tipo;
-		this.creador = creador;
+		this.datosCreador = datosCreador ;
 	}
 
-
-	public Participante getCreador() {
-		return creador;
-	}
-
-
-	public void setCreador(Participante creador) {
-		this.creador = creador;
-	}
 
 
 	public TipoOpinion getTipo() {
 		return tipo;
-	}
-
-
-	public String getEstadoDelCreador() {
-		return estadoDelCreador;
 	}
 
 
@@ -49,9 +32,17 @@ public class Opinion {
 
 
 	public void setFechaCreacion(LocalDate fechaCreacion) {
+		// Este seter esta hecho para poder cambiarle la fecha a la opinion para poder testear mejor la clase.
 		this.fechaCreacion = fechaCreacion;
 	}
 
+
+
+	public DatosDelCreador getDatosCreador() {
+		return datosCreador;
+	}
+	
+	
 
 	
 	

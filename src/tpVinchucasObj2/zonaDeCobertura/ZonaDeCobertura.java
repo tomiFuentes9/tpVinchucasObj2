@@ -1,6 +1,7 @@
 package tpVinchucasObj2.zonaDeCobertura;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.sistema.Sistema;
@@ -12,12 +13,15 @@ public class ZonaDeCobertura {
 	private double radio ;
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
+	private List<Muestra> muestras ;
 	
-	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro) {
+	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro,Sistema sistema) {
 		super();
 		this.nombre = nombre;
 		this.radio = radio;
 		this.epicentro = epicentro;
+		this.muestras = new ArrayList<Muestra>();
+		this.sistema = sistema ;
 	}
 	
 	public double getRadio() {
@@ -27,6 +31,7 @@ public class ZonaDeCobertura {
 	public Ubicacion getEpicentro() {
 		return epicentro;
 	}
+	
 
 	public List<Muestra> muestrasDeLaZona() {
 		List<Muestra> muestras = sistema.getMuestras();
@@ -35,15 +40,16 @@ public class ZonaDeCobertura {
 		
 		return muestrasZona;
 	}
-	/*
+	
+	
 	public List<ZonaDeCobertura> zonasQueLaSolapan(){
-		List<ZonaDeCobertura> todasLasZonas = sistema.getZonasCoberturas();
+		List<ZonaDeCobertura> todasLasZonas = sistema.getZonasCoberturas(); // Se encuentran todas las zonas, inclusive esta misma
+		Stream<ZonaDeCobertura> todasLasZonasMenosEsta = todasLasZonas.stream().filter(z->z != this);
 		
-		todasLasZonas.stream().forEach(z->z.seSolapaCon(this)).toList() ;
+		return todasLasZonasMenosEsta.filter(z->z.seSolapaCon(this)).toList() ;
 		
-		return ;
 	}
-	*/
+	
 	
 	public boolean seSolapaCon(ZonaDeCobertura zonaAComparar) {
 		double distanciaEntreEpicentros = this.epicentro.distanciaCon(zonaAComparar.getEpicentro()) ;
@@ -53,5 +59,18 @@ public class ZonaDeCobertura {
 		
 		
 	}
+	
+	public void agregarMuestra(Muestra muestra) {
+		this.muestras.add(muestra);
+	}
+
+	
+	public List<Muestra> getMuestras() {
+		// Devuelve la muestras de la zona. 
+		//Deberia revisar si hay muestras nuevas cada vez que se llame al metodo o se deben cargar automaticanmente 
+		return muestras;
+	}
+	
+	
 	
 }

@@ -8,15 +8,18 @@ import java.util.Set;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
+import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 
 public class Sistema {
 
 	private List<Muestra> muestras ;
+	private List<ZonaDeCobertura> zonasDeCobertura ;
 
 	
 	public Sistema() {
 		super();
 		this.muestras = new ArrayList<Muestra>();
+		this.zonasDeCobertura = new ArrayList<ZonaDeCobertura>();
 	}
 
 	
@@ -59,6 +62,14 @@ public class Sistema {
 		return listaFinal;
 
 	}
+
+
+	public List<ZonaDeCobertura> getZonasCoberturas() {
+		return zonasDeCobertura;
+	}
 	
+	public void agregarZonaDeCobertura(ZonaDeCobertura zona) {
+		this.zonasDeCobertura.add(zona);
+	}
 	
 }
