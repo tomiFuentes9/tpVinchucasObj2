@@ -56,12 +56,12 @@ class ZonaDeCoberturaTest {
 		zonaCoberturaCordoba = new ZonaDeCobertura("Cordoba", 50 , cordoba,sistemaVinchuca);
 		
 		// Creamos las muestras 
-		/*
+		
 		muestra1 = mock(Muestra.class);
 		muestra2 = mock(Muestra.class);
 		muestra3 = mock(Muestra.class);
 		muestra4 = mock(Muestra.class);
-		*/
+		
 		
 		//Agregamos las zonas al sistema 
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaQuilmes);;
