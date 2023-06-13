@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,8 +19,8 @@ import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
-class TestPorFecha {
-	DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+class TestPorFechaUltimaOpinion {
+DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	PorFecha sut;
 	Muestra muestra1;
@@ -29,9 +30,9 @@ class TestPorFecha {
 	Ubicacion quilmes;
 	Sistema vinchuPower;
 	List<Muestra> listaTest = new ArrayList<Muestra>();
-
+	
 	@BeforeEach
-	void setUp() throws Exception {// Se crea una muestra con fecha de hoy y se usa el setter para cambiar la fecha con motivos de testing
+	void setUp() throws Exception {
 		sut = new PorFecha(LocalDate.parse("11/06/2023",fmt));
 		crazyWally = new Dinamico("Walter Norberto Gomez", vinchuPower);
 		quilmes = new Ubicacion(-34.72904, -58.26374);
@@ -52,23 +53,19 @@ class TestPorFecha {
 		listaTest.add(muestra3);
 	}
 
-	/* @AfterEach
-	void tearDown() throws Exception {
-	}
-    */
 	@Test
 	void testGetFechaFiltro() {
-		assertEquals(LocalDate.parse("11/06/2023",fmt), sut.getFechaFiltro());
-	}
-	 @Test
-	void testCambiarFechaFiltro() {
-		sut.cambiarFechaFiltro(LocalDate.parse("25/07/2028", fmt));
-		assertEquals(LocalDate.parse("25/07/2028",fmt), sut.getFechaFiltro());
+		fail("Not yet implemented");
 	}
 	
-	 @Test
-	void testFiltrarFechas() {
-		assertEquals(muestra3, sut.filtrarMuestras(listaTest));
+	@Test
+	void testCambiarFechaFiltro() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testFiltrarMuestras() {
+		fail("Not yet implemented");
 	}
 
 }
