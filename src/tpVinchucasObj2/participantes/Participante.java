@@ -2,6 +2,8 @@ package tpVinchucasObj2.participantes;
 
 
 import java.util.*;
+
+
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
@@ -49,7 +51,14 @@ public abstract class Participante {
 	public EstadoUsuario getEstadoParticipante() {
 		return estadoParticipante;
 	}
-
+	
+	// se crea el metodo este para poder testear
+	public void agregarMuestra(Muestra muestra) {
+		misMuestras.add(muestra);
+	}
+	public void agregarOpinion(Opinion opinion) {
+		misOpiniones.add(opinion);
+	}
 	
 	
 

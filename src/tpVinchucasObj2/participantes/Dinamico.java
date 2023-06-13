@@ -33,6 +33,7 @@ public class Dinamico extends Participante {
 	public void opinarMuestra(Muestra muestra, TipoOpinion tipo) {
 		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.getEstadoParticipante()));
 		muestra.aniadirOpinion(nuevaOp);
+		this.agregarOpinion(nuevaOp);
 		this.cambiarEstado();
 		
 	}	
