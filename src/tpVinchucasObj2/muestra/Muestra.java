@@ -15,8 +15,7 @@ public class Muestra {
 	private Ubicacion ubicacion;
 	private TipoOpinion resultadoActual;
 	
-	public Muestra(String foto, EspecieVinchuca especieVinchuca,
-			Participante creador, Ubicacion ubicacion) {
+	public Muestra(String foto, EspecieVinchuca especieVinchuca, Ubicacion ubicacion) {
 		super();
 		this.foto = foto;
 		this.fechaCreacion = LocalDate.now();
