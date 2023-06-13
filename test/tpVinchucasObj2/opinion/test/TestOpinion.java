@@ -5,13 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
+import tpVinchucasObj2.participantes.Dinamico;
 import tpVinchucasObj2.participantes.EstadoExperto;
+import tpVinchucasObj2.participantes.ExpertoExterno;
 import tpVinchucasObj2.participantes.Participante;
+import tpVinchucasObj2.sistema.Sistema;
 
 class TestOpinion {
 
+	Sistema sistema;
 
 	Opinion opinion1;
 	Opinion opinion2;
@@ -22,18 +27,18 @@ class TestOpinion {
 	Participante participante3;
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp()  {
 		
-		participante1 = new Participante("Leandro");
-		participante2 = new Participante("Walter");
+		participante1 = new Dinamico("Leandro",sistema);
+		participante2 = new Dinamico("Walter",sistema);
 		
-		participante3 = new Participante("Tomas"); 
-		//participante3.actualizarEstado(new EstadoExperto(participante3) );
+		participante3 = new ExpertoExterno("Tomas",sistema); 
 		
 		
-		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,participante1);
-		opinion2 = new Opinion(TipoOpinion.Vinchuca,participante2);
-		opinion3 = new Opinion(TipoOpinion.Vinchuca,participante3);
+		
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
+		opinion2 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante2,participante2.getEstadoParticipante()));
+		opinion3 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante3,participante3.getEstadoParticipante()));
 	}
 
 	@Test
@@ -44,16 +49,15 @@ class TestOpinion {
 	}
 	
 	@Test
-	void testCreador() {
-		assertEquals(participante1,opinion1.getCreador());
-		assertEquals(participante2,opinion2.getCreador());
-		assertEquals(participante3,opinion3.getCreador());
+	void testDatosCreador() {
+		assertEquals(participante1,opinion1.getDatosCreador().getParticipante());
+		assertEquals(participante2,opinion2.getDatosCreador().getParticipante());
+		assertEquals(participante3,opinion3.getDatosCreador().getParticipante());
+		
+		assertEquals("Basico",opinion1.getDatosCreador().estadoDeParticipante().estado());
+		assertEquals("Basico",opinion2.getDatosCreador().estadoDeParticipante().estado());
+		assertEquals("Experto",opinion3.getDatosCreador().estadoDeParticipante().estado());
 	}
 	
-	@Test
-	void testNivelCreador() {
-		assertEquals("Basico",opinion1.getEstadoDelCreador());
-		assertEquals("Basico",opinion2.getEstadoDelCreador());
-		//assertEquals("Experto",opinion3.getEstadoDelCreador());
-	}
+	
 }

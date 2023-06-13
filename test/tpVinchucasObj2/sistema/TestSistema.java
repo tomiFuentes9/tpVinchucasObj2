@@ -9,8 +9,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.participantes.Dinamico;
+import tpVinchucasObj2.participantes.ExpertoExterno;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
@@ -18,6 +21,7 @@ class TestSistema {
 	
 	// Creacion de sistema
 	Sistema sistemaVinchucas ;
+	Filtro filtro;
 	
 	// Creacion de Participantes
 	Participante participante1 ;
@@ -48,11 +52,12 @@ class TestSistema {
 	@BeforeEach
 	void setUp(){
 		
-		
+		sistemaVinchucas = new Sistema(filtro);
 		// Parcipante 
 		
-		participante1 = mock(Participante.class);
-		participante2 = mock(Participante.class);
+		participante1 = new ExpertoExterno("Tomas",sistemaVinchucas); 
+		participante2 = new Dinamico("Walter",sistemaVinchucas);
+		
 		
 		// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
 		// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
@@ -77,36 +82,35 @@ class TestSistema {
 	
 	@Test
 	void testAgregarMuestras() {
+		sistemaVinchucas.agregarParticipante(participante1);
+		sistemaVinchucas.agregarParticipante(participante2);
 		assertEquals(0,sistemaVinchucas.getMuestras().size());
-		sistemaVinchucas.agregarMuestra(muestra1);
-		sistemaVinchucas.agregarMuestra(muestra2);
+		participante1.agregarMuestra(muestra1);
+		participante2.agregarMuestra(muestra2);
 		assertEquals(2,sistemaVinchucas.getMuestras().size());
-		sistemaVinchucas.agregarMuestra(muestra3);
-		sistemaVinchucas.agregarMuestra(muestra4);
+		participante1.agregarMuestra(muestra3);
+		participante2.agregarMuestra(muestra4);
 		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
 	
 	@Test 
 	void testGetParticipantes() {
 		assertEquals(0,sistemaVinchucas.getParticipantes().size());
-		sistemaVinchucas.agregarMuestra(muestra1);
-		sistemaVinchucas.agregarMuestra(muestra2);
-		assertEquals(2,sistemaVinchucas.getParticipantes().size());
-		sistemaVinchucas.agregarMuestra(muestra3);
-		sistemaVinchucas.agregarMuestra(muestra4);
+		sistemaVinchucas.agregarParticipante(participante1);
+		sistemaVinchucas.agregarParticipante(participante2);
 		assertEquals(2,sistemaVinchucas.getParticipantes().size());
 	}
 	
 	@Test 
 	void testMuestraAXDistancia() {
-		sistemaVinchucas.agregarMuestra(muestra1);
-		sistemaVinchucas.agregarMuestra(muestra2);
-		sistemaVinchucas.agregarMuestra(muestra3);
-		sistemaVinchucas.agregarMuestra(muestra4);
+		sistemaVinchucas.agregarParticipante(participante1);
+		sistemaVinchucas.agregarParticipante(participante2);
+		participante1.agregarMuestra(muestra1);
+		participante2.agregarMuestra(muestra2);
+		participante1.agregarMuestra(muestra3);
+		participante2.agregarMuestra(muestra4);
 		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 200);
 		assertEquals(2,muestrasADistancia.size());
-		//assertTrue(muestra2.compareTo(muestrasADistancia.get(0)));
-		//assertTrue(muestra3.compareTo(muestrasADistancia.get(1)));
 		assertEquals(muestra2,muestrasADistancia.get(0));
 		assertEquals(muestra3,muestrasADistancia.get(1));
 	}
