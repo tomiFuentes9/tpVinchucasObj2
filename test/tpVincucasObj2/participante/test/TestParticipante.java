@@ -54,6 +54,8 @@ class TestParticipante {
 	Muestra muestra18;
 	Muestra muestra19;
 	Muestra muestra20;
+	Muestra muestra21;
+	Muestra muestra22;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -93,6 +95,9 @@ class TestParticipante {
 		muestra18 = new Muestra("imagenR.jpg",EspecieVinchuca.Guasayana,montevideo);
 		muestra19 = new Muestra("imagenS.jpg",EspecieVinchuca.Infestans,buenosAires);
 		muestra20 = new Muestra("imagenT.jpg",EspecieVinchuca.Sordida,laPlata);
+		muestra21 = new Muestra("imagenUjpg",EspecieVinchuca.Guasayana,quilmes);
+		muestra22 = new Muestra("imagenUjpg",EspecieVinchuca.Infestans,posadas);
+		
 		
 		willyWonka.agregarMuestra(muestra1);
 		willyWonka.agregarMuestra(muestra2);
@@ -106,6 +111,19 @@ class TestParticipante {
 		willyWonka.agregarMuestra(muestra10);
 		willyWonka.agregarMuestra(muestra11);	
 		
+		teela.agregarMuestra(muestra12);
+		teela.agregarMuestra(muestra13);
+		teela.agregarMuestra(muestra14);
+		teela.agregarMuestra(muestra15);
+		teela.agregarMuestra(muestra16);
+		teela.agregarMuestra(muestra17);
+		teela.agregarMuestra(muestra18);
+		teela.agregarMuestra(muestra19);
+		teela.agregarMuestra(muestra20);
+		teela.agregarMuestra(muestra21);
+		teela.agregarMuestra(muestra22);
+		
+		
 		willyWonka.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
 		willyWonka.opinarMuestra(muestra1, TipoOpinion.Vinchuca);// aca no deberia dar error
 		willyWonka.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
@@ -118,32 +136,51 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
 		willyWonka.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
 		
+		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
+		teela.opinarMuestra(muestra1, TipoOpinion.Vinchuca);// aca no deberia dar error
+		teela.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
+		teela.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
+		teela.opinarMuestra(muestra4, TipoOpinion.ImagenPocoClara);
+		teela.opinarMuestra(muestra5, TipoOpinion.Vinchuca);
+		teela.opinarMuestra(muestra6, TipoOpinion.ChincheFoliada);
+		teela.opinarMuestra(muestra7, TipoOpinion.PhtiaChinche);
+		teela.opinarMuestra(muestra8, TipoOpinion.ImagenPocoClara);
+		teela.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
+		teela.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
+		
 
 	}
 
 	@Test
-	void nombreTest() {
+	void nombreDeLoParticipantes() {
 		assertEquals("Tomas",willyWonka.getNombre());
+		assertEquals("Marcela",teela.getNombre());
 		
 	}
 	
 	@Test
-	void estadoInicalBasico() {
+	void estadoInicalDeLosParticipantes() {
+		
 		assertEquals("Basico",willyWonka.estado());
+		assertEquals("Experto",teela.estado());
 		
 	}
 	@Test
-	void cargarMuestras(){
+	void cantidadDeMuestrasCargadas(){
 		
 		assertEquals(11,willyWonka.getMisMuestras().size());
+		assertEquals(11,teela.getMisMuestras().size());
 		
 	}
 	@Test
-	void opinarMuestra(){		
+	void cantidadDeMuestrasOpinadas(){		
 		assertEquals(11,willyWonka.getMisOpiniones().size());
+		assertEquals(11,teela.getMisOpiniones().size());
 	}
 	@Test
-	void pasarDeBasicoAExperto(){	
+	void verificarQueUnParticipanteBasicoPasaASerExperto(){	
+		
+		assertEquals("Basico",willyWonka.estado()); // Estado inicial de participante
 		
 		willyWonka.opinarMuestra(muestra11, TipoOpinion.PhtiaChinche);
 		willyWonka.opinarMuestra(muestra12, TipoOpinion.ImagenPocoClara);
@@ -156,10 +193,13 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra19, TipoOpinion.PhtiaChinche);
 		willyWonka.opinarMuestra(muestra20, TipoOpinion.ImagenPocoClara);
 		
+		assertEquals(11,willyWonka.getMisMuestras().size());
+		assertEquals(21,willyWonka.getMisOpiniones().size());
+		// willyWonka tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado a Experto
 		assertEquals("Experto",willyWonka.estado());
 	}
 	@Test
-	void pasarDeExpertoABasico(){	
+	void verificarQueUnParticipanteExpertoPasaASerBasico(){	
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate fechaVieja = LocalDate.parse("12/05/2023",fmt);
 		willyWonka.getMisOpiniones().get(0).setFechaCreacion(fechaVieja);
@@ -168,5 +208,26 @@ class TestParticipante {
 		
 		assertEquals("Basico",willyWonka.estado());
 	}
+	@Test
+	void verificarQueUnParticipanteExpertoExternoNoCambiaSuEstado(){	
+		
+		teela.opinarMuestra(muestra11, TipoOpinion.PhtiaChinche);
+		teela.opinarMuestra(muestra12, TipoOpinion.ImagenPocoClara);
+		teela.opinarMuestra(muestra13, TipoOpinion.Vinchuca);
+		teela.opinarMuestra(muestra14, TipoOpinion.ChincheFoliada);
+		teela.opinarMuestra(muestra15, TipoOpinion.PhtiaChinche);
+		teela.opinarMuestra(muestra16, TipoOpinion.ImagenPocoClara);
+		teela.opinarMuestra(muestra17, TipoOpinion.Vinchuca);
+		teela.opinarMuestra(muestra18, TipoOpinion.ChincheFoliada);
+		teela.opinarMuestra(muestra19, TipoOpinion.PhtiaChinche);
+		teela.opinarMuestra(muestra20, TipoOpinion.ImagenPocoClara);
+		
+		assertEquals(21,teela.getMisOpiniones().size());
+		assertEquals(11,teela.getMisMuestras().size());
+		// teela tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado
+		assertEquals("Experto",teela.estado());
+	}
+
+	
 	
 }

@@ -36,7 +36,8 @@ public class Dinamico extends Participante {
 		this.agregarOpinion(nuevaOp);
 		this.cambiarEstado();
 		
-	}	
+	}
+	@Override
 	public void cambiarEstado() {
 		estadoParticipante.cambiarEstado(this);
 		

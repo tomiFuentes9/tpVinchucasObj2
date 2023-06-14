@@ -27,15 +27,20 @@ public class ExpertoExterno extends Participante {
 	@Override
 	public void opinarMuestra(Muestra muestra, TipoOpinion tipo) {
 		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.getEstadoParticipante()));
-		muestra.aniadirOpinion(nuevaOp);				
+		muestra.aniadirOpinion(nuevaOp);
+		this.agregarOpinion(nuevaOp);
+	}
+
+	@Override
+	public void cambiarEstado() {
+		// no cambio de estado nunca siempre es Experto	
 	}
 
 	@Override
 	public void setEstadoParticipante(EstadoUsuario estadoParticipante) {
-		// no cambio de estado nunca siempre es Experto
+		// no cambio de estado nunca siempre es Experto	
 		
 	}
-
 
 	
 

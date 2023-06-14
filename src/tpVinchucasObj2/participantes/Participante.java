@@ -31,6 +31,7 @@ public abstract class Participante {
 	public abstract void opinarMuestra(Muestra nuestra, TipoOpinion tipo); 
 	public abstract String estado();
 	public abstract void setEstadoParticipante(EstadoUsuario estadoParticipante);
+	public abstract void cambiarEstado();
 
 	public Sistema getSistema() {
 		return sistema;
