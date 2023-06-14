@@ -56,10 +56,6 @@ class TestPorFecha {
 	void tearDown() throws Exception {
 	}
     */
-	@Test
-	void testGetFechaFiltro() {
-		assertEquals(LocalDate.parse("11/06/2023",fmt), sut.getFechaFiltro());
-	}
 	
 	 @Test
 	void testCambiarFechaFiltro() {

@@ -35,7 +35,7 @@ public class PorFechaUltimaOpinion extends Filtro {
 	
 	public Boolean ultimaOpinionEnFechaBuscada(List<Opinion> opiniones) {
 		Opinion ultimaOp = opiniones.get(opiniones.size() - 1);
-		return ultimaOp.getFechaCreacion() == this.getFechaFiltro();
+		return ultimaOp.getFechaCreacion().isEqual(this.getFechaFiltro());
 	}
 
 }

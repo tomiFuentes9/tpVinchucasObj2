@@ -52,15 +52,11 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		listaTest.add(muestra2);
 		listaTest.add(muestra3);
 	}
-
-	@Test
-	void testGetFechaFiltro() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	void testCambiarFechaFiltro() {
-		fail("Not yet implemented");
+		sut.cambiarFechaFiltro(LocalDate.parse("25/07/2028", fmt));
+		assertEquals(LocalDate.parse("25/07/2028",fmt), sut.getFechaFiltro());;
 	}
 	
 	@Test
