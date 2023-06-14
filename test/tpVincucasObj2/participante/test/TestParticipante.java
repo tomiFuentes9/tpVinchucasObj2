@@ -26,6 +26,8 @@ class TestParticipante {
 	Ubicacion laPlata;
 	Ubicacion quilmes;
 	Ubicacion posadas;
+	Ubicacion cordoba;
+	Ubicacion montevideo;
 	
 	PorFecha filtroXFecha;
 	
@@ -33,6 +35,12 @@ class TestParticipante {
 	Muestra muestra2;
 	Muestra muestra3;
 	Muestra muestra4;
+	Muestra muestra5;
+	Muestra muestra6;
+	Muestra muestra7;
+	Muestra muestra8;
+	Muestra muestra9;
+	Muestra muestra10;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -46,12 +54,20 @@ class TestParticipante {
 		laPlata     = new Ubicacion(-34.92145, -57.95453);
 		quilmes     = new Ubicacion(-34.72904, -58.26374);
 		posadas     = new Ubicacion(-27.36708, -55.89608);
+		cordoba     = new Ubicacion(-31.41350, -64.18105);
+		montevideo  = new Ubicacion(-34.90328, -56.18816);
 		
 		
-		muestra1 = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans,willyWonka,buenosAires);
-		muestra2 = new Muestra("imagenB.bmp",EspecieVinchuca.Guasayana,teela,laPlata);
-		muestra3 = new Muestra("imagenC.bmp",EspecieVinchuca.Sordida,willyWonka,quilmes);
-		muestra4 = new Muestra("imagenD.jpg",EspecieVinchuca.Infestans,willyWonka,laPlata);
+		muestra1  = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans,buenosAires);
+		muestra2  = new Muestra("imagenB.bmp",EspecieVinchuca.Sordida,laPlata);
+		muestra3  = new Muestra("imagenC.bmp",EspecieVinchuca.Guasayana,quilmes);
+		muestra4  = new Muestra("imagenD.jpg",EspecieVinchuca.Infestans,posadas);
+		muestra5  = new Muestra("imagenE.jpg",EspecieVinchuca.Sordida,cordoba);
+		muestra6  = new Muestra("imagenF.jpg",EspecieVinchuca.Guasayana,montevideo);
+		muestra7  = new Muestra("imagenF.jpg",EspecieVinchuca.Infestans,buenosAires);
+		muestra8  = new Muestra("imagenG.jpg",EspecieVinchuca.Sordida,laPlata);
+		muestra9  = new Muestra("imagenH.jpg",EspecieVinchuca.Guasayana,quilmes);
+		muestra10 = new Muestra("imagenI.jpg",EspecieVinchuca.Infestans,posadas);
 	}
 
 	@Test
@@ -68,18 +84,36 @@ class TestParticipante {
 	@Test
 	void cargarMuestras(){
 		willyWonka.agregarMuestra(muestra1);
+		willyWonka.agregarMuestra(muestra2);
 		willyWonka.agregarMuestra(muestra3);
 		willyWonka.agregarMuestra(muestra4);
+		willyWonka.agregarMuestra(muestra5);
+		willyWonka.agregarMuestra(muestra6);
+		willyWonka.agregarMuestra(muestra7);
+		willyWonka.agregarMuestra(muestra8);
+		willyWonka.agregarMuestra(muestra9);
+		willyWonka.agregarMuestra(muestra10);
 		
-		assertEquals(3,willyWonka.getMisMuestras().size());
+		assertEquals(10,willyWonka.getMisMuestras().size());
 		
 	}
 	@Test
 	void opinarMuestra(){
-		willyWonka.opinarMuestra(muestra1, TipoOpinion.ChincheFoliada);
-		willyWonka.opinarMuestra(muestra1, TipoOpinion.PhtiaChinche);// aca no deberia dar error
+		willyWonka.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
+		willyWonka.opinarMuestra(muestra1, TipoOpinion.Vinchuca);// aca no deberia dar error
+		willyWonka.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
+		willyWonka.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
+		willyWonka.opinarMuestra(muestra4, TipoOpinion.ImagenPocoClara);
+		willyWonka.opinarMuestra(muestra5, TipoOpinion.Vinchuca);
+		willyWonka.opinarMuestra(muestra6, TipoOpinion.ChincheFoliada);
+		willyWonka.opinarMuestra(muestra7, TipoOpinion.PhtiaChinche);
+		willyWonka.opinarMuestra(muestra8, TipoOpinion.ImagenPocoClara);
+		willyWonka.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
+		willyWonka.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
+		
+		
 		assertEquals("Basico",willyWonka.estado());	
 		
-		assertEquals(2,willyWonka.getMisOpiniones().size());
+		assertEquals(11,willyWonka.getMisOpiniones().size());
 	}
 }
