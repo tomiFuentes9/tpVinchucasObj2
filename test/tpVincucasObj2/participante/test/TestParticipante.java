@@ -58,6 +58,7 @@ class TestParticipante {
 		montevideo  = new Ubicacion(-34.90328, -56.18816);
 		
 		
+
 		muestra1  = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans,buenosAires);
 		muestra2  = new Muestra("imagenB.bmp",EspecieVinchuca.Sordida,laPlata);
 		muestra3  = new Muestra("imagenC.bmp",EspecieVinchuca.Guasayana,quilmes);
@@ -68,6 +69,7 @@ class TestParticipante {
 		muestra8  = new Muestra("imagenG.jpg",EspecieVinchuca.Sordida,laPlata);
 		muestra9  = new Muestra("imagenH.jpg",EspecieVinchuca.Guasayana,quilmes);
 		muestra10 = new Muestra("imagenI.jpg",EspecieVinchuca.Infestans,posadas);
+
 	}
 
 	@Test
