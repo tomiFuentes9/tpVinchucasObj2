@@ -51,7 +51,7 @@ class TestPorFecha {
 		listaTest.add(muestra2);
 		listaTest.add(muestra3);
 	}
-
+	
 	/* @AfterEach
 	void tearDown() throws Exception {
 	}
@@ -60,6 +60,7 @@ class TestPorFecha {
 	void testGetFechaFiltro() {
 		assertEquals(LocalDate.parse("11/06/2023",fmt), sut.getFechaFiltro());
 	}
+	
 	 @Test
 	void testCambiarFechaFiltro() {
 		sut.cambiarFechaFiltro(LocalDate.parse("25/07/2028", fmt));
@@ -68,7 +69,8 @@ class TestPorFecha {
 	
 	 @Test
 	void testFiltrarFechas() {
-		assertEquals(muestra3, sut.filtrarMuestras(listaTest));
+		assertEquals(muestra3, sut.filtrarMuestras(listaTest).get(0));
 	}
+	
 
 }

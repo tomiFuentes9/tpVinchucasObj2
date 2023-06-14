@@ -23,7 +23,7 @@ public class PorFecha extends Filtro {
 	
 	@Override
 	public List<Muestra> filtrarMuestras(List<Muestra> muestras) {
-		return muestras.stream().filter(m -> m.getFechaCreacion() == this.getFechaFiltro()).toList();
+		return muestras.stream().filter(m -> m.getFechaCreacion().isEqual(this.getFechaFiltro())).toList();
 	}
 
 }

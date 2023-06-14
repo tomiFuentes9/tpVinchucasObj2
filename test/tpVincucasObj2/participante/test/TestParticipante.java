@@ -48,10 +48,10 @@ class TestParticipante {
 		posadas     = new Ubicacion(-27.36708, -55.89608);
 		
 		
-		muestra1 = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans,willyWonka,buenosAires);
-		muestra2 = new Muestra("imagenB.bmp",EspecieVinchuca.Guasayana,teela,laPlata);
-		muestra3 = new Muestra("imagenC.bmp",EspecieVinchuca.Sordida,willyWonka,quilmes);
-		muestra4 = new Muestra("imagenD.jpg",EspecieVinchuca.Infestans,willyWonka,laPlata);
+		muestra1 = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans, buenosAires);
+		muestra2 = new Muestra("imagenB.bmp",EspecieVinchuca.Guasayana, laPlata);
+		muestra3 = new Muestra("imagenC.bmp",EspecieVinchuca.Sordida, quilmes);
+		muestra4 = new Muestra("imagenD.jpg",EspecieVinchuca.Infestans, laPlata);
 	}
 
 	@Test

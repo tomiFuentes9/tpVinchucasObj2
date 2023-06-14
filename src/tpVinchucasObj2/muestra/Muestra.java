@@ -123,7 +123,7 @@ public class Muestra {
 	}
 	
 	public void aniadirOpinionSiCorresponde(Opinion op) {
-		if (!this.opinoUnExperto()) {
+		if (!this.opinoUnExperto()) { // verificar si ya opino el participante
 			opiniones.add(op);
 		}
 	}
