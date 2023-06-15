@@ -9,7 +9,6 @@ import java.time.format.DateTimeFormatter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tpVinchucasObj2.filtros.PorFecha;
 import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.TipoOpinion;
@@ -20,20 +19,19 @@ import tpVinchucasObj2.ubicacion.Ubicacion;
 
 class TestParticipante {
 	
+	// Declaracion de Participantes
 	Dinamico willyWonka;
 	ExpertoExterno teela;
 		
-	
-	
+	// Declaracion de ubicaciones	
 	Ubicacion buenosAires;
 	Ubicacion laPlata;
 	Ubicacion quilmes;
 	Ubicacion posadas;
 	Ubicacion cordoba;
-	Ubicacion montevideo;
+	Ubicacion montevideo;	
 	
-	PorFecha filtroXFecha;
-	
+	// Declarcion de Muestras
 	Muestra muestra1;
 	Muestra muestra2;
 	Muestra muestra3;
@@ -66,15 +64,15 @@ class TestParticipante {
 		teela = new ExpertoExterno("Marcela"); // instancio un participante Experto Externo
 	
 		//buenosAires = mock(Ubicacion.class);
+		// instanciamos algunas ubicaciones
 		buenosAires = new Ubicacion(-34.61315, -58.37723);
 		laPlata     = new Ubicacion(-34.92145, -57.95453);
 		quilmes     = new Ubicacion(-34.72904, -58.26374);
 		posadas     = new Ubicacion(-27.36708, -55.89608);
 		cordoba     = new Ubicacion(-31.41350, -64.18105);
 		montevideo  = new Ubicacion(-34.90328, -56.18816);
-		
-		
 
+		// instanciamos algunas muestras
 		muestra1  = new Muestra("imagenA.jpg",EspecieVinchuca.Infestans,buenosAires);
 		muestra2  = new Muestra("imagenB.jpg",EspecieVinchuca.Sordida,laPlata);
 		muestra3  = new Muestra("imagenC.bmp",EspecieVinchuca.Guasayana,quilmes);
@@ -98,7 +96,7 @@ class TestParticipante {
 		muestra21 = new Muestra("imagenUjpg",EspecieVinchuca.Guasayana,quilmes);
 		muestra22 = new Muestra("imagenUjpg",EspecieVinchuca.Infestans,posadas);
 		
-		
+		// Le agregamos al participante willyWonka un par de muestras
 		willyWonka.agregarMuestra(muestra1);
 		willyWonka.agregarMuestra(muestra2);
 		willyWonka.agregarMuestra(muestra3);
@@ -111,6 +109,7 @@ class TestParticipante {
 		willyWonka.agregarMuestra(muestra10);
 		willyWonka.agregarMuestra(muestra11);	
 		
+		// Le agregamos al participante teela un par de muestras
 		teela.agregarMuestra(muestra12);
 		teela.agregarMuestra(muestra13);
 		teela.agregarMuestra(muestra14);
@@ -123,7 +122,7 @@ class TestParticipante {
 		teela.agregarMuestra(muestra21);
 		teela.agregarMuestra(muestra22);
 		
-		
+		// el participante willyWonka opina sobre algunas muestras
 		willyWonka.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
 		willyWonka.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
 		willyWonka.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
@@ -135,6 +134,7 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
 		willyWonka.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
 		
+		// el participante willyWonka opina sobre algunas muestras
 		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
 		teela.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
 		teela.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
@@ -216,20 +216,20 @@ class TestParticipante {
 		assertEquals(20,willyWonka.getMisOpiniones().size());
 		
 		
-		assertEquals("Experto",willyWonka.estado());
+		assertEquals("Experto",willyWonka.estado()); // comprobamos que cambio de estado
 		
-		
+		// cambiamos la fecha de algunas opiniones 
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		LocalDate fechaVieja = LocalDate.parse("12/05/2022",fmt);
 		willyWonka.getMisOpiniones().get(0).setFechaCreacion(fechaVieja);
 		willyWonka.getMisOpiniones().get(1).setFechaCreacion(fechaVieja);
 		willyWonka.getMisOpiniones().get(2).setFechaCreacion(fechaVieja);
-		willyWonka.getMisOpiniones().get(3).setFechaCreacion(fechaVieja);
-		// al cambiarle la fecha al opinion en la posicision 0, el participante deja de 
-		// tener 20 opiniones en el ultimo mes por lo cual vuelve al estado Basico
+		willyWonka.getMisOpiniones().get(3).setFechaCreacion(fechaVieja);	
+		
 		assertEquals(fechaVieja,willyWonka.getMisOpiniones().get(0).getFechaCreacion());
 		assertEquals(fechaVieja,willyWonka.getMisOpiniones().get(1).getFechaCreacion());
-		willyWonka.getEstadoParticipante().cambiarEstado(willyWonka);
+		
+		willyWonka.getEstadoParticipante().cambiarEstado(willyWonka); // pedimos actualizar el estado del participante
 		assertEquals("Basico",willyWonka.estado());
 		
 	}
@@ -249,7 +249,9 @@ class TestParticipante {
 		
 		assertEquals(20,teela.getMisOpiniones().size());
 		assertEquals(11,teela.getMisMuestras().size());
-		// teela tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado
+		
+		teela.getEstadoParticipante().cambiarEstado(teela);
+		
 		assertEquals("Experto",teela.estado());
 	}
 
