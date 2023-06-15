@@ -14,7 +14,7 @@ class TestMuestra {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		//Hacer mocks de Participante y opiniones
+		
 	}
 
 	@Test

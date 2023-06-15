@@ -77,7 +77,7 @@ public class Muestra {
 	public List<TipoOpinion> filtrarOps(List<Opinion> ops){ // Agarro el array que tiene elementos de tipo Opinion 
 		List<Opinion> filteredOps = this.filtrarExpertos(ops);//y lo mapeo para quedarme con los TiposDeOpinion nomas
 		return filteredOps.stream().map(op -> op.getTipo()).toList();
-	}
+	} 
 	
 	public List<Opinion> filtrarExpertos(List<Opinion> ops){//Filtro las opiniones para que queden unicamente la de los expertos
 		List<Opinion> filteredOps = ops;                    //Si no opino un experto envia toda las opiniones de nuevo
@@ -132,8 +132,10 @@ public class Muestra {
 	
 	public void aniadirOpinionSiCorresponde(Opinion op) {
 		Participante participante = op.getDatosCreador().getParticipante();
-		if (!this.opinoUnExperto() && this.yaOpinoParticipante(participante)) { // verificar si ya opino el participante
+		if (!this.opinoUnExperto() && !this.yaOpinoParticipante(participante)) { // verificar si ya opino el participante
 			opiniones.add(op);
+		} else {
+			throw new RuntimeException("Ya opinaste sobre esta muestra");
 		}
 	}
 	

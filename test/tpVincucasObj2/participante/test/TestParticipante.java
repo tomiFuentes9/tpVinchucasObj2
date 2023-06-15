@@ -125,7 +125,6 @@ class TestParticipante {
 		
 		
 		willyWonka.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
-		willyWonka.opinarMuestra(muestra1, TipoOpinion.Vinchuca);// aca no deberia dar error
 		willyWonka.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
 		willyWonka.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
 		willyWonka.opinarMuestra(muestra4, TipoOpinion.ImagenPocoClara);
@@ -136,8 +135,7 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
 		willyWonka.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
 		
-		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
-		teela.opinarMuestra(muestra1, TipoOpinion.Vinchuca);// aca no deberia dar error
+		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);// aca no deberia dar error
 		teela.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
 		teela.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
 		teela.opinarMuestra(muestra4, TipoOpinion.ImagenPocoClara);
@@ -174,8 +172,8 @@ class TestParticipante {
 	}
 	@Test
 	void cantidadDeMuestrasOpinadas(){		
-		assertEquals(11,willyWonka.getMisOpiniones().size());
-		assertEquals(11,teela.getMisOpiniones().size());
+		assertEquals(10,willyWonka.getMisOpiniones().size());
+		assertEquals(10,teela.getMisOpiniones().size());
 	}
 	@Test
 	void verificarQueUnParticipanteBasicoPasaASerExperto(){	
@@ -194,7 +192,7 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra20, TipoOpinion.ImagenPocoClara);
 		
 		assertEquals(11,willyWonka.getMisMuestras().size());
-		assertEquals(21,willyWonka.getMisOpiniones().size());
+		assertEquals(20,willyWonka.getMisOpiniones().size());
 		// willyWonka tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado a Experto
 		assertEquals("Experto",willyWonka.estado());
 	}
@@ -215,7 +213,7 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra20, TipoOpinion.ImagenPocoClara);
 		
 		assertEquals(11,willyWonka.getMisMuestras().size());
-		assertEquals(21,willyWonka.getMisOpiniones().size());
+		assertEquals(20,willyWonka.getMisOpiniones().size());
 		
 		// willyWonka tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado a Experto
 		assertEquals("Experto",willyWonka.estado());
@@ -229,11 +227,10 @@ class TestParticipante {
 		willyWonka.getMisOpiniones().get(3).setFechaCreacion(fechaVieja);
 		// al cambiarle la fecha al opinion en la posicision 0, el participante deja de 
 		// tener 20 opiniones en el ultimo mes por lo cual vuelve al estado Basico
-		System.out.print(fechaVieja.isAfter(LocalDate.now().minusDays(30)));
 		assertEquals(fechaVieja,willyWonka.getMisOpiniones().get(0).getFechaCreacion());
 		assertEquals(fechaVieja,willyWonka.getMisOpiniones().get(1).getFechaCreacion());
-		
-		//assertEquals("Basico",willyWonka.estado());
+		willyWonka.getEstadoParticipante().cambiarEstado(willyWonka);
+		assertEquals("Basico",willyWonka.estado());
 		
 	}
 	@Test
@@ -250,7 +247,7 @@ class TestParticipante {
 		teela.opinarMuestra(muestra19, TipoOpinion.PhtiaChinche);
 		teela.opinarMuestra(muestra20, TipoOpinion.ImagenPocoClara);
 		
-		assertEquals(21,teela.getMisOpiniones().size());
+		assertEquals(20,teela.getMisOpiniones().size());
 		assertEquals(11,teela.getMisMuestras().size());
 		// teela tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado
 		assertEquals("Experto",teela.estado());

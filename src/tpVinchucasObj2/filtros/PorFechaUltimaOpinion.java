@@ -26,7 +26,7 @@ public class PorFechaUltimaOpinion extends Filtro {
 	public List<Muestra> filtrarMuestras(List<Muestra> muestras) {
 		List<Muestra> muestrasFiltradas = new ArrayList<Muestra>();
 		for(Muestra m : muestras) {
-			if(this.ultimaOpinionEnFechaBuscada(m.getOpiniones())) {
+			if(this.ultimaOpinionSiTiene(m.getOpiniones())) {
 				muestrasFiltradas.add(m);
 			}
 		}
@@ -36,6 +36,14 @@ public class PorFechaUltimaOpinion extends Filtro {
 	public Boolean ultimaOpinionEnFechaBuscada(List<Opinion> opiniones) {
 		Opinion ultimaOp = opiniones.get(opiniones.size() - 1);
 		return ultimaOp.getFechaCreacion().isEqual(this.getFechaFiltro());
+	}
+	
+	public Boolean ultimaOpinionSiTiene(List<Opinion> opiniones) {
+		Boolean resultado = false;
+		if (opiniones.size() > 0) {
+			resultado = this.ultimaOpinionEnFechaBuscada(opiniones);
+		}
+		return resultado;
 	}
 
 }

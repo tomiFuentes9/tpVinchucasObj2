@@ -11,42 +11,54 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tpVinchucasObj2.filtros.PorFecha;
-import tpVinchucasObj2.muestra.EspecieVinchuca;
-import tpVinchucasObj2.muestra.Muestra;
-import tpVinchucasObj2.participantes.Dinamico;
-import tpVinchucasObj2.participantes.Participante;
-import tpVinchucasObj2.sistema.Sistema;
-import tpVinchucasObj2.ubicacion.Ubicacion;
+import tpVinchucasObj2.filtros.*;
+import tpVinchucasObj2.muestra.*;
+import tpVinchucasObj2.participantes.*;
+import tpVinchucasObj2.sistema.*;
+import tpVinchucasObj2.ubicacion.*;
+import tpVinchucasObj2.opinion.*;
 
 class TestPorFechaUltimaOpinion {
 DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
-	PorFecha sut;
+	PorFechaUltimaOpinion sut;
+	
 	Muestra muestra1;
 	Muestra muestra2;
 	Muestra muestra3;
+	
 	Participante crazyWally;
 	Ubicacion quilmes;
 	Sistema vinchuPower;
+	Opinion opinion1;
+	Opinion opinion2;
+	
 	List<Muestra> listaTest = new ArrayList<Muestra>();
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		sut = new PorFecha(LocalDate.parse("11/06/2023",fmt));
+		sut = new PorFechaUltimaOpinion(LocalDate.parse("11/06/2023",fmt));
 		crazyWally = new Dinamico("Walter Norberto Gomez", vinchuPower);
 		quilmes = new Ubicacion(-34.72904, -58.26374);
 		vinchuPower = new Sistema(sut);
 		
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara, new DatosDelCreador(crazyWally, new EstadoBasico()));
+		opinion1.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
+		
+		opinion2 = new Opinion(TipoOpinion.PhtiaChinche, new DatosDelCreador(crazyWally, new EstadoBasico()));
+		opinion2.setFechaCreacion(LocalDate.parse("25/03/2005", fmt));
+		
 		
 		muestra1 = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		muestra1.setFechaCreacion(LocalDate.parse("01/05/2005",fmt));
+		muestra1.aniadirOpinion(opinion2);
 		
 		muestra2 = new Muestra("captura.jpeg", EspecieVinchuca.Infestans, quilmes);
 		muestra2.setFechaCreacion(LocalDate.parse("06/06/2016", fmt));
 		
 		muestra3 = new Muestra("ft124586.jpeg", EspecieVinchuca.Guasayana, quilmes);
 		muestra3.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
+		muestra3.aniadirOpinion(opinion1);
 		
 		listaTest.add(muestra1);
 		listaTest.add(muestra2);
@@ -61,7 +73,7 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	@Test
 	void testFiltrarMuestras() {
-		fail("Not yet implemented");
+		assertEquals(muestra3, sut.filtrarMuestras(listaTest).get(0));
 	}
 
 }
