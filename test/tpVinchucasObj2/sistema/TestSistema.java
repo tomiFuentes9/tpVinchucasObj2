@@ -52,6 +52,13 @@ class TestSistema {
 	@BeforeEach
 	void setUp(){
 		
+		buenosAires = new Ubicacion(-34.61315, -58.37723);
+		
+		posadas     = new Ubicacion(-27.36708, -55.89608);
+		laPlata     = new Ubicacion(-34.92145, -57.95453);
+		montevideo  = new Ubicacion(-34.90328, -56.18816);
+		cordoba     = new Ubicacion(-31.41350, -64.18105);
+		
 		sistemaVinchucas = new Sistema(filtro);
 		// Parcipante 
 		
@@ -84,6 +91,7 @@ class TestSistema {
 	void testAgregarMuestras() {
 		sistemaVinchucas.agregarParticipante(participante1);
 		sistemaVinchucas.agregarParticipante(participante2);
+		// sistema.almacenarMuestra(asdasdasd)
 		assertEquals(0,sistemaVinchucas.getMuestras().size());
 		participante1.agregarMuestra(muestra1);
 		participante2.agregarMuestra(muestra2);
@@ -115,17 +123,19 @@ class TestSistema {
 		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
 	
-	
+	 
 	@Test 
 	void testMuestraAXDistancia() {
 		sistemaVinchucas.agregarParticipante(participante2);
 		sistemaVinchucas.agregarParticipante(participante1);
+		
 		participante1.agregarMuestra(muestra1);
 		participante2.agregarMuestra(muestra2);
 		participante1.agregarMuestra(muestra3);
 		participante2.agregarMuestra(muestra4);
 		
-		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 200);
+		
+		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 300);
 		
 		assertEquals(2,muestrasADistancia.size());
 		assertEquals(muestra2,muestrasADistancia.get(0));

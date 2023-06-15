@@ -25,19 +25,10 @@ public class Ubicacion {
 	}
 
 
-	public void setLatitud(double latitud) {
-		this.latitud = latitud;
-	}
-
-
 	public double getLongitud() {
 		return this.longitud;
 	}
 
-
-	public void setLongitud(double longitud) {
-		this.longitud = longitud;
-	}
 	
 	
 	public double distanciaCon(Ubicacion ubicacion) {

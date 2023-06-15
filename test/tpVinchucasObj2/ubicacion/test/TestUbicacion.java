@@ -56,6 +56,9 @@ class TestUbicacion {
 		
 	}
 	
+	
+	
+	
 	@Test
 	void distanciaConTest() {
 		// las distancias son en linea recta desde una ubicacion a otra

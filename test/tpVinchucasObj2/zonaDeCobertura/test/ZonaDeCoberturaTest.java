@@ -7,7 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.filtros.Filtro;
+import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.participantes.Dinamico;
+import tpVinchucasObj2.participantes.ExpertoExterno;
+import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
@@ -16,6 +20,9 @@ class ZonaDeCoberturaTest {
 	
 	Sistema sistemaVinchuca ;
 	Filtro filtro;
+	
+	Participante participante1;
+	Participante participante2;
 
 	ZonaDeCobertura zonaCoberturaQuilmes ;
 	ZonaDeCobertura zonaCoberturaBuenosAires ;
@@ -57,10 +64,10 @@ class ZonaDeCoberturaTest {
 		
 		// Creamos las muestras 
 		
-		muestra1 = mock(Muestra.class);
-		muestra2 = mock(Muestra.class);
-		muestra3 = mock(Muestra.class);
-		muestra4 = mock(Muestra.class);
+		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans , quilmes);
+		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans , quilmes);
+		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans , laPlata);
+		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans , cordoba);
 		
 		
 		//Agregamos las zonas al sistema 
@@ -68,24 +75,36 @@ class ZonaDeCoberturaTest {
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaBuenosAires);
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaLaPlata);
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaCordoba);
+		
+		//Creamos los participantes
+		participante1 = new ExpertoExterno("Tomas",sistemaVinchuca); 
+		participante2 = new Dinamico("Walter",sistemaVinchuca);
 	}
 	
 
 	@Test
 	void testMuestrasDeLaZona() {
-		assertEquals(0,zonaCoberturaQuilmes.getMuestras().size());
-		assertEquals(0,zonaCoberturaBuenosAires.getMuestras().size());
-		assertEquals(0,zonaCoberturaLaPlata.getMuestras().size());
-		assertEquals(0,zonaCoberturaCordoba.getMuestras().size());
+		// Verifico que las zonas de coberturas no tienen muestras ya que no hay participantes en el sistema
+		assertEquals(0,zonaCoberturaQuilmes.muestrasDeLaZona().size());
+		assertEquals(0,zonaCoberturaBuenosAires.muestrasDeLaZona().size());
+		assertEquals(0,zonaCoberturaLaPlata.muestrasDeLaZona().size());
+		assertEquals(0,zonaCoberturaCordoba.muestrasDeLaZona().size());
 		
-		zonaCoberturaQuilmes.agregarMuestra(muestra1);
-		zonaCoberturaQuilmes.agregarMuestra(muestra2);
+		//Agrego dos participantes al sistema
+		sistemaVinchuca.agregarParticipante(participante2);
+		sistemaVinchuca.agregarParticipante(participante1);
 		
-		zonaCoberturaLaPlata.agregarMuestra(muestra3);
-		zonaCoberturaLaPlata.agregarMuestra(muestra4);
+		// Los dos participantes cargan dos muestras 
+		participante1.agregarMuestra(muestra1); // Quilmes 
+		participante2.agregarMuestra(muestra2); // Quilmes
+		participante1.agregarMuestra(muestra3); // La Plata
+		participante2.agregarMuestra(muestra4); // Cordoba
 		
-		assertEquals(2,zonaCoberturaQuilmes.getMuestras().size());
-		assertEquals(2,zonaCoberturaLaPlata.getMuestras().size());
+		//  Al solaparse quilmes y la Plata por los radios que tienen cada una de las zonas, en quilmes y la plata
+		// tengo 3 muestras y en cordoba 1 
+		assertEquals(3,zonaCoberturaQuilmes.muestrasDeLaZona().size());
+		assertEquals(3,zonaCoberturaLaPlata.muestrasDeLaZona().size());
+		assertEquals(1,zonaCoberturaCordoba.muestrasDeLaZona().size());
 		
 	}
 

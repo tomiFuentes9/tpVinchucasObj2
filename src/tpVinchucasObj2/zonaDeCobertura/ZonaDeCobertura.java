@@ -14,7 +14,7 @@ public class ZonaDeCobertura {
 	private double radio ;
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
-	private List<Muestra> muestras ; // Debe tener el atributo ??
+	//private List<Muestra> muestras ; // Debe tener el atributo ??
 	private List<Organizacion> organizaciones ;
 	
 	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro,Sistema sistema) {
@@ -22,7 +22,7 @@ public class ZonaDeCobertura {
 		this.nombre = nombre;
 		this.radio = radio;
 		this.epicentro = epicentro;
-		this.muestras = new ArrayList<Muestra>();
+		//this.muestras = new ArrayList<Muestra>();
 		this.organizaciones = new ArrayList<Organizacion>();
 		this.sistema = sistema ;
 	}
@@ -62,6 +62,7 @@ public class ZonaDeCobertura {
 		
 	}
 	
+	/*
 	public void agregarMuestra(Muestra muestra) {
 		this.muestras.add(muestra);
 	}
@@ -72,7 +73,7 @@ public class ZonaDeCobertura {
 		//Deberia revisar si hay muestras nuevas cada vez que se llame al metodo o se deben cargar automaticanmente 
 		return muestras;
 	}
-	
+	*/
 	public void suscribirOrganizacion(Organizacion organizacion) {
 		organizaciones.add(organizacion);
 	}
