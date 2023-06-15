@@ -1,10 +1,5 @@
 package tpVinchucasObj2.participantes;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import tpVinchucasObj2.muestra.Muestra;
-import tpVinchucasObj2.opinion.Opinion;
 
 public class EstadoExperto extends EstadoUsuario{
 

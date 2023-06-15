@@ -15,7 +15,7 @@ import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.TipoOpinion;
 import tpVinchucasObj2.participantes.Dinamico;
 import tpVinchucasObj2.participantes.ExpertoExterno;
-import tpVinchucasObj2.sistema.Sistema;
+
 import tpVinchucasObj2.ubicacion.Ubicacion;
 
 class TestParticipante {
@@ -23,7 +23,7 @@ class TestParticipante {
 	Dinamico willyWonka;
 	ExpertoExterno teela;
 		
-	Sistema sistemVinchu;
+	
 	
 	Ubicacion buenosAires;
 	Ubicacion laPlata;
@@ -59,11 +59,11 @@ class TestParticipante {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		sistemVinchu = new Sistema(filtroXFecha);
 		
-		willyWonka = new Dinamico("Tomas",sistemVinchu); // instancio un participante con estado basico
 		
-		teela = new ExpertoExterno("Marcela",sistemVinchu); // instancio un participante Experto Externo
+		willyWonka = new Dinamico("Tomas"); // instancio un participante con estado basico
+		
+		teela = new ExpertoExterno("Marcela"); // instancio un participante Experto Externo
 	
 		//buenosAires = mock(Ubicacion.class);
 		buenosAires = new Ubicacion(-34.61315, -58.37723);
@@ -135,7 +135,7 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra9, TipoOpinion.Vinchuca);
 		willyWonka.opinarMuestra(muestra10, TipoOpinion.ChincheFoliada);
 		
-		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);// aca no deberia dar error
+		teela.opinarMuestra(muestra1, TipoOpinion.ImagenPocoClara);
 		teela.opinarMuestra(muestra2, TipoOpinion.ChincheFoliada);
 		teela.opinarMuestra(muestra3, TipoOpinion.PhtiaChinche);
 		teela.opinarMuestra(muestra4, TipoOpinion.ImagenPocoClara);
@@ -193,7 +193,7 @@ class TestParticipante {
 		
 		assertEquals(11,willyWonka.getMisMuestras().size());
 		assertEquals(20,willyWonka.getMisOpiniones().size());
-		// willyWonka tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado a Experto
+		
 		assertEquals("Experto",willyWonka.estado());
 	}
 	@Test
@@ -215,7 +215,7 @@ class TestParticipante {
 		assertEquals(11,willyWonka.getMisMuestras().size());
 		assertEquals(20,willyWonka.getMisOpiniones().size());
 		
-		// willyWonka tiene 21 opiniones y 11 muestras enviadas deberia cambiar su estado a Experto
+		
 		assertEquals("Experto",willyWonka.estado());
 		
 		

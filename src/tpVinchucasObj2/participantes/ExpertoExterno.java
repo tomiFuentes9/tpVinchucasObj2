@@ -7,13 +7,13 @@ import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
-import tpVinchucasObj2.sistema.Sistema;
+
 
 
 public class ExpertoExterno extends Participante {
 
-	public ExpertoExterno(String nombre, Sistema sistema) {
-		super(nombre, sistema);
+	public ExpertoExterno(String nombre) {
+		super(nombre);
 		this.estadoParticipante = new EstadoExperto();
 		this.misOpiniones= new ArrayList<Opinion>();
 		this.misMuestras= new ArrayList<Muestra>();

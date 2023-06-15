@@ -7,24 +7,24 @@ import java.util.*;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
-import tpVinchucasObj2.sistema.Sistema;
+
 
 
 public abstract class Participante {
 	
 	
 	private String nombre;
-	protected Sistema sistema;
+	
 	protected EstadoUsuario estadoParticipante;
 	protected List<Opinion> misOpiniones;
 	protected List<Muestra> misMuestras;
 	
 	
 		
-	public Participante(String nombre,Sistema sistema) {
+	public Participante(String nombre) {
 		super();
 		this.nombre = nombre;		
-		this.sistema = sistema;	
+		
 		
 	}	
 			
@@ -33,9 +33,7 @@ public abstract class Participante {
 	public abstract void setEstadoParticipante(EstadoUsuario estadoParticipante);
 	public abstract void cambiarEstado();
 
-	public Sistema getSistema() {
-		return sistema;
-	}
+
 	
 	public String getNombre() {
 		return nombre;
