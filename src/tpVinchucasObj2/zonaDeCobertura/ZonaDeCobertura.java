@@ -10,6 +10,10 @@ import tpVinchucasObj2.ubicacion.Ubicacion;
 
 public class ZonaDeCobertura {
 	
+	public String getNombre() {
+		return nombre;
+	}
+
 	private String nombre ;
 	private double radio ;
 	private Ubicacion epicentro ;
@@ -80,6 +84,10 @@ public class ZonaDeCobertura {
 	
 	public void avisoValidacionMuestra(Muestra muestra) {
 		organizaciones.stream().forEach(o->o.avisoValidacionMuestra(this,muestra));
+	}
+
+	public List<Organizacion> getOrganizaciones() {
+		return this.organizaciones;
 	}
 	
 	

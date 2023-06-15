@@ -11,11 +11,33 @@ public class Organizacion {
 	private FuncionalidadExterna funcExternaMuestra;
 	private FuncionalidadExterna funcExternaValidacion;
 	
+	
 	public Organizacion(String nombre) {
 		super();
 		this.nombre = nombre;
 		this.zonasRegistradas = new ArrayList<ZonaDeCobertura>();
 	}
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public List<ZonaDeCobertura> getZonasRegistradas() {
+		return zonasRegistradas;
+	}
+
+	public FuncionalidadExterna getFuncExternaMuestra() {
+		return funcExternaMuestra;
+	}
+
+	public FuncionalidadExterna getFuncExternaValidacion() {
+		return funcExternaValidacion;
+	}
+
+	
+	
 	
 	public void cambiarFuncExternaMuestra(FuncionalidadExterna nuevaFuncionalidad) {
 		this.funcExternaMuestra = nuevaFuncionalidad; 
@@ -27,10 +49,14 @@ public class Organizacion {
 	
 	public void suscribirseAZona(ZonaDeCobertura zonaARegistrarse) {
 		zonasRegistradas.add(zonaARegistrarse);
+		zonaARegistrarse.suscribirOrganizacion(this);
+		
 	}
 	
 	public void desuscribirseAZona(ZonaDeCobertura zonaADesuscribirse) {
 		zonasRegistradas.remove(zonaADesuscribirse);
+		zonaADesuscribirse.desuscribirOrganizacion(this);
+		
 	}
 	
 	public void avisoNuevaMuestra(ZonaDeCobertura zona, Muestra muestra) {

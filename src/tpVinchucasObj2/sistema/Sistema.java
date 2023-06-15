@@ -101,7 +101,7 @@ public class Sistema {
 
 	private void avisarAZonas(Muestra muestra) {
 		this.getZonasCoberturas().stream().filter(z->z.perteneceAZona(muestra)).
-									       forEach(z->z.avisoNuevaMuestra(muestra));
+								           forEach(z->z.avisoNuevaMuestra(muestra));
 	}
 	
 	
