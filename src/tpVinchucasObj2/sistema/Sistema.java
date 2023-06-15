@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import tpVinchucasObj2.filtros.Filtro;
+import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
@@ -75,8 +76,20 @@ public class Sistema {
 		this.zonasDeCobertura.add(zona);
 	}
 	
-	public void almacenarMuestra(Muestra muestra, Participante participante) {
-		
+	public void almacenarMuestra(String foto, EspecieVinchuca especieVinchuca, Ubicacion ubicacion, Participante participante) {
+		// 1-almacena
+		Muestra nueva = new Muestra(foto,especieVinchuca,ubicacion);
+		participante.agregarMuestra(nueva);
+		// 2-avisa a la/s zona/s de cobertura/s que corresponde.
+		this.avisarAZonas(nueva);
 	}
+
+
+	private void avisarAZonas(Muestra muestra) {
+		this.getZonasCoberturas().stream().filter(z->z.perteneceAZona(muestra)).
+									       forEach(z->z.avisoNuevaMuestra(muestra));
+	}
+	
+	
 	
 }

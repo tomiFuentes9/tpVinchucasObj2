@@ -94,6 +94,7 @@ class ZonaDeCoberturaTest {
 		sistemaVinchuca.agregarParticipante(participante2);
 		sistemaVinchuca.agregarParticipante(participante1);
 		
+		
 		// Los dos participantes cargan dos muestras 
 		participante1.agregarMuestra(muestra1); // Quilmes 
 		participante2.agregarMuestra(muestra2); // Quilmes

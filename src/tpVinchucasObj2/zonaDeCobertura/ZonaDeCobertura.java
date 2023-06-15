@@ -39,11 +39,14 @@ public class ZonaDeCobertura {
 	public List<Muestra> muestrasDeLaZona() {
 		List<Muestra> muestras = sistema.getMuestras();
 		
-		List<Muestra> muestrasZona = muestras.stream().filter(m->m.getUbicacion().distanciaCon(epicentro) <= radio).toList() ;
+		List<Muestra> muestrasZona = muestras.stream().filter(m->this.perteneceAZona(m)).toList() ;
 		
 		return muestrasZona;
 	}
 	
+	public boolean perteneceAZona(Muestra muestra) {
+		return muestra.getUbicacion().distanciaCon(epicentro) <= this.radio ;
+	}
 	
 	public List<ZonaDeCobertura> zonasQueLaSolapan(){
 		List<ZonaDeCobertura> todasLasZonas = sistema.getZonasCoberturas(); // Se encuentran todas las zonas, inclusive esta misma
