@@ -76,9 +76,11 @@ class ZonaDeCoberturaTest {
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaLaPlata);
 		sistemaVinchuca.agregarZonaDeCobertura(zonaCoberturaCordoba);
 		
-		//Creamos los participantes
-		participante1 = new ExpertoExterno("Tomas",sistemaVinchuca); 
-		participante2 = new Dinamico("Walter",sistemaVinchuca);
+		
+		
+		
+		
+	
 	}
 	
 
@@ -91,15 +93,19 @@ class ZonaDeCoberturaTest {
 		assertEquals(0,zonaCoberturaCordoba.muestrasDeLaZona().size());
 		
 		//Agrego dos participantes al sistema
-		sistemaVinchuca.agregarParticipante(participante2);
-		sistemaVinchuca.agregarParticipante(participante1);
+		sistemaVinchuca.crearParticipanteDinamico("willyWonka");
+		sistemaVinchuca.crearParticipanteExterno("Teela");
 		
 		
-		// Los dos participantes cargan dos muestras 
-		participante1.agregarMuestra(muestra1); // Quilmes 
-		participante2.agregarMuestra(muestra2); // Quilmes
-		participante1.agregarMuestra(muestra3); // La Plata
-		participante2.agregarMuestra(muestra4); // Cordoba
+		// Se agregan 4 muestras al sistema creadas por dos participantes
+		
+		participante1 = sistemaVinchuca.getParticipantes().get(0);
+		participante2 = sistemaVinchuca.getParticipantes().get(1); 
+		
+		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , quilmes,participante1);
+		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , quilmes,participante2);
+		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante1);
+		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
 		
 		//  Al solaparse quilmes y la Plata por los radios que tienen cada una de las zonas, en quilmes y la plata
 		// tengo 3 muestras y en cordoba 1 

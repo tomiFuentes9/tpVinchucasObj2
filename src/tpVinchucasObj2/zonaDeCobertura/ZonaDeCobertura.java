@@ -65,18 +65,7 @@ public class ZonaDeCobertura {
 		
 	}
 	
-	/*
-	public void agregarMuestra(Muestra muestra) {
-		this.muestras.add(muestra);
-	}
-
 	
-	public List<Muestra> getMuestras() {
-		// Devuelve la muestras de la zona. 
-		//Deberia revisar si hay muestras nuevas cada vez que se llame al metodo o se deben cargar automaticanmente 
-		return muestras;
-	}
-	*/
 	public void suscribirOrganizacion(Organizacion organizacion) {
 		organizaciones.add(organizacion);
 	}

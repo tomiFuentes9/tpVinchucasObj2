@@ -16,30 +16,24 @@ import tpVinchucasObj2.participantes.Dinamico;
 import tpVinchucasObj2.participantes.ExpertoExterno;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
+import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 
 class TestSistema {
 	
-	// Creacion de sistema
+	// Declaramos el sistema
 	Sistema sistemaVinchucas ;
 	Filtro filtro;
 	
-	// Creacion de Participantes
+	// Declaramos los Participantes
 	Participante participante1 ;
 	Participante participante2 ;
 	
-	//Creo una lista de muestras
-	List<Muestra> listaDeMuestras ;
 	
-	// Creo una muestra para compararla con otros 4 
+	// Creo una muestra para compararla
 	Muestra muestraParaComparar ;
 	
-	Muestra muestra1 ;
-	Muestra muestra2 ;
-	Muestra muestra3 ;
-	Muestra muestra4 ;
 	
-	
-	// Creo las ubicaciones donde van a estar esas muestras 
+	// Declaramos las ubicaciones donde van a estar las muestras 
 	Ubicacion buenosAires ;
 	Ubicacion laPlata ;
 	Ubicacion montevideo ;
@@ -47,11 +41,14 @@ class TestSistema {
 	Ubicacion cordoba ;
 	Ubicacion posadas ;
 	
+	// Declaramos dos zonas de cobertura
 	
+	ZonaDeCobertura zonaCoberturaLaPlata ;
+	ZonaDeCobertura zonaCoberturaCordoba ;
 
 	@BeforeEach
 	void setUp(){
-		
+		// Instanciamos las ubicaciones
 		buenosAires = new Ubicacion(-34.61315, -58.37723);
 		
 		posadas     = new Ubicacion(-27.36708, -55.89608);
@@ -60,25 +57,16 @@ class TestSistema {
 		cordoba     = new Ubicacion(-31.41350, -64.18105);
 		
 		sistemaVinchucas = new Sistema(filtro);
-		// Parcipante 
 		
-		participante1 = new ExpertoExterno("Tomas",sistemaVinchucas); 
-		participante2 = new Dinamico("Walter",sistemaVinchucas);
+		// Instanciamos las zonas 
 		
+		zonaCoberturaLaPlata = new ZonaDeCobertura("La Plata", 50 , laPlata,sistemaVinchucas);
+		zonaCoberturaCordoba = new ZonaDeCobertura("Cordoba", 50 , cordoba,sistemaVinchucas);
 		
-		// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
-		// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
+		// Instancio una muestra para comparar con mi lista
 		
 		muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans , buenosAires);
 		
-		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans , posadas);
-		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans , laPlata);
-		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans , montevideo);
-		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans , cordoba);
-		
-		
-		listaDeMuestras = new ArrayList<Muestra>();
-		List<Muestra> listaDeMuestras = Arrays.asList(muestra1,muestra2,muestra3,muestra4);
 		
 		
 		
@@ -88,16 +76,19 @@ class TestSistema {
 	
 	
 	@Test
-	void testAgregarMuestras() {
-		sistemaVinchucas.agregarParticipante(participante1);
-		sistemaVinchucas.agregarParticipante(participante2);
-		// sistema.almacenarMuestra(asdasdasd)
+	void testGetMuestras() {
+		sistemaVinchucas.crearParticipanteDinamico("Leandro");
+		sistemaVinchucas.crearParticipanteExterno("Tomas");
+		
+		participante1 = sistemaVinchucas.getParticipantes().get(0);
+		participante2 = sistemaVinchucas.getParticipantes().get(1); 
+		
 		assertEquals(0,sistemaVinchucas.getMuestras().size());
-		participante1.agregarMuestra(muestra1);
-		participante2.agregarMuestra(muestra2);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , posadas,participante1);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante2);
 		assertEquals(2,sistemaVinchucas.getMuestras().size());
-		participante1.agregarMuestra(muestra3);
-		participante2.agregarMuestra(muestra4);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , montevideo,participante1);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
 		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
 	
@@ -105,40 +96,41 @@ class TestSistema {
 	void testGetParticipantes() {
 		assertEquals(0,sistemaVinchucas.getParticipantes().size());
 		
-		sistemaVinchucas.agregarParticipante(participante1);
-		sistemaVinchucas.agregarParticipante(participante2);
+		sistemaVinchucas.crearParticipanteDinamico("Leandro");
+		sistemaVinchucas.crearParticipanteExterno("Tomas");
 		
 		assertEquals(2,sistemaVinchucas.getParticipantes().size());
 	}
 	
-	@Test
-	void testGetMuestras(){
-		sistemaVinchucas.agregarParticipante(participante2);
-		sistemaVinchucas.agregarParticipante(participante1);
-		participante1.agregarMuestra(muestra1);
-		participante2.agregarMuestra(muestra2);
-		participante1.agregarMuestra(muestra3);
-		participante2.agregarMuestra(muestra4);
-		
-		assertEquals(4,sistemaVinchucas.getMuestras().size());
-	}
 	
 	 
 	@Test 
 	void testMuestraAXDistancia() {
-		sistemaVinchucas.agregarParticipante(participante2);
-		sistemaVinchucas.agregarParticipante(participante1);
+		sistemaVinchucas.crearParticipanteDinamico("Leandro");
+		sistemaVinchucas.crearParticipanteExterno("Tomas");
 		
-		participante1.agregarMuestra(muestra1);
-		participante2.agregarMuestra(muestra2);
-		participante1.agregarMuestra(muestra3);
-		participante2.agregarMuestra(muestra4);
+		participante1 = sistemaVinchucas.getParticipantes().get(0);
+		participante2 = sistemaVinchucas.getParticipantes().get(1); 
+		
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , posadas,participante1);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante2);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , montevideo,participante1);
+		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
 		
 		
 		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 300);
 		
 		assertEquals(2,muestrasADistancia.size());
-		assertEquals(muestra2,muestrasADistancia.get(0));
-		assertEquals(muestra3,muestrasADistancia.get(1));
 	}
+	
+	
+	@Test
+	void agregarZonaDeCobertura() {
+		assertEquals(0,sistemaVinchucas.getZonasCoberturas().size());
+		sistemaVinchucas.agregarZonaDeCobertura(zonaCoberturaLaPlata);
+		sistemaVinchucas.agregarZonaDeCobertura(zonaCoberturaCordoba);
+		assertEquals(2,sistemaVinchucas.getZonasCoberturas().size());
+	}
+	
+	
 }

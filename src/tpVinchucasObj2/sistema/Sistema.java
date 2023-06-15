@@ -8,6 +8,8 @@ import java.util.Set;
 import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.muestra.Muestra;
+import tpVinchucasObj2.participantes.Dinamico;
+import tpVinchucasObj2.participantes.ExpertoExterno;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.ubicacion.Ubicacion;
 import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
@@ -25,6 +27,18 @@ public class Sistema {
 		this.filtro = filtro ;
 	}
 
+	
+	
+	public void crearParticipanteDinamico(String nombre) {
+		Participante nuevo = new Dinamico(nombre);
+		this.agregarParticipante(nuevo);
+	}
+	
+	public void crearParticipanteExterno(String nombre) {
+		Participante nuevo = new ExpertoExterno(nombre);
+		this.agregarParticipante(nuevo);
+	}
+	
 	
 	public List<Participante> getParticipantes() {
 		return participantes;

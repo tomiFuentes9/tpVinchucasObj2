@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.participantes.Dinamico;
 import tpVinchucasObj2.participantes.ExpertoExterno;
@@ -15,6 +16,7 @@ import tpVinchucasObj2.sistema.Sistema;
 class DatosDelCreadorTest {
 	
 	Sistema sistema;
+	Filtro filtro;
 	
 	Participante participante1 ;
 	Participante participante2 ;
@@ -26,8 +28,13 @@ class DatosDelCreadorTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		participante1 = new ExpertoExterno("Tomas",sistema); 
-		participante2 = new Dinamico("Walter",sistema);
+		sistema = new Sistema(filtro);
+		
+		sistema.crearParticipanteDinamico("Leandro");
+		sistema.crearParticipanteExterno("Tomas");
+		
+		participante1 = sistema.getParticipantes().get(0);
+		participante2 = sistema.getParticipantes().get(1); 
 		
 		datos1 = new DatosDelCreador(participante1,participante1.getEstadoParticipante());
 		datos2 = new DatosDelCreador(participante2,participante2.getEstadoParticipante());
@@ -43,8 +50,8 @@ class DatosDelCreadorTest {
 
 	@Test
 	void testEstadoDeParticipante() {
-		assertEquals("Experto",datos1.estadoDeParticipante().estado());
-		assertEquals("Basico",datos2.estadoDeParticipante().estado());
+		assertEquals("Basico",datos1.estadoDeParticipante().estado());
+		assertEquals("Experto",datos2.estadoDeParticipante().estado());
 	}
 
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
@@ -17,7 +18,8 @@ import tpVinchucasObj2.sistema.Sistema;
 class TestOpinion {
 
 	Sistema sistema;
-
+	Filtro filtro ;
+	
 	Opinion opinion1;
 	Opinion opinion2;
 	Opinion opinion3;
@@ -29,11 +31,15 @@ class TestOpinion {
 	@BeforeEach
 	void setUp()  {
 		
-		participante1 = new Dinamico("Leandro",sistema);
-		participante2 = new Dinamico("Walter",sistema);
+		sistema = new Sistema(filtro);
 		
-		participante3 = new ExpertoExterno("Tomas",sistema); 
+		sistema.crearParticipanteDinamico("Leandro");
+		sistema.crearParticipanteDinamico("Walter");
+		sistema.crearParticipanteExterno("Tomas");
 		
+		participante1 = sistema.getParticipantes().get(0);
+		participante2 = sistema.getParticipantes().get(1); 
+		participante3 = sistema.getParticipantes().get(2); 
 		
 		
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
