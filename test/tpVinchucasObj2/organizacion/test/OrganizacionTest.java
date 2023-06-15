@@ -10,6 +10,7 @@ import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.EspecieVinchuca;
 import tpVinchucasObj2.organizacion.Funcionalidad;
 import tpVinchucasObj2.organizacion.Organizacion;
+import tpVinchucasObj2.organizacion.TipoOrganizacion;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.sistema.Sistema;
 import tpVinchucasObj2.ubicacion.Ubicacion;
@@ -36,7 +37,7 @@ class OrganizacionTest {
 		// una zona de cobertura , y una funcionalidad externa
 		sistema = new Sistema(filtro);
 		
-		orga = new Organizacion("NuevaOrga");
+		orga = new Organizacion("NuevaOrga",TipoOrganizacion.Salud);
 
 		quilmes = new Ubicacion(-34.72904, -58.26374);
 		
@@ -51,18 +52,12 @@ class OrganizacionTest {
 		
 		// Le asignamos la funcionalidad a la organizacion
 		orga.cambiarFuncExternaMuestra(funcionalidad);
-	}
-/*
-	@Test
-	void testCambiarFuncExternaMuestra() {
 		
+		// Agregamos cuantas personas trabajan en la organizacion 
+		
+		orga.setCantPersonasTrabajando(10);
 	}
 
-	@Test
-	void testCambiarFuncValidacionMuestra() {
-		
-	}
-*/
 	@Test
 	void testSuscribirseAZona() {
 		assertEquals(0,orga.getZonasRegistradas().size());
@@ -99,4 +94,11 @@ class OrganizacionTest {
 		
 	}
 */
+	
+	
+	@Test
+	void testgetTipo() {
+		assertEquals(TipoOrganizacion.Salud,orga.getTipo());
+	}
+
 }

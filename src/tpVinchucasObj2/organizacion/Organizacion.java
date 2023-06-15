@@ -6,19 +6,34 @@ import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 
 public class Organizacion {
+	
 	private String nombre;
 	private List<ZonaDeCobertura> zonasRegistradas ;
 	private FuncionalidadExterna funcExternaMuestra;
 	private FuncionalidadExterna funcExternaValidacion;
+	private TipoOrganizacion tipo;
+	private int cantPersonasTrabajando;
 	
 	
-	public Organizacion(String nombre) {
+	public Organizacion(String nombre,TipoOrganizacion tipo) {
 		super();
 		this.nombre = nombre;
 		this.zonasRegistradas = new ArrayList<ZonaDeCobertura>();
+		this.tipo = tipo ;
+		this.cantPersonasTrabajando = 0 ;
 	}
 	
 	
+	public TipoOrganizacion getTipo() {
+		return tipo;
+	}
+
+
+	public void setCantPersonasTrabajando(int cantPersonasTrabajando) {
+		this.cantPersonasTrabajando = cantPersonasTrabajando;
+	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
