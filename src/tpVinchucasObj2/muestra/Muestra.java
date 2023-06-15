@@ -109,7 +109,15 @@ public class Muestra {
             }
         }
         
-        return elementoMasFrecuente;
+        return this.elementoMasFrecuenteOEmpate(elementoMasFrecuente, maxContador, mp.values());
+	}
+	
+	public TipoOpinion elementoMasFrecuenteOEmpate(TipoOpinion elementoMasFrecuente, int maxCantOps, Collection<Integer> valores ) {
+		TipoOpinion res = elementoMasFrecuente;
+		if (Collections.frequency(valores, maxCantOps) > 1) {
+			res = TipoOpinion.NoDefinida;
+		}
+		return res;
 	}
 	
 	public void setResultadoActual(TipoOpinion op) {
@@ -123,11 +131,17 @@ public class Muestra {
 	}
 	
 	public void aniadirOpinionSiCorresponde(Opinion op) {
-		if (!this.opinoUnExperto()) {
+		Participante participante = op.getDatosCreador().getParticipante();
+		if (!this.opinoUnExperto() && this.yaOpinoParticipante(participante)) { // verificar si ya opino el participante
 			opiniones.add(op);
 		}
 	}
 	
+	public Boolean yaOpinoParticipante(Participante participante) {
+		return this.participantesQueYaOpinaron().contains(participante);
+	}
 	
-	
+	public List<Participante> participantesQueYaOpinaron() {
+		return this.getOpiniones().stream().map(op -> op.getDatosCreador().getParticipante()).toList();
+	}
 }

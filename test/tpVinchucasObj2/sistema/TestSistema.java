@@ -62,12 +62,12 @@ class TestSistema {
 		// Instanciamos 4 muestras que van a ser comparas con la muestraParaComparar 
 		// La muestra 1 y 2 van a estar cerca de la muestra a comparar. La Muestra 3 y 4 no 
 		
-		muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, buenosAires);
+		muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans , buenosAires);
 		
-		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, posadas);
-		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante2, laPlata);
-		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante2, montevideo);
-		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans ,participante1, cordoba);
+		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans , posadas);
+		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans , laPlata);
+		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans , montevideo);
+		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans , cordoba);
 		
 		
 		listaDeMuestras = new ArrayList<Muestra>();

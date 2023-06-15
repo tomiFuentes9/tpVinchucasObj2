@@ -8,7 +8,8 @@ import tpVinchucasObj2.zonaDeCobertura.ZonaDeCobertura;
 public class Organizacion {
 	private String nombre;
 	private List<ZonaDeCobertura> zonasRegistradas ;
-	private FuncionalidadExterna funcionalidadExterna;
+	private FuncionalidadExterna funcExternaMuestra;
+	private FuncionalidadExterna funcExternaValidacion;
 	
 	public Organizacion(String nombre) {
 		super();
@@ -16,6 +17,13 @@ public class Organizacion {
 		this.zonasRegistradas = new ArrayList<ZonaDeCobertura>();
 	}
 	
+	public void cambiarFuncExternaMuestra(FuncionalidadExterna nuevaFuncionalidad) {
+		this.funcExternaMuestra = nuevaFuncionalidad; 
+	}
+	
+	public void cambiarFuncValidacionMuestra(FuncionalidadExterna nuevaFuncionalidad) {
+		this.funcExternaValidacion = nuevaFuncionalidad; 
+	}
 	
 	public void suscribirseAZona(ZonaDeCobertura zonaARegistrarse) {
 		zonasRegistradas.add(zonaARegistrarse);
@@ -26,11 +34,11 @@ public class Organizacion {
 	}
 	
 	public void avisoNuevaMuestra(ZonaDeCobertura zona, Muestra muestra) {
-		funcionalidadExterna.nuevoEvento(this, zona, muestra);
+		funcExternaMuestra.nuevoEvento(this, zona, muestra);
 	}
 	
 	public void avisoValidacionMuestra(ZonaDeCobertura zona, Muestra muestra) {
-		funcionalidadExterna.nuevoEvento(this, zona, muestra);
+		funcExternaValidacion.nuevoEvento(this, zona, muestra);
 	}
 	
 }
