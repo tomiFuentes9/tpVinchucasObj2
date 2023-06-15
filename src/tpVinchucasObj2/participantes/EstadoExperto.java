@@ -6,7 +6,7 @@ import java.util.List;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.Opinion;
 
-public class EstadoExperto implements EstadoUsuario{
+public class EstadoExperto extends EstadoUsuario{
 
 	@Override
 	public String estado() {
@@ -16,28 +16,13 @@ public class EstadoExperto implements EstadoUsuario{
 
 	@Override
 	public void cambiarEstado(Participante participante) {
-		if (muestrasEnviadas(participante) < 10 && revisionesOpiniones(participante) < 20){
-		EstadoBasico estadoNuevo= new EstadoBasico ();
-		participante.setEstadoParticipante(estadoNuevo);
+		if (this.muestrasEnviadas(participante) < 10 || this.revisionesOpiniones(participante) < 20){
+			EstadoBasico estadoNuevo= new EstadoBasico ();
+			participante.setEstadoParticipante(estadoNuevo);
 		} else {}
 		
 	}
-	public int revisionesOpiniones(Participante parti) {
-		LocalDate fechaActual = LocalDate.now();
-		LocalDate fechaAnterior = fechaActual.minusDays(30);
-		List<Opinion> opionesDeUnMes = parti.misOpiniones;
-		opionesDeUnMes.stream().filter(op->op.getFechaCreacion().isAfter(fechaAnterior)).toList();
-		return opionesDeUnMes.size();	
-		
-	}
-
-	public int muestrasEnviadas(Participante parti) {
-		LocalDate fechaActual = LocalDate.now();
-		LocalDate fechaAnterior = fechaActual.minusDays(30);
-		List<Muestra> muestrasDeUnMes = parti.misMuestras;
-		muestrasDeUnMes.stream().filter(mu->mu.getFechaCreacion().isAfter(fechaAnterior)).toList();
-		return muestrasDeUnMes.size();	
-		
-	}
+	
+	
 
 }
