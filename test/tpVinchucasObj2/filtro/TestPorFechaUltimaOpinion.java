@@ -38,7 +38,7 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	@BeforeEach
 	void setUp() throws Exception {
 		sut = new PorFechaUltimaOpinion(LocalDate.parse("11/06/2023",fmt));
-		crazyWally = new Dinamico("Walter Norberto Gomez", vinchuPower);
+		crazyWally = new Dinamico("Walter Norberto Gomez");
 		quilmes = new Ubicacion(-34.72904, -58.26374);
 		vinchuPower = new Sistema(sut);
 		

@@ -33,7 +33,7 @@ class TestPorFecha {
 	@BeforeEach
 	void setUp() throws Exception {// Se crea una muestra con fecha de hoy y se usa el setter para cambiar la fecha con motivos de testing
 		sut = new PorFecha(LocalDate.parse("11/06/2023",fmt));
-		crazyWally = new Dinamico("Walter Norberto Gomez", vinchuPower);
+		crazyWally = new Dinamico("Walter Norberto Gomez");
 		quilmes = new Ubicacion(-34.72904, -58.26374);
 		vinchuPower = new Sistema(sut);
 		
