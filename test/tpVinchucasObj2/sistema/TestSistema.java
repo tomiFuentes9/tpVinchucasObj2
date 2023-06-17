@@ -32,6 +32,10 @@ class TestSistema {
 	// Creo una muestra para compararla
 	Muestra muestraParaComparar ;
 	
+	Muestra muestra1 ;
+	Muestra muestra2 ;
+	Muestra muestra3 ;
+	Muestra muestra4 ;
 	
 	// Declaramos las ubicaciones donde van a estar las muestras 
 	Ubicacion buenosAires ;
@@ -56,8 +60,8 @@ class TestSistema {
 		montevideo  = new Ubicacion(-34.90328, -56.18816);
 		cordoba     = new Ubicacion(-31.41350, -64.18105);
 		
-		sistemaVinchucas = new Sistema(filtro);
-		
+		sistemaVinchucas = new Sistema();
+		sistemaVinchucas.setFiltro(filtro);
 		// Instanciamos las zonas 
 		
 		zonaCoberturaLaPlata = new ZonaDeCobertura("La Plata", 50 , laPlata,sistemaVinchucas);
@@ -67,7 +71,10 @@ class TestSistema {
 		
 		muestraParaComparar = new Muestra("Foto", EspecieVinchuca.Infestans , buenosAires);
 		
-		
+		muestra1 = new Muestra("Foto", EspecieVinchuca.Infestans , posadas);
+		muestra2 = new Muestra("Foto", EspecieVinchuca.Infestans , laPlata);
+		muestra3 = new Muestra("Foto", EspecieVinchuca.Infestans , montevideo);
+		muestra4 = new Muestra("Foto", EspecieVinchuca.Infestans , cordoba);
 		
 		
 		
@@ -84,11 +91,11 @@ class TestSistema {
 		participante2 = sistemaVinchucas.getParticipantes().get(1); 
 		
 		assertEquals(0,sistemaVinchucas.getMuestras().size());
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , posadas,participante1);
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante2);
+		sistemaVinchucas.almacenarMuestra(muestra1,participante1);
+		sistemaVinchucas.almacenarMuestra(muestra2,participante2);
 		assertEquals(2,sistemaVinchucas.getMuestras().size());
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , montevideo,participante1);
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
+		sistemaVinchucas.almacenarMuestra(muestra3,participante1);
+		sistemaVinchucas.almacenarMuestra(muestra4,participante2);
 		assertEquals(4,sistemaVinchucas.getMuestras().size());
 	}
 	
@@ -112,10 +119,11 @@ class TestSistema {
 		participante1 = sistemaVinchucas.getParticipantes().get(0);
 		participante2 = sistemaVinchucas.getParticipantes().get(1); 
 		
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , posadas,participante1);
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante2);
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , montevideo,participante1);
-		sistemaVinchucas.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
+		
+		sistemaVinchucas.almacenarMuestra(muestra1,participante1);
+		sistemaVinchucas.almacenarMuestra(muestra2,participante2);
+		sistemaVinchucas.almacenarMuestra(muestra3,participante1);
+		sistemaVinchucas.almacenarMuestra(muestra4,participante2);
 		
 		
 		List<Muestra> muestrasADistancia = sistemaVinchucas.muestraAXDistancia(muestraParaComparar, 300);

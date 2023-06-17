@@ -20,15 +20,22 @@ public class Sistema {
 	private List<ZonaDeCobertura> zonasDeCobertura ;
 	private Filtro filtro;
 	
-	public Sistema(Filtro filtro) {
+	public Sistema() {
 		super();
 		this.participantes = new ArrayList<Participante>();
 		this.zonasDeCobertura = new ArrayList<ZonaDeCobertura>();
-		this.filtro = filtro ;
+		this.filtro = null;
+	}
+	
+	
+	
+	
+	public void setFiltro(Filtro filtro) {
+		this.filtro = filtro;
 	}
 
-	
-	
+
+
 	public void crearParticipanteDinamico(String nombre) {
 		Participante nuevo = new Dinamico(nombre);
 		this.agregarParticipante(nuevo);
@@ -90,16 +97,18 @@ public class Sistema {
 		this.zonasDeCobertura.add(zona);
 	}
 	
-	public void almacenarMuestra(String foto, EspecieVinchuca especieVinchuca, Ubicacion ubicacion, Participante participante) {
+	public void almacenarMuestra(Muestra muestra, Participante participante) {
 		// 1-almacena
-		Muestra nueva = new Muestra(foto,especieVinchuca,ubicacion);
-		participante.agregarMuestra(nueva);
+		participante.agregarMuestra(muestra);
 		// 2-avisa a la/s zona/s de cobertura/s que corresponde.
-		this.avisarAZonas(nueva);
+		this.avisarAZonas(muestra);
 	}
 
 
 	private void avisarAZonas(Muestra muestra) {
+		// Corregir ya que a las que corresponde les habla dos veces 
+		// 1 - vos queres esta muestra 
+		// 2 - toma esta muestra
 		this.getZonasCoberturas().stream().filter(z->z.perteneceAZona(muestra)).
 								           forEach(z->z.avisoNuevaMuestra(muestra));
 	}

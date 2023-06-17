@@ -1,6 +1,7 @@
 package tpVinchucasObj2.organizacion.test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.filtros.Filtro;
 import tpVinchucasObj2.muestra.EspecieVinchuca;
+import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.organizacion.Funcionalidad;
 import tpVinchucasObj2.organizacion.Organizacion;
 import tpVinchucasObj2.organizacion.TipoOrganizacion;
@@ -31,11 +33,13 @@ class OrganizacionTest {
 	
 	Funcionalidad funcionalidad ;
 	
+	Muestra muestra ;
+	
 	@BeforeEach
 	void setUp()  {
 		// Instanciamos un sistema , una organizacion , una ubicacion , 
 		// una zona de cobertura , y una funcionalidad externa
-		sistema = new Sistema(filtro);
+		sistema = new Sistema();
 		
 		orga = new Organizacion("NuevaOrga",TipoOrganizacion.Salud);
 
@@ -56,6 +60,8 @@ class OrganizacionTest {
 		// Agregamos cuantas personas trabajan en la organizacion 
 		
 		orga.setCantPersonasTrabajando(10);
+		
+		muestra = new Muestra("Foto",EspecieVinchuca.Sordida,quilmes);
 	}
 
 	@Test
@@ -85,7 +91,7 @@ class OrganizacionTest {
 		orga.suscribirseAZona(zona);
 		// Creamos una muestra y en el sistema y llega el aviso a la funcionlidad externa
 		participante = sistema.getParticipantes().get(0);
-		sistema.almacenarMuestra("Foto", EspecieVinchuca.Sordida, quilmes, participante);
+		sistema.almacenarMuestra(muestra, participante);
 		
 	}
 /*

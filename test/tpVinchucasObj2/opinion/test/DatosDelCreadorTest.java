@@ -28,7 +28,7 @@ class DatosDelCreadorTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-		sistema = new Sistema(filtro);
+		sistema = new Sistema();
 		
 		sistema.crearParticipanteDinamico("Leandro");
 		sistema.crearParticipanteExterno("Tomas");

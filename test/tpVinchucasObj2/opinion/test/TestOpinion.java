@@ -31,7 +31,7 @@ class TestOpinion {
 	@BeforeEach
 	void setUp()  {
 		
-		sistema = new Sistema(filtro);
+		sistema = new Sistema();
 		
 		sistema.crearParticipanteDinamico("Leandro");
 		sistema.crearParticipanteDinamico("Walter");

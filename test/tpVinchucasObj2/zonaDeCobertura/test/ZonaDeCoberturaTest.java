@@ -45,7 +45,7 @@ class ZonaDeCoberturaTest {
 		
 		// Creamos el sistema 
 		
-		sistemaVinchuca = new Sistema(filtro);
+		sistemaVinchuca = new Sistema();
 		
 		
 		// Creamos los epicentros de las zonas de coberturas 
@@ -102,10 +102,10 @@ class ZonaDeCoberturaTest {
 		participante1 = sistemaVinchuca.getParticipantes().get(0);
 		participante2 = sistemaVinchuca.getParticipantes().get(1); 
 		
-		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , quilmes,participante1);
-		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , quilmes,participante2);
-		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , laPlata,participante1);
-		sistemaVinchuca.almacenarMuestra("Foto", EspecieVinchuca.Infestans , cordoba,participante2);
+		sistemaVinchuca.almacenarMuestra(muestra1,participante1);
+		sistemaVinchuca.almacenarMuestra(muestra2,participante2);
+		sistemaVinchuca.almacenarMuestra(muestra3,participante1);
+		sistemaVinchuca.almacenarMuestra(muestra4,participante2);
 		
 		//  Al solaparse quilmes y la Plata por los radios que tienen cada una de las zonas, en quilmes y la plata
 		// tengo 3 muestras y en cordoba 1 
