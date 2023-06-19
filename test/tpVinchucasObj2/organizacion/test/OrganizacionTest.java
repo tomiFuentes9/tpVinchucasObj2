@@ -28,12 +28,14 @@ class OrganizacionTest {
 	ZonaDeCobertura zona ;
 	
 	Ubicacion quilmes ;
+	Ubicacion posadas;
 	
 	Participante participante ;
 	
 	Funcionalidad funcionalidad ;
 	
-	Muestra muestra ;
+	Muestra muestraDeLaZona ;
+	Muestra muestraDeOtraZona ;
 	
 	@BeforeEach
 	void setUp()  {
@@ -44,6 +46,7 @@ class OrganizacionTest {
 		orga = new Organizacion("NuevaOrga",TipoOrganizacion.Salud);
 
 		quilmes = new Ubicacion(-34.72904, -58.26374);
+		posadas     = new Ubicacion(-27.36708, -55.89608);
 		
 		zona = new ZonaDeCobertura("zonaQuilmes",50,quilmes,sistema);
 		
@@ -61,7 +64,8 @@ class OrganizacionTest {
 		
 		orga.setCantPersonasTrabajando(10);
 		
-		muestra = new Muestra("Foto",EspecieVinchuca.Sordida,quilmes);
+		muestraDeLaZona = new Muestra("Foto",EspecieVinchuca.Sordida,quilmes);
+		muestraDeOtraZona = new Muestra("Foto",EspecieVinchuca.Sordida,posadas);
 	}
 
 	@Test
@@ -91,8 +95,9 @@ class OrganizacionTest {
 		orga.suscribirseAZona(zona);
 		// Creamos una muestra y en el sistema y llega el aviso a la funcionlidad externa
 		participante = sistema.getParticipantes().get(0);
-		sistema.almacenarMuestra(muestra, participante);
-		
+		sistema.almacenarMuestra(muestraDeLaZona, participante);
+		// Almacenamos otra muestra pero de uan zona diferentes y comprobamos que no da avisosobre la misma.
+		sistema.almacenarMuestra(muestraDeOtraZona, participante);
 	}
 /*
 	@Test

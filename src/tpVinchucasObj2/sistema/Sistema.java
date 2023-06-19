@@ -104,15 +104,23 @@ public class Sistema {
 		this.avisarAZonas(muestra);
 	}
 
-
+	/*
 	private void avisarAZonas(Muestra muestra) {
 		// Corregir ya que a las que corresponde les habla dos veces 
 		// 1 - vos queres esta muestra 
 		// 2 - toma esta muestra
 		this.getZonasCoberturas().stream().filter(z->z.perteneceAZona(muestra)).
 								           forEach(z->z.avisoNuevaMuestra(muestra));
-	}
+		
+	}*/
 	
+	private void avisarAZonas(Muestra muestra) {
+		// Corregir ya que a las que corresponde les habla dos veces 
+		// 1 - vos queres esta muestra 
+		// 2 - toma esta muestra
+		this.getZonasCoberturas().stream().forEach(z->z.avisoNuevaMuestra(muestra));
+								           
+	}
 	
 	
 }

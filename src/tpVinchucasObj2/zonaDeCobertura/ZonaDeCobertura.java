@@ -79,7 +79,10 @@ public class ZonaDeCobertura {
 	}
 	
 	public void avisoNuevaMuestra(Muestra muestra) {
-		organizaciones.stream().forEach(o->o.avisoNuevaMuestra(this,muestra));
+		if(this.perteneceAZona(muestra)) {
+			organizaciones.stream().forEach(o->o.avisoNuevaMuestra(this,muestra));
+		}
+		
 	}
 	
 	public void avisoValidacionMuestra(Muestra muestra) {
@@ -89,6 +92,9 @@ public class ZonaDeCobertura {
 	public List<Organizacion> getOrganizaciones() {
 		return this.organizaciones;
 	}
+	
+	
+	
 	
 	
 }
