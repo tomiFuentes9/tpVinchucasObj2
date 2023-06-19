@@ -6,20 +6,16 @@ import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
 
-import java.util.*;
-
 
 public class Dinamico extends Participante {
 	
-	
 	public Dinamico(String nombre) {
 		super(nombre);
-		this.estadoParticipante = new EstadoBasico();
-		this.misOpiniones= new ArrayList<Opinion>();
-		this.misMuestras= new ArrayList<Muestra>();
-		
-		
-	}	
+		this.estadoParticipante = new EstadoBasico();		
+	}
+	
+	
+	
 	@Override
 	public String estado() {
 		return estadoParticipante.estado();

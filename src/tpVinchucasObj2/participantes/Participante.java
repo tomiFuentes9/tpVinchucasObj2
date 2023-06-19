@@ -23,9 +23,9 @@ public abstract class Participante {
 		
 	public Participante(String nombre) {
 		super();
-		this.nombre = nombre;		
-		
-		
+		this.nombre = nombre;	
+		this.misOpiniones= new ArrayList<Opinion>();
+		this.misMuestras= new ArrayList<Muestra>();
 	}	
 			
 	public abstract void opinarMuestra(Muestra nuestra, TipoOpinion tipo); 

@@ -1,8 +1,6 @@
 package tpVinchucasObj2.participantes;
 
 
-import java.util.*;
-
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
@@ -14,9 +12,7 @@ public class ExpertoExterno extends Participante {
 
 	public ExpertoExterno(String nombre) {
 		super(nombre);
-		this.estadoParticipante = new EstadoExperto();
-		this.misOpiniones= new ArrayList<Opinion>();
-		this.misMuestras= new ArrayList<Muestra>();
+		this.estadoParticipante = new EstadoExperto();		
 	}
 
 	@Override
