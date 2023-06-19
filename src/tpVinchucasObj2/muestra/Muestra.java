@@ -1,6 +1,8 @@
 package tpVinchucasObj2.muestra;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
+
 import tpVinchucasObj2.participantes.*;
 import tpVinchucasObj2.opinion.*;
 import tpVinchucasObj2.ubicacion.*;
@@ -71,8 +73,8 @@ public class Muestra {
 	
 	public void verificarOpiniones() {
 		List <TipoOpinion> ops = this.convertirOps(opiniones); //Mapeamos las opiniones para que quede el tipo y las filtramos para que queden las de expertos, en caso de no haber quedan todas las opiniones.
-		HashMap<TipoOpinion, Integer> opsMapeadas = this.mapearOpiniones(ops); //Aca mapeamos la lista de opiniones filtradas para poder 																		
-        this.setResultadoActual(this.opinionMasFrecuente(opsMapeadas)); //guardar un map con key= tipoOpinion y value= cant de apariciones
+		// HashMap<TipoOpinion, Integer> opsMapeadas = this.mapearOpiniones(ops); //Aca mapeamos la lista de opiniones filtradas para poder 																		
+        this.setResultadoActual(this.opinionMasFrecuente(ops)); //guardar un map con key= tipoOpinion y value= cant de apariciones
 	}
 	
 	public boolean opinoUnExperto() {
@@ -92,32 +94,13 @@ public class Muestra {
 		return filteredOps;
 	}
 	
-	public HashMap<TipoOpinion, Integer> mapearOpiniones(List<TipoOpinion> opiniones) {
-		HashMap<TipoOpinion, Integer> opinionesMapeadas = new HashMap<>();             
-        for (TipoOpinion op : opiniones) {
-            if (opinionesMapeadas.containsKey(op)) {
-            	opinionesMapeadas.put(op, opinionesMapeadas.get(op) + 1);
-            } else {
-            	opinionesMapeadas.put(op, 1);
-            }
-        }
-        return opinionesMapeadas;
+	public TipoOpinion opinionMasFrecuente (List<TipoOpinion> opiniones) {
+		Map<TipoOpinion, Long> opinionesMapeadas = opiniones.stream().collect(Collectors.groupingBy(op -> op, Collectors.counting()));
+        TipoOpinion resultado = opinionesMapeadas.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(TipoOpinion.NoDefinida);
+		return this.elementoMasFrecuenteOEmpate(resultado, opinionesMapeadas.get(resultado), opinionesMapeadas.values());
 	}
 	
-	public TipoOpinion opinionMasFrecuente(HashMap<TipoOpinion, Integer> mp) {// Aca reviso el map y me quedo con el elemento mas frecuente
-		TipoOpinion elementoMasFrecuente = TipoOpinion.NoDefinida;            // Si no hay un elemento con muchas apariciones devuelve no definido
-        int maxContador = 0;                                                  
-		for (Map.Entry<TipoOpinion, Integer> entry : mp.entrySet()) {
-            if (entry.getValue() > maxContador) {
-                maxContador = entry.getValue();
-                elementoMasFrecuente = entry.getKey();
-            }
-        }
-        
-        return this.elementoMasFrecuenteOEmpate(elementoMasFrecuente, maxContador, mp.values());
-	}
-	
-	public TipoOpinion elementoMasFrecuenteOEmpate(TipoOpinion elementoMasFrecuente, int maxCantOps, Collection<Integer> valores ) {
+	public TipoOpinion elementoMasFrecuenteOEmpate(TipoOpinion elementoMasFrecuente, Long maxCantOps, Collection<Long> valores ) {
 		TipoOpinion res = elementoMasFrecuente;
 		if (Collections.frequency(valores, maxCantOps) > 1 || maxCantOps < 2 ) {
 			res = TipoOpinion.NoDefinida;
