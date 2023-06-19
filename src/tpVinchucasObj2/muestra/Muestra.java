@@ -56,6 +56,10 @@ public class Muestra {
 	public List<Opinion> getOpiniones() {
 		return opiniones;
 	}
+	
+	public Boolean esVotada() {
+		return this.getOpiniones().size() > 0;
+	}
 
 	public void verificarMuestra() {
 	 if (this.filtrarExpertos().size() > 1 && this.getResultadoActual() != TipoOpinion.NoDefinida ) {

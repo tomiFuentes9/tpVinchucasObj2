@@ -35,7 +35,7 @@ class TestPorFecha {
 		sut = new PorFecha(LocalDate.parse("11/06/2023",fmt));
 		crazyWally = new Dinamico("Walter Norberto Gomez");
 		quilmes = new Ubicacion(-34.72904, -58.26374);
-		vinchuPower = new Sistema(sut);
+		vinchuPower = new Sistema();
 		
 		
 		muestra1 = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);

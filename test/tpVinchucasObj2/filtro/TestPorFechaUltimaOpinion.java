@@ -40,7 +40,7 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		sut = new PorFechaUltimaOpinion(LocalDate.parse("11/06/2023",fmt));
 		crazyWally = new Dinamico("Walter Norberto Gomez");
 		quilmes = new Ubicacion(-34.72904, -58.26374);
-		vinchuPower = new Sistema(sut);
+		vinchuPower = new Sistema();
 		
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara, new DatosDelCreador(crazyWally, new EstadoBasico()));
 		opinion1.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
