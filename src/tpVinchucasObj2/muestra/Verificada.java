@@ -15,4 +15,7 @@ public class Verificada extends EstadoMuestra {
 		throw new RuntimeException("La muestra ya fue verificada no es posible opinar sobre esta");
 	}
 
+	@Override
+	public void verificarOpiniones(Muestra m) {} // no hace nada porque ya esta verificada
+
 }

@@ -21,7 +21,7 @@ public class Muestra {
 		super();
 		this.foto = foto;
 		this.fechaCreacion = LocalDate.now();
-		this.estado = new NoVerificada();
+		this.estado = new Inicial();
 		this.especieVinchuca = especieVinchuca;
 		this.opiniones = new ArrayList<Opinion>();
 		this.ubicacion = ubicacion;
