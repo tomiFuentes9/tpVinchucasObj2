@@ -61,75 +61,26 @@ public class Muestra {
 		return this.getOpiniones().size() > 0;
 	}
 	
-	public void verificarMuestra() {
-	 if (this.filtrarExpertos().size() > 1 && this.getResultadoActual() != TipoOpinion.NoDefinida ) { 
-		this.estado = new Verificada() ;
-	 }
+	public void cambiarEstado(EstadoMuestra nuevoEstado) {
+		this.estado = nuevoEstado;
 	}
 	
 	public void actualizarResultado() {
 		this.getEstado().actualizarResultado(this);
 	}
 	
-	public void verificarOpiniones() {
-		List <TipoOpinion> ops = this.convertirOps(opiniones); //Mapeamos las opiniones para que quede el tipo y las filtramos para que queden las de expertos, en caso de no haber quedan todas las opiniones.											
-        this.setResultadoActual(this.opinionMasFrecuente(ops)); //guardar un map con key= tipoOpinion y value= cant de apariciones
-	}
-	public List<TipoOpinion> convertirOps(List<Opinion> ops){  
-		List<Opinion> filteredOps = this.filtrarExpertos();
-		return filteredOps.stream().map(op -> op.getTipo()).toList();
-	} 
-	
-	public boolean opinoUnExperto() {
-		return opiniones.stream().anyMatch(op -> op.getDatosCreador().estadoDeParticipante().estado() == "Experto");
-	}
-	
-	public List<Opinion> filtrarExpertos(){
-		List<Opinion> filteredOps = this.getOpiniones();                    
-		if(this.opinoUnExperto()) {
-			 filteredOps = filteredOps.stream().filter(op -> op.getDatosCreador().estadoDeParticipante().estado() == "Experto").toList();
-		}
-		return filteredOps;
-	}
-	
-	public TipoOpinion opinionMasFrecuente (List<TipoOpinion> opiniones) {
-		Map<TipoOpinion, Long> opinionesMapeadas = opiniones.stream().collect(Collectors.groupingBy(op -> op, Collectors.counting()));
-        TipoOpinion resultado = opinionesMapeadas.entrySet().stream().max(Map.Entry.comparingByValue()).map(Map.Entry::getKey).orElse(TipoOpinion.NoDefinida);
-		return this.elementoMasFrecuenteOEmpate(resultado, opinionesMapeadas.get(resultado), opinionesMapeadas.values());
-	}
-	
-	public TipoOpinion elementoMasFrecuenteOEmpate(TipoOpinion elementoMasFrecuente, Long maxCantOps, Collection<Long> valores ) {
-		TipoOpinion res = elementoMasFrecuente;
-		if (Collections.frequency(valores, maxCantOps) > 1 || maxCantOps < 2 ) {
-			res = TipoOpinion.NoDefinida;
-		}
-		return res;
-	}
-	
 	public void setResultadoActual(TipoOpinion op) {
 		resultadoActual = op;
-		this.verificarMuestra();
 	}
 	
 	public void aniadirOpinion(Opinion op, Participante p) {//Verifico si la muestra ya esta verificada antes de añadir la opinion
-		this.getEstado().aniadirOpinion(op, p);
-	}
-	
-	/* public void aniadirOpinionSiCorresponde(Opinion op) {
-		Participante participante = op.getDatosCreador().getParticipante();
-		if (this.participantePuedeOpinar(participante) && !this.yaOpinoParticipante(participante)) { // Verifico si ya opino el participante y si ya opino un experto
-			opiniones.add(op);
-		} else {
-			throw new RuntimeException("Ya opinaste sobre esta muestra o ya opino un experto");
+		if (!this.yaOpinoParticipante(p)) {
+			this.getEstado().aniadirOpinion(op, p, this);	
 		}
 	}
 	
-	public Boolean participantePuedeOpinar(Participante participante) {
-		Boolean puedeOpinar = true;
-		if(this.opinoUnExperto() && participante.estado() != "Experto") {
-			puedeOpinar = false;
-		}
-		return puedeOpinar;
+	public void agregarOpinion(Opinion op) {
+		this.opiniones.add(op);
 	}
 	
 	public Boolean yaOpinoParticipante(Participante participante) {
@@ -138,5 +89,14 @@ public class Muestra {
 	
 	public List<Participante> participantesQueYaOpinaron() {
 		return this.getOpiniones().stream().map(op -> op.getDatosCreador().getParticipante()).toList();
-	}*/
+	}
 }
+
+
+
+
+
+
+
+
+
