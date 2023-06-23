@@ -51,14 +51,14 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		muestra1 = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		muestra1.setFechaCreacion(LocalDate.parse("01/05/2005",fmt));
-		muestra1.aniadirOpinion(opinion2);
+		muestra1.aniadirOpinion(opinion2,crazyWally);
 		
 		muestra2 = new Muestra("captura.jpeg", EspecieVinchuca.Infestans, quilmes);
 		muestra2.setFechaCreacion(LocalDate.parse("06/06/2016", fmt));
 		
 		muestra3 = new Muestra("ft124586.jpeg", EspecieVinchuca.Guasayana, quilmes);
 		muestra3.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
-		muestra3.aniadirOpinion(opinion1);
+		muestra3.aniadirOpinion(opinion1,crazyWally);
 		
 		listaTest.add(muestra1);
 		listaTest.add(muestra2);

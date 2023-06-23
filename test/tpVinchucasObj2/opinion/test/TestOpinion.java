@@ -2,6 +2,9 @@ package tpVinchucasObj2.opinion.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +21,8 @@ import tpVinchucasObj2.sistema.Sistema;
 class TestOpinion {
 
 	Sistema sistema;
-	Filtro filtro ;
+	
+	DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	Opinion opinion1;
 	Opinion opinion2;
@@ -45,6 +49,13 @@ class TestOpinion {
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
 		opinion2 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante2,participante2.getEstadoParticipante()));
 		opinion3 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante3,participante3.getEstadoParticipante()));
+	}
+	
+	@Test
+	void setFechaCreacion() {
+		LocalDate fecha = LocalDate.parse("22/01/2023",fmt);
+		opinion1.setFechaCreacion(fecha);
+		assertEquals(fecha,opinion1.getFechaCreacion());
 	}
 
 	@Test
