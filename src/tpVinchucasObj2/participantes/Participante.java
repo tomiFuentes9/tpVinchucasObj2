@@ -28,7 +28,11 @@ public abstract class Participante {
 		this.misMuestras= new ArrayList<Muestra>();
 	}	
 			
-	public abstract void opinarMuestra(Muestra nuestra, TipoOpinion tipo); 
+	public  void opinarMuestra(Muestra muestra, Opinion opinion) {
+		muestra.aniadirOpinion(opinion,this);
+		
+		
+	}	
 	public abstract String estado();
 	public abstract void setEstadoParticipante(EstadoUsuario estadoParticipante);
 	public abstract void cambiarEstado();
@@ -52,10 +56,10 @@ public abstract class Participante {
 	}
 	
 	// se crea el metodo este para poder testear
-	public void agregarMuestra(Muestra muestra) {
+	public void incorpararMuestra(Muestra muestra) {
 		misMuestras.add(muestra);
 	}
-	public void agregarOpinion(Opinion opinion) {
+	public void incorpararOpinion(Opinion opinion) {
 		misOpiniones.add(opinion);
 	}
 	

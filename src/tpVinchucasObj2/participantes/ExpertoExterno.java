@@ -4,7 +4,7 @@ package tpVinchucasObj2.participantes;
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
-import tpVinchucasObj2.opinion.TipoOpinion;
+
 
 
 
@@ -21,10 +21,10 @@ public class ExpertoExterno extends Participante {
 	}
 
 	@Override
-	public void opinarMuestra(Muestra muestra, TipoOpinion tipo) {
-		Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.getEstadoParticipante()));
-		muestra.aniadirOpinion(nuevaOp);
-		this.agregarOpinion(nuevaOp);
+	public void opinarMuestra(Muestra muestra, Opinion opinion) {
+		//Opinion nuevaOp = new Opinion(tipo,new DatosDelCreador(this,this.getEstadoParticipante()));
+		super.opinarMuestra(muestra, opinion);
+		
 	}
 
 	@Override
