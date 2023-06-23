@@ -4,11 +4,10 @@ import java.util.List;
 
 import tpVinchucasObj2.muestra.Muestra;
 
-public abstract class FiltroCompuesto {
+public abstract class FiltroCompuesto extends Filtro {
 	
-	private Filtro filtro1;
-	private Filtro filtro2;
-	
+	protected Filtro filtro1; 
+	protected Filtro filtro2;
 	
 	
 	public FiltroCompuesto(Filtro filtro1, Filtro filtro2) {
@@ -16,9 +15,24 @@ public abstract class FiltroCompuesto {
 		this.filtro1 = filtro1;
 		this.filtro2 = filtro2;
 	}
+	
+	
+
+
+	public void setFiltro1(Filtro filtro) {
+		this.filtro1 = filtro;
+	}
 
 
 
-	public abstract List<Muestra> filtrarMuestras(List<Muestra> muestras, Filtro filtro);
+
+	public void setFiltro2(Filtro filtro) {
+		this.filtro2 = filtro;
+	}
+
+
+
+
+	public abstract List<Muestra> filtrarMuestras(List<Muestra> muestras);
 	
 }

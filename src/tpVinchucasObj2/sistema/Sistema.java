@@ -33,7 +33,10 @@ public class Sistema {
 	public void setFiltro(Filtro filtro) {
 		this.filtro = filtro;
 	}
-
+	
+	public List<Muestra> ejecutarFiltro(){
+		return filtro.filtrarMuestras(getMuestras());
+	}
 
 
 	public void crearParticipanteDinamico(String nombre) {
