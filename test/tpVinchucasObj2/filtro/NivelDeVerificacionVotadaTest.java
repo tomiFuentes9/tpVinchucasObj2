@@ -41,8 +41,8 @@ class NivelDeVerificacionVotadaTest {
 		vinchuPower = new Sistema();
 		listaTest = new ArrayList<Muestra>();
 		
-		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara, new DatosDelCreador(leanlove, new EstadoBasico()));
-		opinion2 = new Opinion(TipoOpinion.ChincheFoliada, new DatosDelCreador(leanlove, new EstadoBasico()));
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara);
+		opinion2 = new Opinion(TipoOpinion.ChincheFoliada);
 		
 		muestra1 = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		muestra2 = new Muestra("captura.jpeg", EspecieVinchuca.Infestans, quilmes);
@@ -56,7 +56,7 @@ class NivelDeVerificacionVotadaTest {
 	@Test
 	void testFiltrarMuestras() {
 		assertEquals(0, sut.filtrarMuestras(listaTest).size());
-		muestra2.aniadirOpinion(opinion1);
+		crazyWally.opinarMuestra(muestra1, opinion1);
 		assertEquals(1, sut.filtrarMuestras(listaTest).size());
 	}
 

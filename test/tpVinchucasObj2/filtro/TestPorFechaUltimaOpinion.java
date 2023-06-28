@@ -42,23 +42,23 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		quilmes = new Ubicacion(-34.72904, -58.26374);
 		vinchuPower = new Sistema();
 		
-		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara, new DatosDelCreador(crazyWally, new EstadoBasico()));
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara);
 		opinion1.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
 		
-		opinion2 = new Opinion(TipoOpinion.PhtiaChinche, new DatosDelCreador(crazyWally, new EstadoBasico()));
+		opinion2 = new Opinion(TipoOpinion.PhtiaChinche);
 		opinion2.setFechaCreacion(LocalDate.parse("25/03/2005", fmt));
 		
 		
 		muestra1 = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		muestra1.setFechaCreacion(LocalDate.parse("01/05/2005",fmt));
-		muestra1.aniadirOpinion(opinion2,crazyWally);
+		crazyWally.opinarMuestra(muestra1,opinion2);
 		
 		muestra2 = new Muestra("captura.jpeg", EspecieVinchuca.Infestans, quilmes);
 		muestra2.setFechaCreacion(LocalDate.parse("06/06/2016", fmt));
 		
 		muestra3 = new Muestra("ft124586.jpeg", EspecieVinchuca.Guasayana, quilmes);
 		muestra3.setFechaCreacion(LocalDate.parse("11/06/2023", fmt));
-		muestra3.aniadirOpinion(opinion1,crazyWally);
+		crazyWally.opinarMuestra(muestra3,opinion1);
 		
 		listaTest.add(muestra1);
 		listaTest.add(muestra2);
