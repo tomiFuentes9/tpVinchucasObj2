@@ -93,11 +93,51 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	}
 	
 	@Test
-	void testAniadirOpinionMuestraVerificada() {
+	void testEstadoMuestraSemiVerificada() {
+		crazyWally.opinarMuestra(sut, opinion2);
+		assertEquals("Inicial", sut.estadoActual());
+		michael.opinarMuestra(sut, opinion1);
+		assertEquals("Semiverificada",sut.estadoActual());
+	}
+	
+	@Test
+	void testAniadirOpinionMuestraSemiVerificada() {
 		thomas.opinarMuestra(sut, opinion2);
 		assertEquals(1, sut.getOpiniones().size());
 		try {
 			leanLove.opinarMuestra(sut, opinion1);
+		   }
+		   catch (Exception e) {
+		      e.getMessage();//Para imprimir el error si se quiere
+		   }
+	}
+	
+	@Test
+	void testAniadirOpinionMuestraVerificada() {
+		thomas.opinarMuestra(sut, opinion2);
+		michael.opinarMuestra(sut, opinion3);
+		assertEquals(2, sut.getOpiniones().size());
+		try {
+			leanLove.opinarMuestra(sut, opinion1);
+		   }
+		   catch (Exception e) {
+		      e.getMessage();//Para imprimir el error si se quiere
+		   }
+	}
+	
+	@Test
+	void testEstadoVerificada() {
+		thomas.opinarMuestra(sut, opinion2);
+		michael.opinarMuestra(sut, opinion3);
+		assertEquals(2, sut.getOpiniones().size());
+		sut.getEstado().actualizarResultado(sut);
+		sut.getEstado().verificarOpiniones(sut);
+		sut.getEstado().cambiarEstado(sut);
+		try {
+			leanLove.opinarMuestra(sut, opinion1);
+			sut.getEstado().actualizarResultado(sut);
+			sut.getEstado().verificarOpiniones(sut);
+			sut.getEstado().cambiarEstado(sut);
 		   }
 		   catch (Exception e) {
 		      e.getMessage();//Para imprimir el error si se quiere

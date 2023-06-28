@@ -9,12 +9,12 @@ public class Verificada extends EstadoMuestra {
 
 	@Override
 	public void actualizarResultado(Muestra m) {
-		throw new RuntimeException("La muestra ya fue verificada no es posible actualizar el resultado");
+		//throw new RuntimeException("La muestra ya fue verificada no es posible actualizar el resultado");
 	}
 
 	@Override
 	public void aniadirOpinion(Opinion op, Participante p, Muestra m) {
-		throw new RuntimeException("La muestra ya fue verificada no es posible opinar sobre esta");
+		//throw new RuntimeException("La muestra ya fue verificada no es posible opinar sobre esta");
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class Verificada extends EstadoMuestra {
 
 	@Override
 	public void cambiarEstado(Muestra m) {
-		throw new RuntimeException("La muestra ya fue verificada no es posible cambiar el estado");
+		//throw new RuntimeException("La muestra ya fue verificada no es posible cambiar el estado");
 	}
 	
 	@Override
