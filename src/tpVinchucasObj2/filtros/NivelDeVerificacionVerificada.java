@@ -8,7 +8,7 @@ public class NivelDeVerificacionVerificada extends NivelDeVerificacion {
 
 	@Override
 	public List<Muestra> filtrarMuestras(List<Muestra> muestras) {
-		return muestras.stream().filter(m -> m.getIsVerificada()).toList(); //Cambiar despues del refactor de Muestra
+		return muestras.stream().filter(m -> m.estadoActual() == "Verificada").toList(); //Cambiar despues del refactor de Muestra
 	}
 
 }

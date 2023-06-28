@@ -62,14 +62,6 @@ public abstract class Participante {
 	public void incorpararOpinion(Opinion opinion) {
 		misOpiniones.add(opinion);
 	}
-
-	public void setMisOpiniones(List<Opinion> misOpiniones) {
-		this.misOpiniones = misOpiniones;
-	}
-
-	public void setMisMuestras(List<Muestra> misMuestras) {
-		this.misMuestras = misMuestras;
-	}
 	
 	
 

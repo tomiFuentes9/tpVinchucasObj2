@@ -72,6 +72,17 @@ class TestParticipante {
 	Opinion opinion9;
 	Opinion opinion10;
 	
+	Opinion opinion11;
+	Opinion opinion12;
+	Opinion opinion13;
+	Opinion opinion14;
+	Opinion opinion15;
+	Opinion opinion16;
+	Opinion opinion17;
+	Opinion opinion18;
+	Opinion opinion19;
+	Opinion opinion20;
+	
 	
 	
 	@BeforeEach
@@ -157,6 +168,17 @@ class TestParticipante {
 		opinion9 = new Opinion(TipoOpinion.Vinchuca);
 		opinion10 = new Opinion(TipoOpinion.ChincheFoliada);
 		
+		opinion11 = new Opinion(TipoOpinion.ImagenPocoClara);
+		opinion12 = new Opinion(TipoOpinion.ChincheFoliada);
+		opinion13 = new Opinion(TipoOpinion.PhtiaChinche);
+		opinion14 = new Opinion(TipoOpinion.ImagenPocoClara);
+		opinion15 = new Opinion(TipoOpinion.Vinchuca);
+		opinion16 = new Opinion(TipoOpinion.ChincheFoliada);
+		opinion17 = new Opinion(TipoOpinion.PhtiaChinche);
+		opinion18 = new Opinion(TipoOpinion.ImagenPocoClara);
+		opinion19 = new Opinion(TipoOpinion.Vinchuca);
+		opinion20 = new Opinion(TipoOpinion.ChincheFoliada);
+		
 		// el participante willyWonka opina sobre algunas muestras
 		willyWonka.opinarMuestra(muestra1, opinion1);
 		willyWonka.opinarMuestra(muestra2, opinion2);
@@ -170,16 +192,16 @@ class TestParticipante {
 		willyWonka.opinarMuestra(muestra10, opinion10);
 		
 		// el participante willyWonka opina sobre algunas muestras
-		teela.opinarMuestra(muestra1, opinion1);
-		teela.opinarMuestra(muestra2, opinion2);
-		teela.opinarMuestra(muestra3, opinion3);
-		teela.opinarMuestra(muestra4, opinion4);
-		teela.opinarMuestra(muestra5, opinion5);
-		teela.opinarMuestra(muestra6, opinion6);
-		teela.opinarMuestra(muestra7, opinion7);
-		teela.opinarMuestra(muestra8, opinion8);
-		teela.opinarMuestra(muestra9, opinion9);
-		teela.opinarMuestra(muestra10, opinion10);
+		teela.opinarMuestra(muestra1, opinion11);
+		teela.opinarMuestra(muestra2, opinion12);
+		teela.opinarMuestra(muestra3, opinion13);
+		teela.opinarMuestra(muestra4, opinion14);
+		teela.opinarMuestra(muestra5, opinion15);
+		teela.opinarMuestra(muestra6, opinion16);
+		teela.opinarMuestra(muestra7, opinion17);
+		teela.opinarMuestra(muestra8, opinion18);
+		teela.opinarMuestra(muestra9, opinion19);
+		teela.opinarMuestra(muestra10, opinion20);
 		
 
 	}
@@ -208,7 +230,7 @@ class TestParticipante {
 	@Test
 	void cantidadDeMuestrasOpinadas(){		
 		assertEquals(10,willyWonka.getMisOpiniones().size());
-		//assertEquals(10,teela.getMisOpiniones().size());
+		assertEquals(10,teela.getMisOpiniones().size());
 	}
 	@Test
 	void verificarQueUnParticipanteBasicoPasaASerExperto(){	
@@ -282,7 +304,7 @@ class TestParticipante {
 		teela.opinarMuestra(muestra19, opinion7);
 		teela.opinarMuestra(muestra20, opinion8);
 		
-		//assertEquals(20,teela.getMisOpiniones().size());
+		assertEquals(20,teela.getMisOpiniones().size());
 		assertEquals(11,teela.getMisMuestras().size());
 		
 		teela.getEstadoParticipante().cambiarEstado(teela);
