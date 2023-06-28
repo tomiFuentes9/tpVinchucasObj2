@@ -11,6 +11,8 @@ import tpVinchucasObj2.participantes.*;
 
 public abstract class EstadoMuestra {
 	
+	public abstract String estado();
+	
 	public void actualizarResultado(Muestra m) {
 		this.verificarOpiniones(m);
 		this.cambiarEstado(m);

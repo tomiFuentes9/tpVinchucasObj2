@@ -42,28 +42,27 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		test = new HashMap<TipoOpinion, Integer>();
 		
 		
-		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara, new DatosDelCreador(crazyWally, new EstadoBasico()));
-		
-		test.put(TipoOpinion.ImagenPocoClara, 1);
-		test.put(TipoOpinion.ChincheFoliada, 1);
-		test.put(TipoOpinion.PhtiaChinche, 1);
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara);
+		opinion2 = new Opinion(TipoOpinion.PhtiaChinche);
+		opinion3 = new Opinion(TipoOpinion.PhtiaChinche);
 		
 		sut = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		sut.setFechaCreacion(LocalDate.parse("01/05/2005",fmt));
-		sut.aniadirOpinion(opinion1);
+		opinion1.setDatosDelCreador(crazyWally);
+		sut.aniadirOpinion(opinion1, crazyWally);
 		
 	}
 
 	@Test
 	void testVerificarMuestraSinDosOpsDeExps() {
-		assertFalse(sut.getIsVerificada());
-		sut.verificarMuestra();
-		assertFalse(sut.getIsVerificada());
+		assertEquals("Inicial", sut.estadoActual());
+		sut.getEstado().cambiarEstado(sut);
+		assertNotEquals("Verificada", sut.estadoActual());
 	}
 	
 	@Test
 	void testVerificarMuestraConDosOpsDeExps() {
-		assertFalse(sut.getIsVerificada());
+		assertNotEquals("Verificada", sut.estadoActual());
 		michael.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
 		thomas.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
 		sut.actualizarResultado();

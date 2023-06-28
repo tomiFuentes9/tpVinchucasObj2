@@ -25,5 +25,10 @@ public class Inicial extends EstadoMuestra{
 	public boolean opinoUnExperto(List <Opinion> ops) {
 		return ops.stream().anyMatch(op -> op.getDatosCreador().estadoDeParticipante().estado() == "Experto");
 	}
+	
+	@Override
+	public String estado() {
+		return "Inicial";
+	}
 
 }

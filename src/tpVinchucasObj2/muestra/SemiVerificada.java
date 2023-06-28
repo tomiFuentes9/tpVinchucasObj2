@@ -35,4 +35,8 @@ public class SemiVerificada extends EstadoMuestra{
 		return p.estado() == "Experto";
 	}
 
+	@Override
+	public String estado() {
+		return "Semiverificada";
+	}
 }

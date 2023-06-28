@@ -24,5 +24,10 @@ public class Verificada extends EstadoMuestra {
 	public void cambiarEstado(Muestra m) {
 		throw new RuntimeException("La muestra ya fue verificada no es posible cambiar el estado");
 	}
+	
+	@Override
+	public String estado() {
+		return "Verificada";
+	}
 
 }

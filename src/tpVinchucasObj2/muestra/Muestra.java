@@ -57,6 +57,10 @@ public class Muestra {
 		return opiniones;
 	}
 	
+	public String estadoActual() {
+		return this.getEstado().estado();
+	}
+	
 	public Boolean esVotada() {
 		return this.getOpiniones().size() > 0;
 	}
