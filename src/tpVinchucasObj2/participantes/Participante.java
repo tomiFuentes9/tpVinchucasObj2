@@ -6,7 +6,7 @@ import java.util.*;
 
 import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.Opinion;
-import tpVinchucasObj2.opinion.TipoOpinion;
+
 
 
 
@@ -61,6 +61,14 @@ public abstract class Participante {
 	}
 	public void incorpararOpinion(Opinion opinion) {
 		misOpiniones.add(opinion);
+	}
+
+	public void setMisOpiniones(List<Opinion> misOpiniones) {
+		this.misOpiniones = misOpiniones;
+	}
+
+	public void setMisMuestras(List<Muestra> misMuestras) {
+		this.misMuestras = misMuestras;
 	}
 	
 	

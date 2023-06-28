@@ -2,7 +2,6 @@ package tpVinchucasObj2.participantes;
 
 
 import tpVinchucasObj2.muestra.Muestra;
-import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 
 

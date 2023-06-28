@@ -2,7 +2,6 @@ package tpVinchucasObj2.participantes;
 
 
 import tpVinchucasObj2.muestra.Muestra;
-import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 
 
@@ -14,8 +13,8 @@ public class Dinamico extends Participante {
 		this.estadoParticipante = new EstadoBasico();		
 	}
 	
-	
-	
+
+
 	@Override
 	public String estado() {
 		return estadoParticipante.estado();
