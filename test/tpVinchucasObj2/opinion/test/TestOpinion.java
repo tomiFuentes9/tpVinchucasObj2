@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tpVinchucasObj2.filtros.Filtro;
+import tpVinchucasObj2.muestra.EspecieVinchuca;
+import tpVinchucasObj2.muestra.Muestra;
 import tpVinchucasObj2.opinion.DatosDelCreador;
 import tpVinchucasObj2.opinion.Opinion;
 import tpVinchucasObj2.opinion.TipoOpinion;
@@ -17,6 +19,7 @@ import tpVinchucasObj2.participantes.EstadoExperto;
 import tpVinchucasObj2.participantes.ExpertoExterno;
 import tpVinchucasObj2.participantes.Participante;
 import tpVinchucasObj2.sistema.Sistema;
+import tpVinchucasObj2.ubicacion.Ubicacion;
 
 class TestOpinion {
 
@@ -31,6 +34,10 @@ class TestOpinion {
 	Participante participante1;
 	Participante participante2;
 	Participante participante3;
+	
+	Muestra muestra ;
+	
+	Ubicacion posadas;
 
 	@BeforeEach
 	void setUp()  {
@@ -49,6 +56,8 @@ class TestOpinion {
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara); //,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
 		opinion2 = new Opinion(TipoOpinion.Vinchuca); //,new DatosDelCreador(participante2,participante2.getEstadoParticipante()));
 		opinion3 = new Opinion(TipoOpinion.Vinchuca); //,new DatosDelCreador(participante3,participante3.getEstadoParticipante()));
+		
+		muestra = new Muestra("Foto", EspecieVinchuca.Infestans , posadas);
 	}
 	
 	@Test
@@ -67,6 +76,9 @@ class TestOpinion {
 	
 	@Test
 	void testDatosCreador() {
+		participante1.opinarMuestra(muestra, opinion1);
+		participante2.opinarMuestra(muestra, opinion2);
+		participante3.opinarMuestra(muestra, opinion3);
 		assertEquals(participante1,opinion1.getDatosCreador().getParticipante());
 		assertEquals(participante2,opinion2.getDatosCreador().getParticipante());
 		assertEquals(participante3,opinion3.getDatosCreador().getParticipante());
