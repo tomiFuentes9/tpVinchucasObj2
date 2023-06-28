@@ -43,62 +43,61 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		
 		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara);
+		
 		opinion2 = new Opinion(TipoOpinion.PhtiaChinche);
+		
 		opinion3 = new Opinion(TipoOpinion.PhtiaChinche);
 		
 		sut = new Muestra("foto.png", EspecieVinchuca.Sordida, quilmes);
 		sut.setFechaCreacion(LocalDate.parse("01/05/2005",fmt));
-		opinion1.setDatosDelCreador(crazyWally);
-		sut.aniadirOpinion(opinion1, crazyWally);
+
 		
 	}
 
 	@Test
 	void testVerificarMuestraSinDosOpsDeExps() {
 		assertEquals("Inicial", sut.estadoActual());
-		sut.getEstado().cambiarEstado(sut);
+		crazyWally.opinarMuestra(sut, opinion1);
 		assertNotEquals("Verificada", sut.estadoActual());
 	}
 	
 	@Test
 	void testVerificarMuestraConDosOpsDeExps() {
 		assertNotEquals("Verificada", sut.estadoActual());
-		michael.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
-		thomas.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
-		sut.actualizarResultado();
-		assertTrue(sut.getIsVerificada());
+		michael.opinarMuestra(sut, opinion2);
+		thomas.opinarMuestra(sut, opinion3);
+		assertEquals("Verificada", sut.estadoActual());
 	}
 
 	@Test
 	void testActualizarResultadoEmpate() {
 		assertEquals(TipoOpinion.NoDefinida, sut.getResultadoActual());
-		thomas.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
-		sut.actualizarResultado();
+		thomas.opinarMuestra(sut, opinion3);
 		assertEquals(TipoOpinion.NoDefinida, sut.getResultadoActual());
 	}
 	
 	@Test
 	void testActualizarResultadoPhtiaCh() {
 		assertEquals(TipoOpinion.NoDefinida, sut.getResultadoActual());
-		michael.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
-		thomas.opinarMuestra(sut, TipoOpinion.PhtiaChinche);
-		sut.actualizarResultado();
+		michael.opinarMuestra(sut, opinion2);
+		thomas.opinarMuestra(sut, opinion3);
 		assertEquals(TipoOpinion.PhtiaChinche, sut.getResultadoActual());
 	}
 
 	@Test
 	void testAniadirOpinionMuestraNoVerificada() {
+		crazyWally.opinarMuestra(sut, opinion2);
 		assertEquals(1, sut.getOpiniones().size());
-		leanLove.opinarMuestra(sut, TipoOpinion.ChincheFoliada);
+		leanLove.opinarMuestra(sut, opinion1);
 		assertEquals(2,sut.getOpiniones().size());
 	}
 	
 	@Test
 	void testAniadirOpinionMuestraVerificada() {
+		thomas.opinarMuestra(sut, opinion2);
 		assertEquals(1, sut.getOpiniones().size());
-		thomas.opinarMuestra(sut, TipoOpinion.ImagenPocoClara);
 		try {
-			leanLove.opinarMuestra(sut, TipoOpinion.ChincheFoliada);;
+			leanLove.opinarMuestra(sut, opinion1);
 		   }
 		   catch (Exception e) {
 		      e.getMessage();//Para imprimir el error si se quiere
@@ -107,11 +106,12 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	@Test
 	void testAniadirOpinionOpinoParticipante() {
+		crazyWally.opinarMuestra(sut, opinion2);
 		assertEquals(1, sut.getOpiniones().size());
-		leanLove.opinarMuestra(sut, TipoOpinion.ChincheFoliada);
+		leanLove.opinarMuestra(sut, opinion1);
 		assertEquals(2,sut.getOpiniones().size());
 		try {
-			leanLove.opinarMuestra(sut, TipoOpinion.ImagenPocoClara);;
+			leanLove.opinarMuestra(sut, opinion3);
 		   }
 		   catch (Exception e) {
 		      System.out.print(e.getMessage());//Para imprimir el error si se quiere

@@ -69,10 +69,6 @@ public class Muestra {
 		this.estado = nuevoEstado;
 	}
 	
-	public void actualizarResultado() {
-		this.getEstado().actualizarResultado(this);
-	}
-	
 	public void setResultadoActual(TipoOpinion op) {
 		resultadoActual = op;
 	}
