@@ -204,7 +204,21 @@ class FiltroCompuestoTest {
 		sistema.setFiltro(filtroFinal);
 		List<Muestra> muestrasFinales = sistema.ejecutarFiltro();
 		assertEquals(12,muestrasFinales.size());	
-		}
+	}
+	
+	@Test
+	void testSetFiltros() {
+		
+		// Probamos el tamaño de los filtros simples
+		List<Muestra> muestras = sistema.getMuestras();
+		
+		
+		filtroOr.setFiltro1(filtroPorTipo1);
+		filtroOr.setFiltro2(porFecha1);
+		
+		assertEquals(12,filtroOr.filtrarMuestras(muestras).size());
+		
+	}
 
 	
 }
