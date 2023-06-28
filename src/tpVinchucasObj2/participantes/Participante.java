@@ -28,11 +28,11 @@ public abstract class Participante {
 		this.misMuestras= new ArrayList<Muestra>();
 	}	
 			
-	public  void opinarMuestra(Muestra muestra, Opinion opinion) {
+	public  void opinarMuestra(Muestra muestra, Opinion opinion) {   // 
+		opinion.setDatosDelCreador(this);   // si no se puede agregar a la muestra por x motivo queda una opinion en la nada
 		muestra.aniadirOpinion(opinion,this);
-		
-		
 	}	
+	
 	public abstract String estado();
 	public abstract void setEstadoParticipante(EstadoUsuario estadoParticipante);
 	public abstract void cambiarEstado();

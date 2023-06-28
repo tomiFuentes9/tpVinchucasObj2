@@ -36,13 +36,15 @@ class DatosDelCreadorTest {
 		participante1 = sistema.getParticipantes().get(0);
 		participante2 = sistema.getParticipantes().get(1); 
 		
-		datos1 = new DatosDelCreador(participante1,participante1.getEstadoParticipante());
-		datos2 = new DatosDelCreador(participante2,participante2.getEstadoParticipante());
+		datos1 = new DatosDelCreador();
+		datos2 = new DatosDelCreador();
 		
 	}
 
 	@Test
 	void testGetParticipante() {
+		datos1.setCreador(participante1);
+		datos2.setCreador(participante2);
 		assertEquals(participante1,datos1.getParticipante());
 		assertEquals(participante2,datos2.getParticipante());
 	}
@@ -50,6 +52,8 @@ class DatosDelCreadorTest {
 
 	@Test
 	void testEstadoDeParticipante() {
+		datos1.setEstadoParticipante(participante1.getEstadoParticipante());
+		datos2.setEstadoParticipante(participante2.getEstadoParticipante());
 		assertEquals("Basico",datos1.estadoDeParticipante().estado());
 		assertEquals("Experto",datos2.estadoDeParticipante().estado());
 	}
