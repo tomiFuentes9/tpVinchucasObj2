@@ -18,7 +18,7 @@ public abstract class EstadoMuestra {
 	
 	public void aniadirOpinion(Opinion op, Participante p , Muestra m) {
 		m.agregarOpinion(op);
-		p.agregarOpinion(op);
+		p.incorpararOpinion(op);
 		this.actualizarResultado(m);
 	}
 	

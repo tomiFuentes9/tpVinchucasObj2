@@ -46,9 +46,9 @@ class TestOpinion {
 		participante3 = sistema.getParticipantes().get(2); 
 		
 		
-		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
-		opinion2 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante2,participante2.getEstadoParticipante()));
-		opinion3 = new Opinion(TipoOpinion.Vinchuca,new DatosDelCreador(participante3,participante3.getEstadoParticipante()));
+		opinion1 = new Opinion(TipoOpinion.ImagenPocoClara); //,new DatosDelCreador(participante1,participante1.getEstadoParticipante()));
+		opinion2 = new Opinion(TipoOpinion.Vinchuca); //,new DatosDelCreador(participante2,participante2.getEstadoParticipante()));
+		opinion3 = new Opinion(TipoOpinion.Vinchuca); //,new DatosDelCreador(participante3,participante3.getEstadoParticipante()));
 	}
 	
 	@Test

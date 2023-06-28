@@ -3,6 +3,8 @@ package tpVinchucasObj2.opinion;
 import java.time.LocalDate;
 import java.util.*;
 
+import tpVinchucasObj2.participantes.Dinamico;
+import tpVinchucasObj2.participantes.EstadoUsuario;
 import tpVinchucasObj2.participantes.Participante;
 
 public class Opinion {
@@ -12,11 +14,11 @@ public class Opinion {
 	private DatosDelCreador datosCreador;
 	
 	
-	public Opinion(TipoOpinion tipo,DatosDelCreador datosCreador) {
+	public Opinion(TipoOpinion tipo) {
 		super();
 		this.fechaCreacion= LocalDate.now();
 		this.tipo= tipo;
-		this.datosCreador = datosCreador ;
+		this.datosCreador = new DatosDelCreador(); ;
 	}
 
 
@@ -40,6 +42,14 @@ public class Opinion {
 
 	public DatosDelCreador getDatosCreador() {
 		return datosCreador;
+	}
+
+
+
+	public void setDatosDelCreador(Participante participante) {
+		this.getDatosCreador().setCreador(participante);
+		EstadoUsuario estado = participante.getEstadoParticipante() ;
+		this.getDatosCreador().setEstadoParticipante(estado);
 	}
 	
 	

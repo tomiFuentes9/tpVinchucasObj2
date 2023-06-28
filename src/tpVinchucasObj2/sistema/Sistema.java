@@ -102,7 +102,7 @@ public class Sistema {
 	
 	public void almacenarMuestra(Muestra muestra, Participante participante) {
 		// 1-almacena
-		participante.agregarMuestra(muestra);
+		participante.incorpararMuestra(muestra);
 		// 2-avisa a la/s zona/s de cobertura/s que corresponde.
 		this.avisarAZonas(muestra);
 	}

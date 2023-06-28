@@ -7,9 +7,10 @@ public class DatosDelCreador {
 	private Participante creador;
 	private EstadoUsuario estadoParticipante;
 	
-	public DatosDelCreador(Participante creador, EstadoUsuario estadoParticipante) {
-		this.creador = creador;
-		this.estadoParticipante = estadoParticipante;
+
+	public DatosDelCreador() {
+		this.creador = null;
+		this.estadoParticipante = null;
 	}
 	
 	public Participante getParticipante() {
@@ -19,4 +20,14 @@ public class DatosDelCreador {
 	public EstadoUsuario estadoDeParticipante() {
 		return estadoParticipante;
 	}
+	
+	public void setCreador(Participante creador) {
+		this.creador = creador;
+	}
+
+	public void setEstadoParticipante(EstadoUsuario estadoParticipante) {
+		this.estadoParticipante = estadoParticipante;
+	}
+	
+	
 }
