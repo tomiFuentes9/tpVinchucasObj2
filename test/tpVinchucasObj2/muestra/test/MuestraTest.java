@@ -117,12 +117,7 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		thomas.opinarMuestra(sut, opinion2);
 		michael.opinarMuestra(sut, opinion3);
 		assertEquals(2, sut.getOpiniones().size());
-		try {
-			leanLove.opinarMuestra(sut, opinion1);
-		   }
-		   catch (Exception e) {
-		      e.getMessage();//Para imprimir el error si se quiere
-		   }
+		
 	}
 	
 	@Test
@@ -133,15 +128,8 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		sut.getEstado().actualizarResultado(sut);
 		sut.getEstado().verificarOpiniones(sut);
 		sut.getEstado().cambiarEstado(sut);
-		try {
-			leanLove.opinarMuestra(sut, opinion1);
-			sut.getEstado().actualizarResultado(sut);
-			sut.getEstado().verificarOpiniones(sut);
-			sut.getEstado().cambiarEstado(sut);
-		   }
-		   catch (Exception e) {
-		      e.getMessage();//Para imprimir el error si se quiere
-		   }
+		michael.cambiarEstado();		       //  Hecho para llamar metodos void que no son  
+		michael.setEstadoParticipante(null);   // llamados a traves de otros metodos    
 	}
 	
 	@Test
@@ -150,12 +138,6 @@ DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		assertEquals(1, sut.getOpiniones().size());
 		leanLove.opinarMuestra(sut, opinion1);
 		assertEquals(2,sut.getOpiniones().size());
-		try {
-			leanLove.opinarMuestra(sut, opinion3);
-		   }
-		   catch (Exception e) {
-		      System.out.print(e.getMessage());//Para imprimir el error si se quiere
-		   }
 	}
 
 }
