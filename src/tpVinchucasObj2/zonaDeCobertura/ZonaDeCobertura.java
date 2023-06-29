@@ -10,15 +10,12 @@ import tpVinchucasObj2.ubicacion.Ubicacion;
 
 public class ZonaDeCobertura {
 	
-	public String getNombre() {
-		return nombre;
-	}
+	
 
 	private String nombre ;
 	private double radio ;
 	private Ubicacion epicentro ;
 	private Sistema sistema ;
-	//private List<Muestra> muestras ; // Debe tener el atributo ??
 	private List<Organizacion> organizaciones ;
 	
 	public ZonaDeCobertura(String nombre, double radio, Ubicacion epicentro,Sistema sistema) {
@@ -26,9 +23,12 @@ public class ZonaDeCobertura {
 		this.nombre = nombre;
 		this.radio = radio;
 		this.epicentro = epicentro;
-		//this.muestras = new ArrayList<Muestra>();
 		this.organizaciones = new ArrayList<Organizacion>();
 		this.sistema = sistema ;
+	}
+	
+	public String getNombre() {
+		return nombre;
 	}
 	
 	public double getRadio() {
